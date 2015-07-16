@@ -1,5 +1,6 @@
 source 'https://rubygems.org'
 
+# My gems
 gem 'pg'
 gem 'haml'
 gem 'simple_form'
