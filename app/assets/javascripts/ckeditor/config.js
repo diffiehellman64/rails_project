@@ -1,5 +1,4 @@
 CKEDITOR.editorConfig = function (config) {
-  // ... other configuration ...
 
   config.toolbar_full = [
 	{ name: 'document', items : [ 'Source','-','Save','NewPage','DocProps','Preview','Print','-','Templates' ] },
@@ -20,9 +19,9 @@ CKEDITOR.editorConfig = function (config) {
   ];
 
   config.toolbar_custom = [
-        [ 'Save', '-', 'Source'],
+        [ 'Save', '-', 'Maximize', 'ShowBlocks', '-', 'Source'],
         [ 'PasteText','PasteFromWord','-','Undo','Redo' ],
-        [ 'Find','Replace','-','SelectAll','-','SpellChecker', 'Scayt' ],
+        [ 'Find','Replace','-', 'SpellChecker', 'Scayt' ],
         '/',
         [ 'Bold','Italic','Underline','Strike','Subscript','Superscript','-','RemoveFormat' ],
         [ 'NumberedList','BulletedList','-','Outdent','Indent','-','Blockquote','CreateDiv',
@@ -30,12 +29,10 @@ CKEDITOR.editorConfig = function (config) {
         [ 'Link','Unlink','Anchor' ],
         [ 'Image','Flash','Table','HorizontalRule','Smiley','SpecialChar','PageBreak','Iframe' ],
         '/',
-        [ 'Styles','Format','Font','FontSize' ],
-        [ 'TextColor','BGColor' ],
-        [ 'Maximize', 'ShowBlocks' ]
+        [ 'Format','Font','FontSize' ],
+        [ 'TextColor','BGColor' ]
   ];
 
   config.toolbar = "custom";
 
-  // ... rest of the original config.js  ...
 }
