@@ -1,2 +1,7 @@
-- flash.each do |name, msg|
-  = content_tag :div, msg, :id => "flash_#{name}" 
+.message
+  - flash.each do |name, msg|
+    .alert.alert-info.alert-dismissible{ id: "flash_#{name}", role: 'alert' }
+      %button.close{ type: 'button', 'data-dismiss': 'alert', 'aria-label': 'Close' }
+        %span{ 'aria-hidden': 'true' } &times;
+      %strong Info!
+      = msg

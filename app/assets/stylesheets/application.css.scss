@@ -15,3 +15,15 @@
  */
 @import "bootstrap-sprockets";
 @import "bootstrap";
+
+.message {
+  position: absolute;
+  z-index: 99999;
+  float: right;
+  opacity: 0.9;
+  clear: both;
+}
+
+.message:hover {
+  opacity: 0.5;
+}

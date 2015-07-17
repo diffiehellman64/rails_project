@@ -20,11 +20,5 @@ SimpleNavigation::Configuration.run do |navigation|
       sub_nav.item :users, 'Users', admin_users_path
     end
 
-    primary.item :key_2, 'User' do |sub_nav|
-      sub_nav.item :key_2_1, 'Log In', user_session_path, if: Proc.new { current_user and current_user.has_role?(:admin) }
-    end
-
-    primary.item :log_out, 'Log Out', destroy_user_session_path, method: :delete, if: Proc.new { user_signed_in? }
-
   end
 end

@@ -12,9 +12,9 @@
         - bool = user.has_role?(role.name)
         - if bool
           %td.success
-            = link_to "#{admin_role_path(user)}?act=del&role=#{role.name}", method: :patch, class: 'btn btn-danger btn-sm' do
+            = link_to "#{admin_role_path(user)}?act=del&role=#{role.name}", method: :patch, class: 'btn btn-danger btn-xs' do
               %span.glyphicon.glyphicon-remove-circle
         - else
           %td
-            = link_to "#{admin_role_path(user)}?act=add&role=#{role.name}", method: :patch, class: 'btn btn-success btn-sm' do
+            = link_to "#{admin_role_path(user)}?act=add&role=#{role.name}", method: :patch, class: 'btn btn-success btn-xs' do
               %span.glyphicon.glyphicon-ok-circle
