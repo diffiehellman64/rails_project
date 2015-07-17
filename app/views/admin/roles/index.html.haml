@@ -1,0 +1,20 @@
+%h2 Users roles
+%table.table.table-hover.table-bordered
+  %tr
+    %th User
+    - @roles.each do |role|
+      %th= role.name
+  - @users.each do |user|
+    %tr
+      %td
+        %span{ type: 'button', 'data-container': 'body' ,'data-toggle': 'popover', title: 'Actions', 'data-content': 'Test' }= user.email
+      - @roles.each do |role|
+        - bool = user.has_role?(role.name)
+        - if bool
+          %td.success
+            = link_to "#{admin_role_path(user)}?act=del&role=#{role.name}", method: :patch, class: 'btn btn-danger btn-sm' do
+              %span.glyphicon.glyphicon-remove-circle
+        - else
+          %td
+            = link_to "#{admin_role_path(user)}?act=add&role=#{role.name}", method: :patch, class: 'btn btn-success btn-sm' do
+              %span.glyphicon.glyphicon-ok-circle
