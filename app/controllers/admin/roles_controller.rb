@@ -1,12 +1,6 @@
 class Admin::RolesController < ApplicationController
 
-  before_action do
-    if current_user and current_user.has_role? :admin
-      true
-    else
-      render_403
-    end
-  end
+  before_action do check_admin end
 
   def index
     @users = User.all

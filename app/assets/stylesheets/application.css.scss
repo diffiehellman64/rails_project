@@ -18,12 +18,17 @@
 
 .message {
   position: absolute;
-  z-index: 99999;
-  float: right;
+  z-index: 1000;
   opacity: 0.9;
-  clear: both;
+  right: 0;
+  margin-right: 20px;
+  max-width: 30%;
 }
 
-.message:hover {
+.message-item:hover {
   opacity: 0.5;
+}
+
+.dropdown-menu {
+  z-index: 1001;
 }
