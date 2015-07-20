@@ -6,7 +6,7 @@
       %th Name
       %th Autor
       %th Created
-      %th{ colspan: '1' } Actions
+      %th{ colspan: '2' } Actions
     - @articles.each do |article|
       %tr{ 'data-article-id': article.id }
         %td= article.id
@@ -16,5 +16,7 @@
         %td= article.created_at.localtime.strftime('%H:%M %d-%m-%Y')
         %td
           .btn.btn-default.btn-danger.btn-xs{ id: 'action_article_destroy', 'data-article-id': article.id } Destroy
+        %td
+          = link_to "Versions (#{article.versions.length})", "#{article.id}/versions", class: 'btn btn-default btn-xs'
 - else
   Articles not written yet...

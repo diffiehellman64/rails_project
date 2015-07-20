@@ -5,16 +5,16 @@ class ApplicationController < ActionController::Base
 
 #  before_action :configure_permitted_parameters, if: :devise_controller?
 
-  def render_403
-    render status: :forbidden, text: 'Forbidden'
-  end
+#  def render_403
+#    render status: :forbidden, text: 'Forbidden'
+#  end
 
   rescue_from CanCan::AccessDenied do |exception|
     redirect_to root_path, flash: { danger: "<strong>Access denied</strong>: #{exception.message}" }#, status: 403
   end
 
   def check_admin
-    if !current_user or !current_user.has_role(:admin)
+    if !current_user or !current_user.has_role?(:admin)
       raise CanCan::AccessDenied.new("Sorry... But you are not admin!")
     else
       true

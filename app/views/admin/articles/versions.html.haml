@@ -1,0 +1,10 @@
+%h1 Article versions
+%table.table.table-bordered.table-hover
+  %tr
+    %th Title
+    %th Actions
+  - @versions.each do |ver|
+    %tr
+      - a = @article.version_at(ver.created_at)
+      %td= a.title
+      %td= link_to('Show', "/admin/articles/#{a.id}/versions/#{ver.created_at}", class: 'btn btn-default btn-xs')

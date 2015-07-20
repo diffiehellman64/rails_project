@@ -9,6 +9,7 @@ class User < ActiveRecord::Base
 #         :validatable, :authentication_keys => [:login]
 
   has_many :article
+  has_many :article_actual, through: :article
 
 #  attr_accessor :login
   

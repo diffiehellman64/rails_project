@@ -1,0 +1,5 @@
+%h1= @article_version.title
+= @article_version.created_at.localtime.strftime('%H:%M %d-%m-%Y')
+%p= raw @article_version.text
+/- if can? :update, @article
+/  = link_to 'Edit', edit_article_path(@article), class: 'btn btn-default'
