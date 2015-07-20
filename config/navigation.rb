@@ -8,6 +8,7 @@ SimpleNavigation::Configuration.run do |navigation|
 
     primary.item :home, 'Home', root_path
 
+	
     primary.item :article, 'Articles', '#' do |sub_nav|
       sub_nav.dom_class = 'dropdown-menu'
       sub_nav.item :articles_list, 'Articles list', articles_path
