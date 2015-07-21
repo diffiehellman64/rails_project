@@ -6,10 +6,15 @@ Rails.application.routes.draw do
 
   namespace :admin do
     resources :users, only: [:index]
-    resources :articles, only: [:index] do
-      get '/versions' => 'articles#versions'
-      get '/versions/:version_time' => 'articles#show'
-    end
+    get '/versions/:item_type' => 'versions#index'
+#    get '/versions/:item_type/:item_id/:version_time' => 'articles#versions'
+#    get '/versions/:item_type/:item_id/:version_time' => 'articles#versions'
+    resources :articles, only: [:index] 
+#    do
+#      get '/versions' => 'articles#versions'
+#      get '/versions/:version_time' => 'articles#show'
+#      post '/versions/:version_time' => 'articles#rollback'
+#    end
     resources :roles, only: [:index, :update, :create]
   end
 
