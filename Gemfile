@@ -12,6 +12,9 @@ gem 'rolify'
 gem 'simple-navigation-bootstrap'
 # gem 'ckeditor_rails'
 gem 'ckeditor'
+gem 'paperclip'
+gem 'paper_trail'
+
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'rails', '4.2.3'
