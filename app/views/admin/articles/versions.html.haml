@@ -2,9 +2,18 @@
 %table.table.table-bordered.table-hover
   %tr
     %th Title
-    %th Actions
-  - @versions.each do |ver|
-    %tr
-      - a = @article.version_at(ver.created_at)
-      %td= a.title
-      %td= link_to('Show', "/admin/articles/#{a.id}/versions/#{ver.created_at}", class: 'btn btn-default btn-xs')
+    %th Created
+    %th Created UTC
+  - @versions.each do |v|
+    - a = @article.version_at(v.created_at)
+    - v_n = v.next
+    - if v_n then
+      %tr
+        %td= link_to(a.title, "/admin/articles/#{a.id}/versions/#{v_n.created_at}")
+        %td= v.created_at.localtime.strftime('%H:%M %d-%m-%Y') 
+        %td= v.created_at 
+  %tr.success
+    %td= link_to(@article.title, article_path(@article))
+    %td= @article.updated_at.localtime.strftime('%H:%M %d-%m-%Y')
+    %td= @article.updated_at
+      

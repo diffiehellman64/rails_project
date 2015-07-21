@@ -8,8 +8,8 @@ class Ability
     user ||= User.new # guest user (not logged in)
     #Admin
     if user.has_role? :admin
-        can :modify, Article
-        can :read, Article
+      can :modify, Article
+      can :read, Article
     # Editor
     elsif user.has_role? :editor
       can :read, :all

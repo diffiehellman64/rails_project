@@ -17,6 +17,6 @@
         %td
           .btn.btn-default.btn-danger.btn-xs{ id: 'action_article_destroy', 'data-article-id': article.id } Destroy
         %td
-          = link_to "Versions (#{article.versions.length})", "#{article.id}/versions", class: 'btn btn-default btn-xs'
+          = link_to "Versions (#{article.versions.length})", admin_article_versions_path(article), class: 'btn btn-default btn-xs'
 - else
   Articles not written yet...

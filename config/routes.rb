@@ -8,6 +8,7 @@ Rails.application.routes.draw do
     resources :users, only: [:index]
     resources :articles, only: [:index] do
       get '/versions' => 'articles#versions'
+      get '/versions/:version_time' => 'articles#show'
     end
     resources :roles, only: [:index, :update, :create]
   end

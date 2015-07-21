@@ -19,6 +19,7 @@ SimpleNavigation::Configuration.run do |navigation|
       sub_nav.dom_class = 'dropdown-menu'
       sub_nav.item :roles, 'Roles', admin_roles_path
       sub_nav.item :users, 'Users', admin_users_path
+      sub_nav.item :articles, 'Articles', admin_articles_path
     end
 
   end
