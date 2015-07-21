@@ -3,4 +3,4 @@
 %p= raw @article.text
 - if can? :modify, @article
   = link_to 'Edit', edit_article_path(@article), class: 'btn btn-default'
-  = link_to 'Versions', admin_article_versions_path(@article), class: 'btn btn-default'
+  /= link_to 'Versions', admin_article_versions_path(@article), class: 'btn btn-default'

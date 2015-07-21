@@ -29,6 +29,7 @@ class ArticlesController < ApplicationController
   end
 
   def update
+    @article.user_id = current_user.id
     if @article.update(article_params)
       redirect_to @article, flash: { success: 'Article was successfully updated!' }
     else

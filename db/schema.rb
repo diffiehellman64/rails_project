@@ -18,7 +18,7 @@ ActiveRecord::Schema.define(version: 20150721060653) do
 
   create_table "articles", force: :cascade do |t|
     t.string   "title"
-    t.text     "text"
+    t.string   "text"
     t.integer  "user_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
@@ -36,10 +36,15 @@ ActiveRecord::Schema.define(version: 20150721060653) do
   add_index "roles", ["name"], name: "index_roles_on_name", using: :btree
 
   create_table "users", force: :cascade do |t|
-    t.string   "email",                  default: "", null: false
-    t.string   "encrypted_password",     default: "", null: false
     t.string   "last_name"
     t.string   "first_name"
+    t.date     "birthday"
+    t.string   "avatar_file_name"
+    t.string   "avatar_content_type"
+    t.integer  "avatar_file_size"
+    t.datetime "avatar_updated_at"
+    t.string   "email",                  default: "", null: false
+    t.string   "encrypted_password",     default: "", null: false
     t.string   "reset_password_token"
     t.datetime "reset_password_sent_at"
     t.datetime "remember_created_at"
