@@ -16,4 +16,11 @@ class Admin::ArticlesController < ApplicationController
     @article_version = @article.version_at(params[:version_time])
   end
 
+  def rollback
+    @article = Article.find(params[:article_id]) 
+    a = @article.version_at(params[:version_time])
+    @article.update(text: a.text, title: a.title)
+    redirect_to @article
+  end
+
 end

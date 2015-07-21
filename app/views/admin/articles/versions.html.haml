@@ -4,6 +4,8 @@
     %th Title
     %th Created
     %th Created UTC
+    %th Auhtor
+    %th Rollback
   - @versions.each do |v|
     - a = @article.version_at(v.created_at)
     - v_n = v.next
@@ -12,8 +14,12 @@
         %td= link_to(a.title, "/admin/articles/#{a.id}/versions/#{v_n.created_at}")
         %td= v.created_at.localtime.strftime('%H:%M %d-%m-%Y') 
         %td= v.created_at 
+        %td= User.find(v.whodunnit).email
+        %td
+          = link_to('Rollback', "/admin/articles/#{a.id}/versions/#{v_n.created_at}", class: 'btn btn-warning btn-xs', method: :post)
   %tr.success
     %td= link_to(@article.title, article_path(@article))
     %td= @article.updated_at.localtime.strftime('%H:%M %d-%m-%Y')
     %td= @article.updated_at
-      
+    %td= User.find(@article.user_id).email 
+    %td  
