@@ -11,10 +11,10 @@ module UserLinkHelper
         name += user.last_name
         name += ' '
       end
-      if !name
+      if name == ''
         name = user.email
       end
-    return link_to(name, "/profile/#{id}")
+    return link_to(name.squish, "/profile/#{id}")
     else
       return 'Udentified'
     end
@@ -32,10 +32,10 @@ module UserLinkHelper
         name += user.last_name
         name += ' '
       end
-      if !name
+      if name == ''
         name = user.email
       end
-    return name
+    return name.squish
     else
       return 'Udentified'
     end
