@@ -10,6 +10,7 @@ Rails.application.routes.draw do
     get '/versions/:item_type/:item_id' => 'versions#show'
     get '/versions/:item_type/:item_id/:version_id' => 'versions#version'
     patch '/versions/:item_type/:item_id/:version_id' => 'versions#rollback'
+    delete '/versions/:item_type/:item_id/:version_id' => 'versions#destroy'
     resources :articles, only: [:index] 
     resources :roles, only: [:index, :update, :create]
   end

@@ -1,6 +1,8 @@
 %h1= @article.title
-= @article.created_at.localtime.strftime('%H:%M %d-%m-%Y')
-%p= raw @article.text
 - if can? :modify, @article
-  = link_to 'Edit', edit_article_path(@article), class: 'btn btn-default'
-  /= link_to 'Versions', admin_article_versions_path(@article), class: 'btn btn-default'
+  .actions
+    = link_to 'Edit', edit_article_path(@article), class: 'btn btn-default'
+    = link_to 'Versions', "/admin/versions/article/#{@article.id}", class: 'btn btn-default'
+= @article.created_at.localtime.strftime('%H:%M %d-%m-%Y')
+= User.find(@article.user_id).email
+= raw @article.text

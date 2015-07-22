@@ -1,3 +1,9 @@
+%tr
+  %th Id
+  %th Title
+  %th Created
+  %th Author
+  %th{ colspan: '2' } Actions
 - @item.versions.each do |version|
   - article = @item.version_at(version.created_at)
   - ver_next = version.next
@@ -8,9 +14,11 @@
       %td= version.created_at  
       %td= User.find(version.whodunnit).email
       %td= link_to('Rollback', "/admin/versions/article/#{article.id}/#{ver_next.id}", class: 'btn btn-warning btn-xs', method: :patch)
+      %td= link_to('Delete', "/admin/versions/article/#{article.id}/#{ver_next.id}", class: 'btn btn-danger btn-xs', method: :delete)
 %tr.success
   %td
   %td= link_to(@item.title, article_path(@item))
   %td= @item.updated_at  
   %td= User.find(@item.user_id).email
+  %td
   %td
