@@ -11,14 +11,14 @@
     %tr
       %td= ver_next.id
       %td= link_to(article.title, "/admin/versions/article/#{article.id}/#{ver_next.id}")
-      %td= version.created_at  
-      %td= User.find(version.whodunnit).email
+      %td= version.created_at.localtime.strftime('%H:%M %d-%m-%Y') 
+      %td= user_profile_link(version.whodunnit)
       %td= link_to('Rollback', "/admin/versions/article/#{article.id}/#{ver_next.id}", class: 'btn btn-warning btn-xs', method: :patch)
       %td= link_to('Delete', "/admin/versions/article/#{article.id}/#{ver_next.id}", class: 'btn btn-danger btn-xs', method: :delete)
 %tr.success
   %td
   %td= link_to(@item.title, article_path(@item))
-  %td= @item.updated_at  
-  %td= User.find(@item.user_id).email
+  %td= @item.updated_at.localtime.strftime('%H:%M %d-%m-%Y')
+  %td= user_profile_link(@item.user_id)
   %td
   %td

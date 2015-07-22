@@ -14,8 +14,13 @@
               %li= link_to 'Forgot your password?', new_user_password_path
       - else
         %form.navbar-form.navbar-right 
-          = current_user.email
-          (
-          = link_to 'logout', destroy_user_session_path, method: :delete 
-          )
+          %a.btn.btn-default.dropdown-toggle{role: 'button', 'data-toggle': 'popover', 'data-trigger': 'focus', title: 'test', 'data-content': 'test'} test
+          = user_name(current_user.id)
+          .btn-group
+            %button.btn.btn-default.dropdown-toggle{ 'data-toggle': 'dropdown', 'aria-haspopup': 'true', 'aria-expanded': 'false' }
+              %span.caret
+            %ul.dropdown-menu
+              %li 
+                = link_to('You profile', "/profile/#{current_user.id}")
+                = link_to 'Log out', destroy_user_session_path, method: :delete 
     .col-md-1

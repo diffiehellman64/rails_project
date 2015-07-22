@@ -4,6 +4,8 @@
 #= require ckeditor/init
 #= require turbolinks
 #= require_tree .
+jQuery ->
+  $('[data-tggle="popover"]').popover()
 
 showAppMessage = (message, state = 'info') ->
   html_ = $('#application-messager').html()
@@ -14,6 +16,7 @@ showAppMessage = (message, state = 'info') ->
   $('#application-messager').html(html_)
 
 ready = ->
+#  $('[data-tggle="popover"]').popover()
   $('#action_article_edit').click ->
     url = '/articles/' + $('#action_article_edit').attr('data-article-id') + '/edit'
     $.ajax url,
@@ -59,6 +62,11 @@ ready = ->
           showAppMessage('Unknow error happened!', 'danger');
       success: (jqXHR) ->
         window.location.href = url
+#  $("a[rel=popover]").popover()
+#  $('a').popover()
+#  $(function) -> 
 
 $(document).ready(ready)
 $(document).on('page:load', ready)
+
+

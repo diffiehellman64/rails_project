@@ -1,8 +1,9 @@
 Rails.application.routes.draw do
 
   resources :articles
-  devise_for :users
   root 'home#index'
+
+  devise_for :users
 
   namespace :admin do
     resources :users, only: [:index]

@@ -8,11 +8,11 @@
   %tr{ 'data-item-id': article.id }
     %td= article.id
     %td= link_to article.title, article
-    - autor = User.find(article.user_id)
-    %td= autor.email
+    %td= user_profile_link(article.user_id)
     %td= article.created_at.localtime.strftime('%H:%M %d-%m-%Y')
     %td
       .btn.btn-default.btn-danger.btn-xs{ id: 'action_article_destroy', 'data-article-id': article.id } Destroy
     %td
-      = link_to "Versions (#{article.versions.length})", "/admin/versions/article/#{article.id}", class: 'btn btn-default btn-xs'
-
+      %a.btn.btn-primary.btn-xs{ href: "/admin/versions/article/#{article.id}" }
+        Versions
+        %span.badge= article.versions.length

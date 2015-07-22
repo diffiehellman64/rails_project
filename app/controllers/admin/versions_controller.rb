@@ -11,11 +11,9 @@ class Admin::VersionsController < ApplicationController
   end
 
   def version
-    if can? :update, @item
-      item_type = params[:item_type].capitalize.constantize
-      @item = item_type.find(params[:item_id])
-      @version = PaperTrail::Version.find(params[:version_id]).reify
-    end
+    item_type = params[:item_type].capitalize.constantize
+    @item = item_type.find(params[:item_id])
+    @version = PaperTrail::Version.find(params[:version_id]).reify
   end
 
   def rollback
