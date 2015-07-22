@@ -5,7 +5,17 @@
 #= require turbolinks
 #= require_tree .
 jQuery ->
-  $('[data-tggle="popover"]').popover()
+  $('[data-toggle="popover"]').popover
+    html: true
+    placement: 'bottom'
+    trigger: 'focus'
+    content: ->
+      $('#popover_content').html()
+    title: ->
+      $('#popover_title').html()
+    
+
+  $('#popover_content').attr('display', 'none')
 
 showAppMessage = (message, state = 'info') ->
   html_ = $('#application-messager').html()
@@ -16,7 +26,6 @@ showAppMessage = (message, state = 'info') ->
   $('#application-messager').html(html_)
 
 ready = ->
-#  $('[data-tggle="popover"]').popover()
   $('#action_article_edit').click ->
     url = '/articles/' + $('#action_article_edit').attr('data-article-id') + '/edit'
     $.ajax url,
@@ -37,7 +46,8 @@ ready = ->
       success: (jqXHR) ->
         window.location.href = url
   $('#action_article_destroy').click ->
-    url = '/articles/' + $('#action_article_destroy').attr('data-article-id')
+    article_tr = $(this).parents('tr')[0]
+    url = '/articles/' + $(article_tr).attr('data-article-id')
     if confirm('Are you shure?')
       $.ajax url,
         type: 'POST'
@@ -48,7 +58,7 @@ ready = ->
           else
             showAppMessage('Unknow error happened!', 'danger');
         success: (jqXHR) ->
-          window.location.href = '/articles'
+          $(article_tr).fadeOut(200)
           showAppMessage('<strong>Success!</strong> Article deleted!', 'success');
   $('#action_article_create').click ->
     url = '/articles/new'
@@ -62,11 +72,6 @@ ready = ->
           showAppMessage('Unknow error happened!', 'danger');
       success: (jqXHR) ->
         window.location.href = url
-#  $("a[rel=popover]").popover()
-#  $('a').popover()
-#  $(function) -> 
 
 $(document).ready(ready)
 $(document).on('page:load', ready)
-
-

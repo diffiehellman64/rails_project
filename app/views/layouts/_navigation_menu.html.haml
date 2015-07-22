@@ -5,22 +5,36 @@
       = render_navigation expand_all: true, renderer: :bootstrap
       - if !user_signed_in?
         %form.navbar-form.navbar-right
-          .btn-group
-            = link_to 'Log In', new_user_session_path, { class: 'btn btn-default' }
-            %button.btn.btn-default.dropdown-toggle{ type: 'button', 'data-toggle': 'dropdown', 'aria-haspopup': 'true', 'aria-expended': 'false' }
-              %span.caret
-            %ul.dropdown-menu
-              %li= link_to 'Sing Up', new_user_registration_path
-              %li= link_to 'Forgot your password?', new_user_password_path
+          = link_to 'Sing Up', new_user_registration_path, { class: 'btn btn-success btn-sm' }
+          = link_to 'Log In', new_user_session_path, { class: 'btn btn-primary btn-sm' }
       - else
-        %form.navbar-form.navbar-right 
-          %a.btn.btn-default.dropdown-toggle{role: 'button', 'data-toggle': 'popover', 'data-trigger': 'focus', title: 'test', 'data-content': 'test'} test
-          = user_name(current_user.id)
-          .btn-group
-            %button.btn.btn-default.dropdown-toggle{ 'data-toggle': 'dropdown', 'aria-haspopup': 'true', 'aria-expanded': 'false' }
-              %span.caret
-            %ul.dropdown-menu
-              %li 
-                = link_to('You profile', "/profile/#{current_user.id}")
-                = link_to 'Log out', destroy_user_session_path, method: :delete 
+        %form.navbar-right 
+          %ul.nav-custom
+            %li.dropdown{ role: 'presentation' }
+              %a.dropdown-toggle{ 'data-toggle': 'dropdown', 
+                                  'aria-haspopup': 'true', 
+                                  'aria-expanded': 'false',
+                                   role: 'button', 
+                                   href: "#" }
+                %span.glyphicon.glyphicon-user
+                %span.caret
+              %ul.dropdown-menu
+                .dropdown-header
+                  Signed in as 
+                  %br
+                  %strong= user_name(current_user.id)
+                %li.divider{ role: "separator" }
+                %li
+                  %a{ href: "/profile/#{current_user.id}" }
+                    %span.glyphicon.glyphicon-user
+                    You profile
+                %li
+                  %a{ href: "#{edit_user_registration_path}" }
+                    %span.glyphicon.glyphicon-pencil
+                    Edit profile
+                %li.divider{ role: "separator" }
+                %li
+                  = link_to(destroy_user_session_path, method: :delete) do
+                    %span.glyphicon.glyphicon-road
+                    Log out
     .col-md-1

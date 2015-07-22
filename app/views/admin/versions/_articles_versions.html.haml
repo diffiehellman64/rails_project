@@ -5,7 +5,7 @@
   %th Created
   %th{ colspan: '2' } Actions
 - @items.each do |article|
-  %tr{ 'data-item-id': article.id }
+  %tr{ 'data-article-id': article.id }
     %td= article.id
     %td= link_to article.title, article
     %td= user_profile_link(article.user_id)
