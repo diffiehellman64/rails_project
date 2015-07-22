@@ -12,10 +12,12 @@ SimpleNavigation::Configuration.run do |navigation|
     primary.item :article, 'Articles', '#' do |sub_nav|
       sub_nav.dom_class = 'dropdown-menu'
       sub_nav.item :articles_list, 'Articles list', articles_path
-      sub_nav.item :action_article_create, 'New article', new_article_path, if: Proc.new { can? :new, Article }
+      #sub_nav.item :action_article_create, 'New article', new_article_path, if: Proc.new { can? :new, Article }
+      sub_nav.item :action_article_create, 'New article', new_article_path
     end
 
-    primary.item :admin, 'Admin', '#',  if: Proc.new { current_user and current_user.has_role?(:admin) } do |sub_nav|
+   # primary.item :admin, 'Admin', '#',  if: Proc.new { current_user and current_user.has_role?(:admin) } do |sub_nav|
+    primary.item :admin, 'Admin', '#' do |sub_nav|
       sub_nav.dom_class = 'dropdown-menu'
       sub_nav.item :roles, 'Roles', admin_roles_path
       sub_nav.item :users, 'Users', admin_users_path
