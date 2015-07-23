@@ -9,17 +9,16 @@
 
 jQuery ->
 
-  $('[data-toggle="popover"]').popover
-    html: true
-    placement: 'bottom'
-    trigger: 'focus'
-    content: ->
-      $('#popover_content').html()
-    title: ->
-      $('#popover_title').html()
-    
+#  $('[data-toggle="popover"]').popover
+#    html: true
+#    placement: 'bottom'
+#    trigger: 'focus'
+#    content: ->
+#      $('#popover_content').html()
+#    title: ->
+#      $('#popover_title').html()
 
-  $('#popover_content').attr('display', 'none')
+#  $('#popover_content').attr('display', 'none')
 
 showAppMessage = (message, state = 'info') ->
   html_ = $('#application-messager').html()
@@ -56,7 +55,8 @@ confirmModal = (message, callback) ->
 
 ready = ->
   $ ->
-    $(document).pjax('a:not([data-remote]):not([data-behavior]):not([data-skip-pjax])', '[data-pjax-container]')
+    #$(document).pjax('a:not([data-remote]):not([data-behavior]):not([data-skip-pjax])', '[data-pjax-container]')
+    $(document).pjax('a', '#data-pjax-container')
 #  $('#action_article_edit').click ->
 #    url = '/articles/' + $('#action_article_edit').attr('data-article-id') + '/edit'
 #    $.ajax url,
@@ -99,7 +99,7 @@ ready = ->
 
   $('.action_article_destroy').click ->
     article_tr = $(this).parents('tr')[0]
-    console.log article_tr
+#    console.log article_tr
     url = '/articles/' + $(article_tr).attr('data-article-id')
     confirmModal('Do you really want destroy this article?', ->
       $.ajax url,
