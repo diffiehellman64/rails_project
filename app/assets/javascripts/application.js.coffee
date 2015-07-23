@@ -9,9 +9,6 @@
 
 jQuery ->
 
-  $ ->
-    $(document).pjax('a:not([data-remote]):not([data-behavior]):not([data-skip-pjax])', '[data-pjax-container]')
-
   $('[data-toggle="popover"]').popover
     html: true
     placement: 'bottom'
@@ -58,6 +55,8 @@ confirmModal = (message, callback) ->
     modalWindow.modal('hide')
 
 ready = ->
+  $ ->
+    $(document).pjax('a:not([data-remote]):not([data-behavior]):not([data-skip-pjax])', '[data-pjax-container]')
 #  $('#action_article_edit').click ->
 #    url = '/articles/' + $('#action_article_edit').attr('data-article-id') + '/edit'
 #    $.ajax url,
