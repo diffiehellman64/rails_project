@@ -1,10 +1,17 @@
 #= require jquery
 #= require bootstrap-sprockets
 #= require jquery_ujs
+#= require jquery.pjax
 #= require ckeditor/init
 #= require turbolinks
 #= require_tree .
+
+
 jQuery ->
+
+  $ ->
+    $(document).pjax('a:not([data-remote]):not([data-behavior]):not([data-skip-pjax])', '[data-pjax-container]')
+
   $('[data-toggle="popover"]').popover
     html: true
     placement: 'bottom'

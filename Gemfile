@@ -14,7 +14,8 @@ gem 'simple-navigation-bootstrap'
 gem 'ckeditor'
 gem 'paperclip'
 gem 'paper_trail'
-
+#gem 'pjax_rails'
+gem 'rack-pjax'
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'rails', '4.2.3'
