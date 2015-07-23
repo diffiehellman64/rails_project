@@ -6,7 +6,7 @@ require 'rails/all'
 # you've limited to :test, :development, or :production.
 Bundler.require(*Rails.groups)
 
-module Bujinkan
+module Project
   class Application < Rails::Application
     config.middleware.use Rack::Pjax
     # Settings in config/environments/* take precedence over those specified here.
