@@ -1,8 +1,7 @@
 %h1= "Version control for #{params[:item_type]}"
 - if @items.count > 0
   %table.table.table-bordered.table-hover
-    - if params[:item_type].capitalize == 'Article'
-      =render 'articles_versions'
+    = render "#{params[:item_type]}_index"
 - else
   Nothing yet...
 

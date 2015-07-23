@@ -8,13 +8,14 @@
   - article = @item.version_at(version.created_at)
   - ver_next = version.next
   - if ver_next then
-    %tr
+    %tr{ 'data-version-id': ver_next.id, 'data-item-type': params[:item_type], 'data-item-id': article.id }
       %td= ver_next.id
       %td= link_to(article.title, "/admin/versions/article/#{article.id}/#{ver_next.id}")
       %td= version.created_at.localtime.strftime('%H:%M %d-%m-%Y') 
       %td= user_profile_link(version.whodunnit)
       %td= link_to('Rollback', "/admin/versions/article/#{article.id}/#{ver_next.id}", class: 'btn btn-warning btn-xs', method: :patch)
-      %td= link_to('Delete', "/admin/versions/article/#{article.id}/#{ver_next.id}", class: 'btn btn-danger btn-xs', method: :delete)
+      %td
+        .btn.btn-default.btn-danger.btn-xs.action_version_destroy Destroy
 %tr.success
   %td
   %td= link_to(@item.title, article_path(@item))

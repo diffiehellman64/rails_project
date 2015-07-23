@@ -11,7 +11,7 @@
     %td= user_profile_link(article.user_id)
     %td= article.created_at.localtime.strftime('%H:%M %d-%m-%Y')
     %td
-      .btn.btn-default.btn-danger.btn-xs{ id: 'action_article_destroy', 'data-article-id': article.id } Destroy
+      .btn.btn-default.btn-danger.btn-xs.action_article_destroy Destroy
     %td
       %a.btn.btn-primary.btn-xs{ href: "/admin/versions/article/#{article.id}" }
         Versions

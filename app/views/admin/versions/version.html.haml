@@ -1,4 +1,3 @@
 %h1= "Version of #{params[:item_type]}"
 %table.table.table-hover.table-bordered
-  - if params[:item_type].capitalize == 'Article'
-    = render 'article_version'
+  = render "#{params[:item_type]}_version"
