@@ -3,9 +3,11 @@ Rails.application.routes.draw do
   resources :articles
   root 'home#index'
 
-  devise_for :users , controllers: { registrations: 'access/registrations' }
+  devise_for :users , controllers: { registrations: 'access/registrations', 
+                                     passwords: 'access/passwords',
+                                     sessions: 'access/sessions' }
   devise_scope :user do
-    get 'profile/:id' => 'access/registrations#profile'
+    get 'profile/:id' => 'access/registrations#profile', as: 'profile'
   end
 
   namespace :admin do

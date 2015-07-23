@@ -14,7 +14,7 @@ module UserLinkHelper
       if name == ''
         name = user.email
       end
-    return link_to(name.squish, "/profile/#{id}")
+    return link_to(name.squish, profile_path(id))
     else
       return 'Udentified'
     end

@@ -11,7 +11,8 @@ class User < ActiveRecord::Base
   has_many :article
   has_many :article_actual, through: :article
 
-#  attr_accessor :login
+#  attr_accessor :avatar_file_name
+#  attr_accessor :avatar_content_type
   
 #  def login=(login)
 #    @login = login
@@ -35,5 +36,10 @@ class User < ActiveRecord::Base
 #            :uniqueness => {
 #              :case_sensitive => false
 #            }
+
+  has_attached_file :avatar, 
+                    styles: { medium: '300x300>', thumb: '100x100>' },
+                    default_url: '/images/:style/default.png'
+  validates_attachment_content_type :avatar, content_type: /\Aimage\/.*\Z/
 
 end
