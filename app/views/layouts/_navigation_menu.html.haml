@@ -16,7 +16,10 @@
                                   'aria-expanded': 'false',
                                    role: 'button', 
                                    href: "#" }
-                %span.glyphicon.glyphicon-user
+                /= image_tag @user.avatar.url(:label) 
+                .img-avatar
+                  = image_tag current_user.avatar.url(:thumb)
+                /%span.glyphicon.glyphicon-user
                 %span.caret
               %ul.dropdown-menu
                 .dropdown-header

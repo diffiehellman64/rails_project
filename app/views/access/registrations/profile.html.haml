@@ -1,5 +1,3 @@
 %h1= user_name(@user.id) 
-= image_tag @user.avatar.url
-= image_tag @user.avatar.url(:medium)
-= image_tag @user.avatar.url(:thumb)
-%span.glyphicon.glyphicon-user{ width: '300' }
+.img-thumbnail
+  = image_tag @user.avatar.url(:medium)
