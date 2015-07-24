@@ -17,8 +17,9 @@
   
 
 ready = ->
-    #$(document).pjax('a:not([data-remote]):not([data-behavior]):not([data-skip-pjax])', '[data-pjax-container]')
-    #$(document).pjax('a', '#data-pjax-container')
+  #$(document).pjax('a:not([data-remote]):not([data-behavior]):not(.ajax_action):not([data-skip-pjax])', '#data-pjax-container')
+  $(document).pjax('a:not(ajax_action)', '#data-pjax-container')
+ # $(document).pjax('a', '#data-pjax-container')
 
 
   $('.action_article_destroy').click ->
