@@ -3,7 +3,7 @@
   %th Title
   %th Created
   %th Author
-  %th{ colspan: '2' } Actions
+  %th{ colspan: '333' } Actions
 - @item.versions.each do |version|
   - article = @item.version_at(version.created_at)
   - ver_next = version.next
@@ -13,6 +13,8 @@
       %td= link_to(article.title, "/admin/versions/article/#{article.id}/#{ver_next.id}")
       %td= version.created_at.localtime.strftime('%H:%M %d-%m-%Y') 
       %td= user_profile_link(version.whodunnit)
+      %td
+        %button.btn.btn-default.btn-xs.action_version_preview show
       %td= link_to('Rollback', "/admin/versions/article/#{article.id}/#{ver_next.id}", class: 'btn btn-warning btn-xs', method: :patch)
       %td
         .btn.btn-default.btn-danger.btn-xs.action_version_destroy Destroy
@@ -21,5 +23,6 @@
   %td= link_to(@item.title, article_path(@item))
   %td= @item.updated_at.localtime.strftime('%H:%M %d-%m-%Y')
   %td= user_profile_link(@item.user_id)
+  %td
   %td
   %td

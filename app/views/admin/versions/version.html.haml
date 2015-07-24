@@ -1,3 +1,6 @@
-%h1= "Version of #{params[:item_type]}"
+%h3
+  %span.label.label-default
+    %span.glyphicon.glyphicon-time 
+    Version of #{params[:item_type]}
 %table.table.table-hover.table-bordered
   = render "#{params[:item_type]}_version"

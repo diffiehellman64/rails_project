@@ -23,3 +23,20 @@
     modalWindow.modal('hide')
   modalWindow.find('#modalNo').click ->
     modalWindow.modal('hide')
+
+@showInModal = (content) ->
+  modalWindow = $('<div class="modal fade">' +
+                    '<div class="modal-dialog" >' +
+                      '<div class="modal-content" >' +
+                        '<div class="modal-body" >' +
+                          content +
+                        '</div>' +
+                        '<div class="modal-footer" >' +
+                          '<button id="modalOk"  class="btn btn-default btn-primary">Ok</button>' +
+                        '</div>' +
+                      '</div>' +
+                    '</div>' +
+                  '</div>')
+  modalWindow.modal('show')
+  modalWindow.find('#modalOk').click ->
+    modalWindow.modal('hide')

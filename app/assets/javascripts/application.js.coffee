@@ -58,5 +58,23 @@ ready = ->
           showAppMessage('<strong>Success!</strong> Version deleted!', 'success');
     )
 
+  $('.action_version_preview').click ->
+    version_tr = $(this).parents('tr')[0]
+    url = '/admin/versions/'
+    url += $(version_tr).attr('data-item-type') +  '/'
+    url += $(version_tr).attr('data-item-id') + '/'
+    url += $(version_tr).attr('data-version-id') + '/'
+    $.ajax url,
+      type: 'GET'
+      error: (jqXHR) ->
+        if (jqXHR.status == 403)
+          showAppMessage('<strong>Access denied!</strong> You have no permissions for this action!', 'danger');
+        else
+          showAppMessage('Unknow error happened!', 'danger');
+      success: (data) ->
+        content = $(data).find('#main-data').html()
+        showInModal(content)
+
+
 $(document).ready(ready)
 $(document).on('page:load', ready)
