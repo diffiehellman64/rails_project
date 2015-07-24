@@ -16,6 +16,8 @@ gem 'paperclip'
 gem 'paper_trail'
 gem 'pjax_rails'
 #gem 'rack-pjax'
+gem 'rails_admin'
+
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'rails', '4.2.3'

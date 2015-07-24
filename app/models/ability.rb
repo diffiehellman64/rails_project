@@ -10,6 +10,8 @@ class Ability
     if user.has_role? :admin
       can :modify, Article
       can :read, Article
+      can :access, :rails_admin   # grant access to rails_admin
+      can :dashboard              # grant access to the dashboard
     # Editor
     elsif user.has_role? :editor
       can :read, :all

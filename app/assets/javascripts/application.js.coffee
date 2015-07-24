@@ -52,7 +52,6 @@ ready = ->
 
   $('body').on('click', '.action_version_preview', ( -> 
     version_tr = $(this).parents('tr')[0]
-    version_tr = $(this).parents('tr')[0]
     url = '/admin/versions/'
     url += $(version_tr).attr('data-item-type') +  '/'
     url += $(version_tr).attr('data-item-id') + '/'

@@ -3,7 +3,4 @@
     .col-md-1
     .col-md-10
       = render_navigation(context: :admin, expand_all: true, renderer: :bootstrap)
-      =link_to 'home', root_path, 'data-pjax': '#data-pjax-container'
-      =link_to 'users', users_all_path, 'data-pjax': '#data-pjax-container'
-      =link_to 'versions', admin_versions_path('article'), 'data-pjax': '#data-pjax-container'
     .col-md-1
