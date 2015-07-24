@@ -8,21 +8,12 @@
 #= require_tree ./functions
 
 #jQuery ->
-  #$(document).pjax('a:not([data-remote]):not([data-behavior]):not([data-skip-pjax])', '#data-pjax-container')
-  #$(document).pjax('a', '#data-pjax-container')
-  #$('a').pjax('#data-pjax-container')
-
-  #$('.action_article_destroy').click ->
-  #  console.log 'Ok!!!'
-  
+$ ->
+  $(document).pjax('a:not([data-skip-pjax])', '[pjax-container]', { timeout: 0 })
 
 ready = ->
-  #$(document).pjax('a:not([data-remote]):not([data-behavior]):not(.ajax_action):not([data-skip-pjax])', '#data-pjax-container')
-  $(document).pjax('a:not(ajax_action)', '#data-pjax-container')
- # $(document).pjax('a', '#data-pjax-container')
 
-
-  $('.action_article_destroy').click ->
+  $('body').on('click', '.action_article_destroy', ( -> 
     article_tr = $(this).parents('tr')[0]
     url = '/articles/' + $(article_tr).attr('data-article-id')
     confirmModal('Do you really want destroy this article?', ->
@@ -37,9 +28,9 @@ ready = ->
         success: (jqXHR) ->
           $(article_tr).fadeOut(200)
           showAppMessage('<strong>Success!</strong> Article deleted!', 'success');
-    )
+  )))
 
-  $('.action_version_destroy').click ->
+  $('body').on('click', '.action_version_destroy', ( -> 
     version_tr = $(this).parents('tr')[0]
     url = '/admin/versions/'
     url += $(version_tr).attr('data-item-type') +  '/'
@@ -57,9 +48,10 @@ ready = ->
         success: (jqXHR) ->
           $(version_tr).fadeOut(200)
           showAppMessage('<strong>Success!</strong> Version deleted!', 'success');
-    )
+  )))
 
-  $('.action_version_preview').click ->
+  $('body').on('click', '.action_version_preview', ( -> 
+    version_tr = $(this).parents('tr')[0]
     version_tr = $(this).parents('tr')[0]
     url = '/admin/versions/'
     url += $(version_tr).attr('data-item-type') +  '/'
@@ -75,6 +67,7 @@ ready = ->
       success: (data) ->
         content = $(data).find('#main-data').html()
         showInModal(content)
+  ))
 
   $('#search_field').focus ->
     $(this).animate

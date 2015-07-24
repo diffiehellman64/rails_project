@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+%html
+  %head
+    %title Project
+    = stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track': true
+    = javascript_include_tag 'application', 'data-turbolinks-track': true
+    = csrf_meta_tags
+  %body
+    = render 'layouts/navigation_menu'
+    = render 'layouts/messager'
+    = render 'layouts/admin_menu'
+    .row
+      .col-md-1
+      .col-md-10{ 'pjax-container': 'true' }
+        = yield
+      .col-md-1

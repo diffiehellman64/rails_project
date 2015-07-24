@@ -110,10 +110,10 @@ GEM
       mime-types
       mimemagic (= 0.3.0)
     pg (0.18.2)
+    pjax_rails (0.4.0)
+      jquery-rails
+      railties (>= 3.2, < 5.0)
     rack (1.6.4)
-    rack-pjax (0.8.0)
-      nokogiri (~> 1.5)
-      rack (~> 1.1)
     rack-test (0.6.3)
       rack (>= 1.0)
     rails (4.2.3)
@@ -207,7 +207,7 @@ DEPENDENCIES
   paper_trail
   paperclip
   pg
-  rack-pjax
+  pjax_rails
   rails (= 4.2.3)
   rolify
   sass-rails (~> 5.0)

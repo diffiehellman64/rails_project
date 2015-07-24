@@ -5,6 +5,8 @@ class ApplicationController < ActionController::Base
 
   before_action :configure_permitted_parameters, if: :devise_controller?
 
+# layout :determine_layout
+
 #  def render_403
 #    render status: :forbidden, text: 'Forbidden'
 #  end
@@ -29,5 +31,12 @@ class ApplicationController < ActionController::Base
     devise_parameter_sanitizer.for(:account_update) { |u| u.permit(:last_name, :first_name, :avatar, :email, :password, :password_confirmation, :current_password, :avatar) }
 #    devise_parameter_sanitizer.for(:user) << :avatar
   end
+
+
+  private
+
+# def determine_layout
+#   request.headers['X-PJAX'] ? false : :application
+# end
 
 end
