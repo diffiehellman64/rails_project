@@ -75,6 +75,21 @@ ready = ->
         content = $(data).find('#main-data').html()
         showInModal(content)
 
+  $('#search_field').focus ->
+    $(this).animate
+      width: '+=300'
+
+
+  $('#search_field').focusout ->
+    $(this).animate
+      width: '-=300'
+
+  $('#search_field').keyup ->
+    cont = $('#search_field').val()
+    if cont
+      showAppMessage(cont, 'info');
+#    if cont == 'test'
+#      cont = $('#search_field').val('123')
 
 $(document).ready(ready)
 $(document).on('page:load', ready)

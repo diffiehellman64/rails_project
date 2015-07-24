@@ -13,6 +13,7 @@
     %td
       .btn.btn-default.btn-danger.btn-xs.action_article_destroy Destroy
     %td
-      %a.btn.btn-primary.btn-xs{ href: "/admin/versions/article/#{article.id}" }
-        Versions
-        %span.badge= article.versions.length
+      - if article.versions.length > 1
+        %a.btn.btn-primary.btn-xs{ href: "/admin/versions/article/#{article.id}" }
+          Versions
+          %span.badge= article.versions.length
