@@ -1,9 +1,34 @@
 class Access::RegistrationsController < Devise::RegistrationsController
 # before_filter :configure_sign_up_params, only: [:create]
 # before_filter :configure_account_update_params, only: [:update]
+
+  before_action :check_adm, only: [:roles, :roles_update]
+#  before_action :set_article, only: [:show, :edit, :update, :destroy]
   
   def profile
     @user = User.find(params[:id])
+  end
+ 
+  def users
+    @users = User.all
+    @roles = Role.all
+  end
+
+  def roles_update
+    user = User.find(params[:id])
+    case params[:act]
+      when 'del'
+        user.remove_role params[:role]
+      when 'add'
+        user.add_role(params[:role])
+    end
+    redirect_to users_all_path
+  end
+  
+  private
+  
+  def check_adm
+    check_admin
   end
 
   # GET /resource/sign_up
