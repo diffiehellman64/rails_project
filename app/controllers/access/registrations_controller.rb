@@ -28,7 +28,8 @@ class Access::RegistrationsController < Devise::RegistrationsController
   end
 
   def validate
-    user = User.new(params.require(:user).permit(:email))
+
+    user = User.new(params.require(:user).permit(:email, :password, :password_confirmation))
     user.valid?
     field = params[:user].first[0]
     @errors = user.errors[field]
@@ -43,6 +44,7 @@ class Access::RegistrationsController < Devise::RegistrationsController
     respond_to do |format|
       format.json { render json: @errors }
     end
+
   end
   
   private

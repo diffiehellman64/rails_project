@@ -17,6 +17,7 @@ gem 'paper_trail'
 gem 'pjax_rails'
 #gem 'rack-pjax'
 gem 'rails_admin'
+gem 'i18n'
 
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'

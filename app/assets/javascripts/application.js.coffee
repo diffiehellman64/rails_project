@@ -14,21 +14,21 @@ $ ->
 
 ready = ->
 
-  validate_url = '/users/validate'
-
-  $('#new_user').validate(
-    debug: true
-    rules:
-      'user[email]':
-        required: true
-        remote:
-          url: validate_url
-          type: 'post'
-      'user[password]':
-        remote:
-          url: validate_url
-          type: 'post'
-  )
+#  validate_url = '/users/validate'
+#
+#  $('#new_user').validate(
+#    debug: true
+#    rules:
+#      'user[email]':
+#        required: true
+#        remote:
+#          url: validate_url
+#          type: 'post'
+#      'user[password]':
+#        remote:
+#          url: validate_url
+#          type: 'post'
+#  )
 
   $('body').on('click', '.action_article_destroy', ( -> 
     article_tr = $(this).parents('tr')[0]

@@ -1,0 +1,21 @@
+ru:
+  hello: 'Привет'
+  activerecord:
+    attributes:
+      user:
+        email: 'Email'
+        last_name: 'Фамилия'
+        first_name: 'Имя'
+        password: 'Пароль'
+        password_confirmation: 'Подтверждение пароля'
+    errors:
+      models:
+        user:
+          attributes:
+            email:
+              taken: 'уже занят.'
+            password:
+              blank: 'не должен быть пустым.'
+              too_short: 'слишком короткий.'
+            password_confirmation:
+              confirmation: 'не совпадает с паролем'
