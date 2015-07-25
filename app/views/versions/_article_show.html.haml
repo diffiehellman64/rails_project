@@ -10,12 +10,12 @@
   - if ver_next then
     %tr{ 'data-version-id': ver_next.id, 'data-item-type': params[:item_type], 'data-item-id': article.id }
       %td= ver_next.id
-      %td= link_to(article.title, "/admin/versions/article/#{article.id}/#{ver_next.id}")
+      %td= link_to(article.title, "/versions/article/#{article.id}/#{ver_next.id}")
       %td= version.created_at.localtime.strftime('%H:%M %d-%m-%Y') 
       %td= user_profile_link(version.whodunnit)
       %td
-        %button.btn.btn-default.btn-xs.action_version_preview show
-      %td= link_to('Rollback', "/admin/versions/article/#{article.id}/#{ver_next.id}", class: 'btn btn-warning btn-xs', method: :patch)
+        %button.btn.btn-default.btn-xs.action_version_preview Show
+      %td= link_to('Rollback', "/versions/article/#{article.id}/#{ver_next.id}", class: 'btn btn-warning btn-xs', method: :patch)
       %td
         .btn.btn-default.btn-danger.btn-xs.action_version_destroy Destroy
 %tr.success

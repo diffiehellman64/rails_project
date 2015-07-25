@@ -1,5 +1,7 @@
 class Access::RegistrationsController < Devise::RegistrationsController
-# before_filter :configure_sign_up_params, only: [:create]
+
+  before_filter :configure_sign_up_params, only: [:create, :validate]
+
 # before_filter :configure_account_update_params, only: [:update]
 
   before_action :check_adm, only: [:roles, :roles_update]
@@ -23,6 +25,24 @@ class Access::RegistrationsController < Devise::RegistrationsController
         user.add_role(params[:role])
     end
     redirect_to users_all_path
+  end
+
+  def validate
+    user = User.new(params.require(:user).permit(:email))
+    user.valid?
+    field = params[:user].first[0]
+    @errors = user.errors[field]
+
+    if @errors.empty?
+      @errors = true
+    else
+      name = t("activerecord.attributes.user.#{field}")
+      @errors.map! { |e| "#{name} #{e}<br/>" }
+    end
+
+    respond_to do |format|
+      format.json { render json: @errors }
+    end
   end
   
   private
@@ -68,9 +88,9 @@ class Access::RegistrationsController < Devise::RegistrationsController
   # protected
 
   # If you have extra params to permit, append them to the sanitizer.
-  # def configure_sign_up_params
-  #   devise_parameter_sanitizer.for(:sign_up) << :attribute
-  # end
+  def configure_sign_up_params
+    devise_parameter_sanitizer.for(:sign_up) << :attribute
+  end
 
   # If you have extra params to permit, append them to the sanitizer.
   # def configure_account_update_params

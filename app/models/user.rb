@@ -8,8 +8,16 @@ class User < ActiveRecord::Base
 #         :recoverable, :rememberable, :trackable, 
 #         :validatable, :authentication_keys => [:login]
 
+  before_save { self.email = email.downcase }
+
   has_many :article
   has_many :article_actual, through: :article
+
+  VALID_EMAIL_REGEX = /\A[\w+\-.]+@[a-z\d\-.]+\.[a-z]+\z/i
+  
+  validates :email, presence: true,
+            uniqueness: { case_sensitive: false },
+            format: { with: VALID_EMAIL_REGEX }
 
 #  attr_accessor :avatar_file_name
 #  attr_accessor :avatar_content_type

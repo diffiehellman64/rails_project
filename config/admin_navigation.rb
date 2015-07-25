@@ -9,7 +9,7 @@ SimpleNavigation::Configuration.run do |navigation|
       sub_nav.item :articles_index, 'Articles list', articles_path, class: 'pjax_action'
       #sub_nav.item :action_article_create, 'New article', new_article_path, if: Proc.new { can? :new, Article }
       sub_nav.item :articles_new, 'New article', new_article_path, class: 'pjax_action'
-#      sub_nav.item :articles_versions, 'Versions', admin_versions_path('article'),  class: 'pjax_action'
+      sub_nav.item :articles_versions, 'Versions', versions_path('article'),  class: 'pjax_action'
     end
 
    # primary.item :admin, 'Admin', '#',  if: Proc.new { current_user and current_user.has_role?(:admin) } do |sub_nav|

@@ -1,4 +1,4 @@
-class Admin::VersionsController < ApplicationController
+class VersionsController < ApplicationController
 
   before_action :get_model 
 
@@ -29,7 +29,7 @@ class Admin::VersionsController < ApplicationController
       if params[:item_type].capitalize == 'Article'
         @item.update(text: @version.text, title: @version.title, user_id: current_user.id)
         PaperTrail::Version.destroy(params[:version_id])
-        redirect_to "/admin/versions/#{params[:item_type]}/#{params[:item_id]}", flash: { success: 'Success rolling back!' }
+        redirect_pjax_to "/versions/#{params[:item_type]}/#{params[:item_id]}", flash: { success: 'Success rolling back!' }, _pjax: true
       else  
         redirect_to root_path, flash: { info: 'nothing do...' }
       end
@@ -37,7 +37,7 @@ class Admin::VersionsController < ApplicationController
   
   def destroy
     PaperTrail::Version.destroy(params[:version_id])
-    redirect_to "/admin/versions/#{params[:item_type]}/#{params[:item_id]}"
+    redirect_to "/versions/#{params[:item_type]}/#{params[:item_id]}"
   end
 
   private

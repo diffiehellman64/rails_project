@@ -14,6 +14,6 @@
       %a.btn.btn-default.btn-danger.btn-xs.action_article_destroy.ajax_action{ href: '#', 'data-skip-pjax': 'true' } Destroy
     %td
       - if article.versions.length > 1
-        %a.btn.btn-primary.btn-xs{ href: "/admin/versions/article/#{article.id}" }
+        %a.btn.btn-primary.btn-xs{ href: "/versions/article/#{article.id}" }
           Versions
           %span.badge= article.versions.length

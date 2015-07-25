@@ -2,7 +2,7 @@
 - if can? :modify, @article
   .actions
     = link_to 'Edit', edit_article_path(@article), class: 'btn btn-default'
-    = link_to 'Versions', "/admin/versions/article/#{@article.id}", class: 'btn btn-default'
+    = link_to 'Versions', "/versions/article/#{@article.id}", class: 'btn btn-default'
 = raw user_profile_link(@article.user_id)
 = @article.created_at.localtime.strftime('%H:%M %d-%m-%Y')
 = raw @article.text
