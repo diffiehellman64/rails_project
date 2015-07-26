@@ -1,4 +1,6 @@
 ru:
+  'Sign Up': 'Регистрация'
+  'Log In': 'Вход'
   hello: 'Привет'
   activerecord:
     attributes:

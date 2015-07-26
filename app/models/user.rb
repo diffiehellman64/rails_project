@@ -2,11 +2,11 @@ class User < ActiveRecord::Base
   rolify
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable and :omniauthable
+  # devise :database_authenticatable, :registerable,
+  #        :recoverable, :rememberable, :trackable, :validatable
   devise :database_authenticatable, :registerable,
-         :recoverable, :rememberable, :trackable, :validatable
-#  devise :database_authenticatable, :registerable,
-#         :recoverable, :rememberable, :trackable, 
-#         :validatable, :authentication_keys => [:login]
+         :recoverable, :rememberable, :trackable, 
+         :validatable, :authentication_keys => [:login]
 
   before_save { self.email = email.downcase }
 
@@ -15,29 +15,30 @@ class User < ActiveRecord::Base
 
 #  VALID_EMAIL_REGEX = /\A[\w+\-.]+@[a-z\d\-.]+\.[a-z]+\z/i
   
-#  validates :email, presence: true,
-#            uniqueness: { case_sensitive: false },
+  validates :username, presence: true,
+            uniqueness: { case_sensitive: false }
 #            format: { with: VALID_EMAIL_REGEX }
 
-#  attr_accessor :avatar_file_name
-#  attr_accessor :avatar_content_type
+  attr_accessor :login
   
-#  def login=(login)
-#    @login = login
-#  end
+  def login=(login)
+    @login = login
+  end
 
-#  def login
-#    @login || self.username || self.email
-#  end 
+  def login
+    @login || self.username || self.email
+  end 
 
-#  def self.find_for_database_authentication(warden_conditions)
-#    conditions = warden_conditions.dup
-#    if login = conditions.delete(:login)
- #     where(conditions.to_h).where(["lower(username) = :value OR lower(email) = :value", { :value => login.downcase }]).first
-#    else
-#      where(conditions.to_h).first
-#    end
-#  end
+  def self.find_for_database_authentication(warden_conditions)
+    conditions = warden_conditions.dup
+    if login = conditions.delete(:login)
+      where(conditions.to_h).where(["lower(username) = :value OR lower(email) = :value", { :value => login.downcase }]).first
+    else
+      where(conditions.to_h).first
+    end
+  end
+
+
 
 #  validates :username,
 #            :presence => true,
@@ -49,7 +50,7 @@ class User < ActiveRecord::Base
                     styles: { large:  '400x400>',
                               medium: '200x200>', 
                               thumb:  '16x16>' },
-                    default_url: '/system/users/avatars/:style/default.jpg'
+                    default_url: '/system/users/avatars/default/:style/default.jpg'
   validates_attachment_content_type :avatar, content_type: /\Aimage\/.*\Z/
 
 end

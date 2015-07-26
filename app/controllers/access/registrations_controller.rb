@@ -29,7 +29,7 @@ class Access::RegistrationsController < Devise::RegistrationsController
 
   def validate
 
-    user = User.new(params.require(:user).permit(:email, :password, :password_confirmation))
+    user = User.new(params.require(:user).permit(:email, :password, :username, :password_confirmation))
     user.valid?
     field = params[:user].first[0]
     @errors = user.errors[field]

@@ -27,10 +27,27 @@ class ApplicationController < ActionController::Base
   protected
 
   def configure_permitted_parameters
-    devise_parameter_sanitizer.for(:sign_up) { |u| u.permit(:last_name, :first_name, :email, :password, :password_confirmation, :remember_me, :avatar) }
-    devise_parameter_sanitizer.for(:sign_in) { |u| u.permit(:email, :password, :remember_me) }
-    devise_parameter_sanitizer.for(:account_update) { |u| u.permit(:last_name, :first_name, :avatar, :email, :password, :password_confirmation, :current_password, :avatar) }
-#    devise_parameter_sanitizer.for(:user) << :avatar
+    devise_parameter_sanitizer.for(:sign_up) { |u| u.permit(:last_name, 
+                                                            :first_name, 
+                                                            :email, 
+                                                            :password, 
+                                                            :password_confirmation, 
+                                                            :remember_me, 
+                                                            :avatar,
+                                                            :username) }
+    devise_parameter_sanitizer.for(:sign_in) { |u| u.permit(:email, 
+                                                            :username, 
+                                                            :password, 
+                                                            :remember_me) }
+    devise_parameter_sanitizer.for(:account_update) { |u| u.permit(:last_name, 
+                                                                   :first_name, 
+                                                                   :avatar, 
+                                                                   :email, 
+                                                                   :username, 
+                                                                   :password, 
+                                                                   :password_confirmation, 
+                                                                   :current_password, 
+                                                                   :avatar) }
   end
 
 

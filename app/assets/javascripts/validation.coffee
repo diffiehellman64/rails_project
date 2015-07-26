@@ -34,6 +34,11 @@ jQuery ->
           remote:
             url: validate_user_url
             type: 'post'
+        'user[username]':
+          required: true
+          remote:
+            url: validate_user_url
+            type: 'post'
         'user[avatar]':
           remote:
             url: validate_user_url
