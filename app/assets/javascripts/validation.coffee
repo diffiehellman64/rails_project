@@ -14,7 +14,7 @@ jQuery ->
 # => Bootstrap integration <= #
       errorClass: 'help-block'
       errorElement: 'span'
-      debug: true
+#      debug: true
       highlight: (element) ->
         $(element).closest('.form-group').addClass('has-error')
         $(element).closest('.form-group').removeClass('has-success');
@@ -44,10 +44,7 @@ jQuery ->
             url: validate_user_url
             type: 'post'
         'user[password_confirmation]':
-          required: true
-          remote:
-            url: validate_user_url
-            type: 'post'
+          equalTo: '#user_password'
     )
   ))
 
