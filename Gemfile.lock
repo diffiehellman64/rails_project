@@ -50,6 +50,11 @@ GEM
     byebug (5.0.0)
       columnize (= 0.9.0)
     cancancan (1.12.0)
+    carrierwave (0.10.0)
+      activemodel (>= 3.2.0)
+      activesupport (>= 3.2.0)
+      json (>= 1.7)
+      mime-types (>= 1.16)
     ckeditor (4.1.2)
       cocaine
       orm_adapter (~> 0.5.0)
@@ -190,6 +195,10 @@ GEM
     simple_form (3.1.0)
       actionpack (~> 4.0)
       activemodel (~> 4.0)
+    simple_form_fancy_uploads (0.2.0)
+      carrierwave
+      rails (>= 4.0.0)
+      simple_form (~> 3.1)
     spring (1.3.6)
     sprockets (3.2.0)
       rack (~> 1.0)
@@ -243,6 +252,7 @@ DEPENDENCIES
   sdoc (~> 0.4.0)
   simple-navigation-bootstrap
   simple_form
+  simple_form_fancy_uploads
   spring
   sqlite3
   turbolinks

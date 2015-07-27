@@ -18,6 +18,7 @@ gem 'pjax_rails'
 #gem 'rack-pjax'
 gem 'rails_admin'
 gem 'i18n'
+#gem 'simple_form_fancy_uploads'
 
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'

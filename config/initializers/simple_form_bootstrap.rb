@@ -134,3 +134,32 @@ SimpleForm.setup do |config|
     boolean: :vertical_boolean,
   }
 end
+
+module SimpleForm
+  module Inputs
+    class FileInput < Base
+      def input
+        idf = "#{lookup_model_names.join("_")}_#{reflection_or_attribute_name}"
+        input_html_options[:style] ||= 'display:none;'
+
+
+        inner_span = template.content_tag(:span, class: 'input-group-btn', onclick: "$('input[id=#{idf}]').click();") do
+         # template.tag(:span, class: 'glyphicon glyphicon-folder-open') +
+          template.content_tag(:label, "Browse", class: 'btn btn-primary btn-file')
+        end
+
+        button = template.content_tag(:div, class: 'input-group') do 
+          inner_span + 
+          template.tag(:input, id: "pbox_#{idf}", class: 'form-control', type: 'text', 'disabled': 'true')
+        end
+
+        script = template.content_tag(:script, type: 'text/javascript') do
+#          "$('input[id=#{idf}]').change(function() { s = $(this).val(); $('#pbox_#{idf}').val(s.slice(s.lastIndexOf('\\\\\\\\')+1)); });".html_safe
+          "$('input[id=#{idf}]').change(function() { s = $(this).val(); $('#pbox_#{idf}').val(s.slice(s.lastIndexOf('\\\\')+1)); });".html_safe
+        end
+
+        @builder.file_field(attribute_name, input_html_options) + button + script
+      end
+    end
+  end
+end
