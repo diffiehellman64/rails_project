@@ -9,6 +9,11 @@
   = f.input :last_name
   = f.input :first_name
   = f.input :avatar, as: :file
+
+  /= f.input :avatar, as: :image_preview 
+  /, input_html: {preview_version: :thumb}
+  /= f.input :avatar, as: :attachment_preview
+
   - if devise_mapping.confirmable? && resource.pending_reconfirmation?
     %p
       Currently waiting confirmation for: 
