@@ -1,0 +1,9 @@
+%form.navbar-form.navbar-right
+  = link_to new_user_registration_path, { class: 'btn btn-success btn-sm', id: 'link_sing_up' } do
+    %span.glyphicon.glyphicon-pencil
+    = t('Sign Up')
+  = ' '
+  = link_to new_user_session_path, { class: 'btn btn-primary btn-sm', id: 'link_log_in' } do
+    %span.glyphicon.glyphicon-log-in
+    = t('Log In')
+

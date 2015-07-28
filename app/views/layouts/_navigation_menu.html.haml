@@ -6,11 +6,8 @@
       %form.navbar-form.navbar-left{ role: 'search' }
         .form-group
           %input.form-control{ id: 'search_field', type: 'text', placeholder: 'Search' }
-          /%span.glyphicon.glyphicon-search.input-group-addon
       - if !user_signed_in?
-        %form.navbar-form.navbar-right
-          = link_to t('Sign Up'), new_user_registration_path, { class: 'btn btn-success btn-sm', id: 'link_sing_up' }
-          = link_to t('Log In'), new_user_session_path, { class: 'btn btn-primary btn-sm', id: 'link_log_in' }
+        = render 'layouts/reg_log_form'
       - else
         %form.navbar-right 
           %ul.nav-custom
@@ -20,10 +17,8 @@
                                   'aria-expanded': 'false',
                                    role: 'button', 
                                    href: "#" }
-                /= image_tag @user.avatar.url(:label) 
                 .img-avatar
                   = image_tag current_user.avatar.url(:thumb)
-                /%span.glyphicon.glyphicon-user
                 %span.caret
               %ul.dropdown-menu
                 .dropdown-header
@@ -37,11 +32,11 @@
                     You profile
                 %li
                   %a{ href: "#{edit_user_registration_path}" }
-                    %span.glyphicon.glyphicon-pencil
+                    %span.glyphicon.glyphicon-edit
                     Edit profile
                 %li.divider{ role: "separator" }
                 %li
                   = link_to(destroy_user_session_path, method: :delete) do
-                    %span.glyphicon.glyphicon-road
+                    %span.glyphicon.glyphicon-log-out
                     Log out
     .col-md-1

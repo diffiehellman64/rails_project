@@ -34,6 +34,7 @@ ready = ->
           showAppMessage('<strong>Success!</strong> User changed!', 'success');
     )
   ))
+
   # $('#filename_user_avatar').click ->
   #   console.log 'change!'
 

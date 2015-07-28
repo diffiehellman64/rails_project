@@ -2,7 +2,7 @@
 %h1 List of articles
 - if @articles.count > 0
   - @articles.each do |article|
-    %h2= link_to article.title, article
+    %h3= link_to article.title, article
     - autor = User.find(article.user_id)
     = raw user_profile_link(autor)
     = article.created_at.localtime.strftime('%H:%M %d-%m-%Y')
