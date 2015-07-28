@@ -11,13 +11,21 @@
 #jQuery ->
 
 ready = ->
-#  $ ->
+
+  # console.log window.location.url
+  $(window).on('hashchange', ( ->
+    console.log window.location.url
+  ))
+  
+  # add pjax to application
   $(document).pjax('a', '[pjax-container]')
 
-  $('[data-toggle="tooltip"]').tooltip(
-    trigger: 'focus'
-  )
+  # add tooltip to elements who has data-toggle="tooltip"
+  $('[data-toggle="tooltip"]').tooltip()
+  #  trigger: 'focus'
+  #)
 
+  # ajax to action_article_destroy
   $('body').on('click', '.action_article_destroy', ( -> 
     article_tr = $(this).parents('tr')[0]
     url = '/articles/' + $(article_tr).attr('data-article-id')
@@ -35,6 +43,7 @@ ready = ->
           showAppMessage('<strong>Success!</strong> Article deleted!', 'success');
   )))
 
+  # ajax to action_version_destroy
   $('body').on('click', '.action_version_destroy', ( -> 
     version_tr = $(this).parents('tr')[0]
     url = '/versions/'
@@ -55,6 +64,7 @@ ready = ->
           showAppMessage('<strong>Success!</strong> Version deleted!', 'success');
   )))
 
+  #ajax to action_version_preview
   $('body').on('click', '.action_version_preview', ( -> 
     version_tr = $(this).parents('tr')[0]
     url = '/versions/'
@@ -73,36 +83,13 @@ ready = ->
         showInModal(content)
   ))
 
-#  $('body').on('click', '.action_version_rollback', ( ->
-#    version_tr = $(this).parents('tr')[0]
-#    table = $(version_tr).parents('table')[0]
-#    url = '/versions' +
-#          $(version_tr).attr('data-item-type') + '/' +
-#          $(version_tr).attr('data-item-id') + '/' +
-#          $(version_tr).attr('data-version-id')
-  #  $.ajax url,
-  #    type: 'POST'
-  #    data: _method: 'PATCH'
-  #    error: (jqXHR) ->
-  #      if (jqXHR.status == 403)
-  #        showAppMessage('<strong>Access denied!</strong> You have no permissions for this action!', 'danger');
-  #      else
-  #        showAppMessage('Error: ' + jqXHR.status, 'danger');
-  #    success: (data) ->
-    #(version_tr).fadeOut(200)
-#    rowNum = 
- #   console.log table
- # ))
-
+  # #search_field animation
   $('#search_field').focus ->
     $(this).animate
       width: '+=300'
-
-
   $('#search_field').focusout ->
     $(this).animate
       width: '-=300'
-
   $('#search_field').keyup ->
     cont = $('#search_field').val()
     if cont
@@ -110,5 +97,6 @@ ready = ->
 #    if cont == 'test'
 #      cont = $('#search_field').val('123')
 
+# enable ready code on all pages of application
 $(document).ready(ready)
 $(document).on('page:load', ready)

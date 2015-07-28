@@ -8,7 +8,7 @@
     .col-md-8
       = f.input :email, required: true, autofocus: true
       = f.input :username, required: true
-      = f.input :password, required: true, placeholder: 'Password', input_html: { title: ("#{@minimum_password_length} characters minimum" if @minimum_password_length), 'data-toggle': 'tooltip' }
+      = f.input :password, required: true, input_html: { title: ("#{@minimum_password_length} characters minimum" if @minimum_password_length), 'data-toggle': 'tooltip' }
       = f.input :password_confirmation, required: true
       = f.button :submit, 'Sign up'
     .col-md-2

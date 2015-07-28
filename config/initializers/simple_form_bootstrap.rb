@@ -138,19 +138,39 @@ end
 module SimpleForm
   module Inputs
     class FileInput < Base
-      def input
+#      def input
+      def input(wrapper_options)
         idf = "#{lookup_model_names.join("_")}_#{reflection_or_attribute_name}"
         input_html_options[:style] ||= 'display:none;'
 
+#        inner_span = template.content_tag(:span, class: 'input-group-btn', onclick: "$('input[id=#{idf}]').click();") do
+#          template.tag(:span, class: 'glyphicon glyphicon-folder-open') +
+#          template.content_tag(:label, "Browse", class: 'btn btn-primary btn-file')
+#        end
 
-        inner_span = template.content_tag(:span, class: 'input-group-btn', onclick: "$('input[id=#{idf}]').click();") do
-         # template.tag(:span, class: 'glyphicon glyphicon-folder-open') +
-          template.content_tag(:label, "Browse", class: 'btn btn-primary btn-file')
+#        button = template.content_tag(:div, class: 'input-group') do 
+#          inner_span + 
+#          template.tag(:input, id: "pbox_#{idf}", class: 'form-control', type: 'text', 'disabled': 'true')
+#        end
+
+        icon = tag(:span, class: 'glyphicon glyphicon-folder-open')
+
+        text = content_tag(:text, "Browse ")
+ 
+        # field for display file_name
+        field = tag(:input, id: "pbox_#{idf}", class: 'form-control', type: 'text', 'disabled': 'true')
+
+        button = template.content_tag(:button, type: 'button', class: 'btn btn-primary') do          
+          text +
+          icon
         end
 
-        button = template.content_tag(:div, class: 'input-group') do 
-          inner_span + 
-          template.tag(:input, id: "pbox_#{idf}", class: 'form-control', type: 'text', 'disabled': 'true')
+        input_group_btn = template.content_tag(:div, class: 'input-group-btn', onclick: "$('input[id=#{idf}]').click();") do
+          button
+        end
+
+        input_group = template.content_tag(:div, class: 'input-group') do
+          input_group_btn + field
         end
 
         script = template.content_tag(:script, type: 'text/javascript') do
@@ -158,7 +178,8 @@ module SimpleForm
           "$('input[id=#{idf}]').change(function() { s = $(this).val(); $('#pbox_#{idf}').val(s.slice(s.lastIndexOf('\\\\')+1)); });".html_safe
         end
 
-        @builder.file_field(attribute_name, input_html_options) + button + script
+#        @builder.file_field(attribute_name, input_html_options) + button + script
+        @builder.file_field(attribute_name, input_html_options) + input_group + script
       end
     end
   end
