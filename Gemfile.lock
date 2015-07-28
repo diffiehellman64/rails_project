@@ -118,9 +118,6 @@ GEM
       mime-types
       mimemagic (= 0.3.0)
     pg (0.18.2)
-    pjax_rails (0.4.0)
-      jquery-rails
-      railties (>= 3.2, < 5.0)
     rack (1.6.4)
     rack-pjax (0.8.0)
       nokogiri (~> 1.5)
@@ -235,7 +232,7 @@ DEPENDENCIES
   paper_trail
   paperclip
   pg
-  pjax_rails
+  rack-pjax
   rails (= 4.2.3)
   rails_admin
   rolify

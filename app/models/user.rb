@@ -62,7 +62,7 @@ class User < ActiveRecord::Base
                     styles: { large:  '400x400>',
                               medium: '200x200>', 
                               thumb:  '16x16>' },
-                    default_url: '/system/users/avatars/default/:style/default.jpg'
+                    default_url: '/system/users/avatars/default/:style/default.png'
   validates_attachment_content_type :avatar, content_type: /\Aimage\/.*\Z/
 
 end

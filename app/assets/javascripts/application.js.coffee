@@ -9,10 +9,14 @@
 #= require_tree ./functions
 
 #jQuery ->
-$ ->
-  $(document).pjax('a:not([data-skip-pjax])', '[pjax-container]', { timeout: 0 })
 
 ready = ->
+#  $ ->
+  $(document).pjax('a', '[pjax-container]')
+
+  $('[data-toggle="tooltip"]').tooltip(
+    trigger: 'focus'
+  )
 
   $('body').on('click', '.action_article_destroy', ( -> 
     article_tr = $(this).parents('tr')[0]
