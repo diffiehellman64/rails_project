@@ -1,14 +1,16 @@
-%h2
-  Edit 
-  = resource_name.to_s.humanize
+%h2= "#{t('devise.registrations.edit_title')}"
 
 = simple_form_for(resource, as: resource_name, url: registration_path(resource_name), html: { method: :put }) do |f|
   = f.error_notification
-  = f.input :email, required: true, autofocus: true
-  = f.input :username, required: true, autofocus: true
-  = f.input :last_name
+  .row
+    .col-md-8
+      = f.input :email, required: true, autofocus: true
+      = f.input :username, required: true, autofocus: true
+      = f.input :avatar, as: :file
+    .col-md-4.col-centered
+      .img-thumbnail.img-avatar= image_tag @user.avatar.url(:medium), id: 'user_avatar'
   = f.input :first_name
-  = f.input :avatar, as: :file
+  = f.input :last_name
 
   /= f.input :avatar, as: :image_preview 
   /, input_html: {preview_version: :thumb}
@@ -18,12 +20,14 @@
     %p
       Currently waiting confirmation for: 
       = resource.unconfirmed_email
-  = f.input :password, autocomplete: "off", hint: "leave it blank if you don't want to change it", required: false
-  = f.input :password_confirmation, required: false
+  .row
+    .col-md-6
+      = f.input :password, autocomplete: "off", hint: "leave it blank if you don't want to change it", required: false
+    .col-md-6
+      = f.input :password_confirmation, required: false
   = f.input :current_password, hint: "we need your current password to confirm your changes", required: true
   = f.button :submit, "Update"
+  = link_to "Cancel my account", registration_path(resource_name), data: { confirm: "Are you sure?" }, method: :delete, class: 'btn btn-danger'
 
-%h3 Cancel my account
-%p Unhappy? 
-%p= link_to "Cancel my account", registration_path(resource_name), data: { confirm: "Are you sure?" }, method: :delete
-
+/%h3 Cancel my account
+/%p Unhappy? 
