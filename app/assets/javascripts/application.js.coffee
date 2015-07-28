@@ -16,7 +16,27 @@ ready = ->
   $(window).on('hashchange', ( ->
     console.log window.location.url
   ))
-  
+ 
+  # ajax grand roles
+  $('body').on('click', '.action_role_manage', ( ->
+    # /users/:id/:act/:role
+    url = '/users/' + $(this).attr('data-user') + '/' + $(this).is(':checked') + '/' + $(this).attr('data-role')
+    confirmModal('Do you really want change this user?', ->
+      $.ajax url,
+        type: 'POST'
+        data: _method: 'PATCH'
+        error: (jqXHR) ->
+          if (jqXHR.status == 403)
+            showAppMessage('<strong>Access denied!</strong> You have no permissions for this action!', 'danger');
+          else
+            showAppMessage('Unknow error happened!', 'danger');
+        success: (jqXHR) ->
+          showAppMessage('<strong>Success!</strong> User changed!', 'success');
+    )
+  ))
+  # $('#filename_user_avatar').click ->
+  #   console.log 'change!'
+
   # add pjax to application
   $(document).pjax('a', '[pjax-container]')
 

@@ -7,15 +7,12 @@
   - @users.each do |user|
     %tr
       %td
-        %span{ type: 'button', 'data-container': 'body' ,'data-toggle': 'popover', title: 'Actions', 'data-content': 'Test' }= user.email
+        %span{ type: 'button', 'data-container': 'body' ,'data-toggle': 'popover', title: 'Actions', 'data-content': 'Test' }= raw user_profile_link(user)
       - @roles.each do |role|
         - bool = user.has_role?(role.name)
+        - checked = 'no'
         - if bool
-          %td.success
-            = link_to update_user_role_path(user, 'del', role.name), method: :patch, class: 'btn btn-danger btn-xs' do
-              %span.glyphicon.glyphicon-remove-circle
-        - else
-          %td
-            = link_to update_user_role_path(user, 'add', role.name), method: :patch, class: 'btn btn-success btn-xs' do
-              %span.glyphicon.glyphicon-ok-circle
+          - checked = 'yes'
+        %td
+          = check_box_tag "user[role_#{role.name}_#{user.id}]", checked, bool, class: 'action_role_manage', 'data-role': role.name, 'data-user': user.id
 

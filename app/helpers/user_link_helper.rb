@@ -14,7 +14,14 @@ module UserLinkHelper
       if name == ''
         name = user.email
       end
-    return link_to(name.squish, profile_path(id))
+      avatar = content_tag(:div, class: 'img-avatar') do
+        image_tag(user.avatar.url(:thumb))
+      end
+      link = link_to(name.squish, profile_path(id)) 
+      result = content_tag(:span) do
+        avatar + " " +  link
+      end
+      return result # + link_to(name.squish, profile_path(id))
     else
       return 'Udentified'
     end
