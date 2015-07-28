@@ -1,6 +1,9 @@
 Rails.application.routes.draw do
 
   mount RailsAdmin::Engine => '/admin', as: 'rails_admin'
+  resources :menus, only: [:index, :new, :create]
+  get 'menus/:menu_name' => 'menus#show', as: 'menu'
+
   resources :articles
   root 'home#index'
 

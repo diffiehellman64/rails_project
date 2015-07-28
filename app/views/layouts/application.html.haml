@@ -9,8 +9,7 @@
     = render 'layouts/navigation_menu'
     = render 'layouts/admin_menu'
     = render 'layouts/messager'
-    .row
-      .col-md-1
-      .col-md-10{ id: 'main-data', 'pjax-container': 'true' }
-        = yield
-      .col-md-1
+    %div{ id: 'wrapper' }
+      .row
+        .col-md-12{ id: 'main-data', 'pjax-container': 'true' }
+          = yield

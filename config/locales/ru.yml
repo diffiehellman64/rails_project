@@ -24,3 +24,8 @@ ru:
               too_short: 'слишком короткий.'
             password_confirmation:
               confirmation: 'не совпадает с паролем'
+  menus:
+    index:
+      title: 'Список созданных меню'
+    new:
+      title: 'Создать новое меню'

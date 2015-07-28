@@ -1,0 +1,4 @@
+%h1= t('menus.new.title')
+= simple_form_for(@menu) do |f|
+  = f.input :name
+  = f.button :submit

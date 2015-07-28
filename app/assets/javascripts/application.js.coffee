@@ -13,10 +13,23 @@
 ready = ->
 
   # console.log window.location.url
-  $(window).on('hashchange', ( ->
-    console.log window.location.url
-  ))
+#  $(window).on('hashchange', ( ->
+#    console.log window.location.url
+#  ))
  
+#  $('.draggable').draggable()
+
+  $('body').on('dblclick', '#menu-constructor td', ( ->
+    cell = $(this)
+    oldContent = cell.html()
+    $(this).html('<input class="edit_item" type="text" value='+oldContent+' />')
+    $('.edit_item').focusout ->
+      newContent = $(this).val()
+      if newContent != oldContent
+        cell.addClass('warning')
+      cell.html(newContent)
+  ))
+
   # ajax grand roles
   $('body').on('click', '.action_role_manage', ( ->
     # /users/:id/:act/:role
