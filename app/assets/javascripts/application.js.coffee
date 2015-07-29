@@ -3,6 +3,8 @@
 #= require jquery_ujs
 #= require ckeditor/init
 #= require turbolinks
+#= require vendor.jquery.min.js
+#= require vendor.jquery-ui.min.js
 #= require jquery.pjax
 #= require jquery.validate.min
 #= require_tree .
@@ -12,6 +14,21 @@
 
 ready = ->
 
+  c = {}
+
+  $('#menu-constructor tr').draggable
+    helper: 'clone',
+    start: (event, ui) ->
+      c.tr = this;
+      c.helper = ui.helper
+
+  $("#menu-constructor tr").droppable
+    drop: (event, ui) ->
+      inventor = ui.draggable.text();
+      $(this).find("input").val(inventor)
+      $(c.tr).remove();
+      $(c.helper).remove();
+
   # console.log window.location.url
 #  $(window).on('hashchange', ( ->
 #    console.log window.location.url
@@ -19,23 +36,6 @@ ready = ->
  
 #  $('.draggable').draggable()
 
-  # ajax grand roles
-  $('body').on('click', '.action_role_manage', ( ->
-    # /users/:id/:act/:role
-    url = '/users/' + $(this).attr('data-user') + '/' + $(this).is(':checked') + '/' + $(this).attr('data-role')
-    confirmModal('Do you really want change this user?', ->
-      $.ajax url,
-        type: 'POST'
-        data: _method: 'PATCH'
-        error: (jqXHR) ->
-          if (jqXHR.status == 403)
-            showAppMessage('<strong>Access denied!</strong> You have no permissions for this action!', 'danger');
-          else
-            showAppMessage('Unknow error happened!', 'danger');
-        success: (jqXHR) ->
-          showAppMessage('<strong>Success!</strong> User changed!', 'success');
-    )
-  ))
 
   # $('#filename_user_avatar').click ->
   #   console.log 'change!'
@@ -104,6 +104,24 @@ ready = ->
       success: (data) ->
         content = $(data).find('#main-data').html()
         showInModal(content)
+  ))
+
+  # ajax grand roles
+  $('body').on('click', '.action_role_manage', ( ->
+    # /users/:id/:act/:role
+    url = '/users/' + $(this).attr('data-user') + '/' + $(this).is(':checked') + '/' + $(this).attr('data-role')
+    confirmModal('Do you really want change this user?', ->
+      $.ajax url,
+        type: 'POST'
+        data: _method: 'PATCH'
+        error: (jqXHR) ->
+          if (jqXHR.status == 403)
+            showAppMessage('<strong>Access denied!</strong> You have no permissions for this action!', 'danger');
+          else
+            showAppMessage('Unknow error happened!', 'danger');
+        success: (jqXHR) ->
+          showAppMessage('<strong>Success!</strong> User changed!', 'success');
+    )
   ))
 
   # #search_field animation

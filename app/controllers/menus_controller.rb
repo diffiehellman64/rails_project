@@ -14,10 +14,16 @@ class MenusController < ApplicationController
   def create
     @menu = Menu.new(menu_params)
     if @menu.save
-      redirect_to menu(@menu.name), flash: { success: 'Menu was successfully created!' }
+      redirect_to menu_show_path(@menu.name), flash: { success: 'Menu was successfully created!' }
     else
       render :new
     end
+  end
+
+  def update
+    @item = Menu.find(params[:id])
+    @item.update(menu_params)
+    redirect_to menu_show_path(@item.name), flash: { success: 'Menu was successfully updated!' }
   end
 
   private

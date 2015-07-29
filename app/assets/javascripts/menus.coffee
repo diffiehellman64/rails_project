@@ -1,6 +1,22 @@
+#ajax queries to menu constructor
 
-#ready ->
 jQuery ->
+
+  c = {}
+
+#  $("#menu-constructor tr").draggable
+#    helper: "clone",
+#    start: (event, ui) ->
+#      c.tr = this;
+#      c.helper = ui.helper
+
+#  $("#menu-constructor tr").droppable
+#    drop: (event, ui) ->
+#      inventor = ui.draggable.text();
+#      $(this).find("input").val(inventor)
+#      $(c.tr).remove();
+#      $(c.helper).remove();
+
   $('body').on('dblclick', '#menu-constructor td', ( ->
     cell = $(this)
     oldContent = cell.html()
@@ -9,6 +25,9 @@ jQuery ->
       newContent = $(this).val()
       if newContent != oldContent
         cell.addClass('warning')
+        cell.parent('tr').attr('edited', 'true')
+      if !newContent
+        cell.addClass('danger')
       cell.html(newContent)
   ))
 
@@ -23,24 +42,41 @@ jQuery ->
       i++
     $('tr', table).each ->
       cell = $(this).children('td')
+      currentTr = $(this)
       menuItemId = $(this).attr('data-item-id')
+      edited = $(this).attr('edited')
       i = 0
       item = []
-      requestUrl = '/menus?name=' + menuName + '&'
+      requestUrl = '/menus'
       while(cell[i])
         item[fields[i]] = $(cell[i]).html()
         i++
       if item['title'] && item['url']
-        requestUrl += 'title=' + item['title'] + '&'
-        requestUrl += 'url=' + item['url'].replace('/','__') + '&'
-        requestUrl += 'weight=0' + '&'
-        requestUrl += 'parent=0' + '&'
-        requestUrl += 'active=' + item['active']
         if menuItemId == '0'
           $.ajax requestUrl,
             type: 'POST'
+            data: 
+              menu:
+                name: menuName
+                title: item['title']
+                url:   item['url']
+                active: item['active']
             success: (jqXHR) ->
-              showAppMessage('<strong>Success!</strong> Menu changed!', 'success');
+              showAppMessage('<strong>Success!</strong> Created!', 'success');
+              currentTr.removeClass().addClass('success')
+        else if edited 
+          $.ajax requestUrl + '/' + menuItemId,
+            type: 'POST'
+            data:
+              _method: 'PATCH'
+              menu:
+                name: menuName
+                title: item['title']
+                url:   item['url']
+                active: item['active']
+            success: (jqXHR) ->
+              showAppMessage('<strong>Success!</strong> Updated!', 'success');
+              currentTr.removeClass().addClass('success')
   ))
 
   $('body').on('click', '#action_add_item_menu', ( ->
@@ -56,6 +92,3 @@ jQuery ->
     tr_last = $(table).children('tr')[i-1]
     $(tr_last).after(new_tr)
   ))
-
-#$(document).ready(ready)
-#$(document).on('page:load', ready)
