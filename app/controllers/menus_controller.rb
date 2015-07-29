@@ -13,10 +13,6 @@ class MenusController < ApplicationController
 
   def create
     @menu = Menu.new(menu_params)
-    @menu.title = 'Home'
-    @menu.url = '/'
-    @menu.weight = '0'
-    @menu.active = true
     if @menu.save
       redirect_to menu(@menu.name), flash: { success: 'Menu was successfully created!' }
     else
