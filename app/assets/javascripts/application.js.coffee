@@ -22,12 +22,45 @@ ready = ->
   $('body').on('dblclick', '#menu-constructor td', ( ->
     cell = $(this)
     oldContent = cell.html()
-    $(this).html('<input class="edit_item" type="text" value='+oldContent+' />')
+    $(this).html('<input class="edit_item" type="text" value='+oldContent+'>')
     $('.edit_item').focusout ->
       newContent = $(this).val()
       if newContent != oldContent
         cell.addClass('warning')
       cell.html(newContent)
+  ))
+
+  $('body').on('click', '#action_apply_menu', ( ->
+    table = $('#menu-constructor').children('tbody')
+    fields = []
+    header = $(table).children('tr')[0]
+    i = 0
+    $('th', header).each ->
+      fields[i] = $(this).html()
+      i++
+    console.log fields
+    $('tr', table).each ->
+      cell = $(this).children('td')     
+      i = 0
+      requestUrl = '/menus/'
+      while(cell[i])
+        console.log $(cell[i]).html()
+        i++
+  ))
+
+  $('body').on('click', '#action_add_item_menu', ( ->
+    #showInModal('ok!')
+    table = $('#menu-constructor').children('tbody')
+    new_tr = '<tr class="warning" data-item-id="0">'
+    header = $(table).children('tr')[0]
+    $('th', header).each ->
+      new_tr += '<td></td>'
+    new_tr +='</tr>'
+    i = 0
+    $('tr', table).each ->
+      i++
+    tr_last = $(table).children('tr')[i-1]
+    $(tr_last).after(new_tr)
   ))
 
   # ajax grand roles
