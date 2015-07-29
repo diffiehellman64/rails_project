@@ -3,16 +3,22 @@
 #= require jquery_ujs
 #= require ckeditor/init
 #= require turbolinks
-#= require vendor.jquery.min.js
-#= require vendor.jquery-ui.min.js
-#= require jquery.pjax
+#= require vendor.jquery.min
+#= require vendor.jquery-ui.min
 #= require jquery.validate.min
+#= require jquery.pjax
 #= require_tree .
 #= require_tree ./functions
 
 #jQuery ->
 
 ready = ->
+#  $(document).pjax('a', '[pjax-container]')
+
+  $(document).pjax('a', '[pjax-container]')
+  $.pjax.defaults.timeout = 4000
+
+  $('[data-toggle="tooltip"]').tooltip()
 
   c = {}
 
@@ -41,10 +47,8 @@ ready = ->
   #   console.log 'change!'
 
   # add pjax to application
-  $(document).pjax('a', '[pjax-container]')
 
   # add tooltip to elements who has data-toggle="tooltip"
-  $('[data-toggle="tooltip"]').tooltip()
   #  trigger: 'focus'
   #)
 
