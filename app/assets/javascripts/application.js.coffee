@@ -1,56 +1,28 @@
 #= require jquery
-#= require bootstrap-sprockets
 #= require jquery_ujs
 #= require ckeditor/init
 #= require turbolinks
-#= require vendor.jquery.min
 #= require vendor.jquery-ui.min
 #= require jquery.validate.min
+#= require bootstrap-sprockets
 #= require jquery.pjax
 #= require_tree .
 #= require_tree ./functions
 
-#jQuery ->
-
 ready = ->
-#  $(document).pjax('a', '[pjax-container]')
 
   $(document).pjax('a', '[pjax-container]')
   $.pjax.defaults.timeout = 4000
+  #$(document).on('pjax:error', ((data, status, xhr) ->
+  #  showAppMessage('<strong>Access denied!</strong> You have no permissions for this action!', 'danger');
+  #  console.log 'pjax!'
+  #  console.log status
+  #  console.log data
+  #  console.log xhr
+  #  console.log event
+  #))
 
   $('[data-toggle="tooltip"]').tooltip()
-
-  c = {}
-
-  $('#menu-constructor tr').draggable
-    helper: 'clone',
-    start: (event, ui) ->
-      c.tr = this;
-      c.helper = ui.helper
-
-  $("#menu-constructor tr").droppable
-    drop: (event, ui) ->
-      inventor = ui.draggable.text();
-      $(this).find("input").val(inventor)
-      $(c.tr).remove();
-      $(c.helper).remove();
-
-  # console.log window.location.url
-#  $(window).on('hashchange', ( ->
-#    console.log window.location.url
-#  ))
- 
-#  $('.draggable').draggable()
-
-
-  # $('#filename_user_avatar').click ->
-  #   console.log 'change!'
-
-  # add pjax to application
-
-  # add tooltip to elements who has data-toggle="tooltip"
-  #  trigger: 'focus'
-  #)
 
   # ajax to action_article_destroy
   $('body').on('click', '.action_article_destroy', ( -> 
@@ -112,9 +84,14 @@ ready = ->
 
   # ajax grand roles
   $('body').on('click', '.action_role_manage', ( ->
-    # /users/:id/:act/:role
-    url = '/users/' + $(this).attr('data-user') + '/' + $(this).is(':checked') + '/' + $(this).attr('data-role')
+    chbox = $(this)[0]
+    current_state = !chbox.checked
+    $(this)[0].checked = current_state
+    role = $(this).attr('data-role')
+    user = $(this).attr('data-user')
     confirmModal('Do you really want change this user?', ->
+      url = '/users/' + user + '/' + !current_state + '/' + role
+      chbox.checked = !current_state    
       $.ajax url,
         type: 'POST'
         data: _method: 'PATCH'

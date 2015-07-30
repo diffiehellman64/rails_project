@@ -4,18 +4,19 @@ jQuery ->
 
   c = {}
 
-#  $("#menu-constructor tr").draggable
-#    helper: "clone",
-#    start: (event, ui) ->
-#      c.tr = this;
-#      c.helper = ui.helper
+  $('#menu-constructor tr').draggable
+    helper: 'clone',
+    start: (event, ui) ->
+      c.tr = this;
+      c.helper = ui.helper
 
-#  $("#menu-constructor tr").droppable
-#    drop: (event, ui) ->
-#      inventor = ui.draggable.text();
-#      $(this).find("input").val(inventor)
-#      $(c.tr).remove();
-#      $(c.helper).remove();
+  $("#menu-constructor tr").droppable
+    drop: (event, ui) ->
+      inventor = ui.draggable.text();
+      $(this).find("input").val(inventor)
+      $(c.tr).remove();
+      $(c.helper).remove();
+
 
   $('body').on('dblclick', '#menu-constructor td', ( ->
     cell = $(this)

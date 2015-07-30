@@ -12,8 +12,11 @@ class ApplicationController < ActionController::Base
 #  end
 
   rescue_from CanCan::AccessDenied do |exception|
-    #redirect_to root_path, flash: { danger: "<strong>Access denied</strong>: #{exception.message}" }#, status: 403
-    redirect_to main_app.root_path, flash: { danger: "<strong>Access denied</strong>: #{exception.message}" }
+    if request.headers['X-PJAX']
+      render text: 'Access denied!'#, status: :forbidden
+    else 
+      redirect_to main_app.root_path, flash: { danger: "<strong>Access denied</strong>: #{exception.message}" }
+    end
   end
 
   def check_admin
