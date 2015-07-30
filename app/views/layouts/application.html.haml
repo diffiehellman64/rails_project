@@ -8,6 +8,12 @@
   %body
     = render 'layouts/navigation_menu'
     = render 'layouts/admin_menu'
+    %nav.navbar.navbar-default{ role: 'navigation', id: 'nav_menu' }
+      .row
+        .col-md-1
+        .col-md-10
+          = raw build_menu('navigation')
+        .col-md-1
     = render 'layouts/messager'
     %div{ id: 'wrapper' }
       .row

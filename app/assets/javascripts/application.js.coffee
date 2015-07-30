@@ -12,6 +12,10 @@
 ready = ->
 
   $(document).pjax('a', '[pjax-container]')
+#  $('a').pjax('[pjax-container]')
+
+#  $(document).pjax('#action_apply_menu', '#nav_menu')
+
   $.pjax.defaults.timeout = 4000
   #$(document).on('pjax:error', ((data, status, xhr) ->
   #  showAppMessage('<strong>Access denied!</strong> You have no permissions for this action!', 'danger');
