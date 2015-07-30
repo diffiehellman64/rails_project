@@ -7,13 +7,14 @@ class ApplicationController < ActionController::Base
 
 # layout :determine_layout
 
-#  def render_403
-#    render status: :forbidden, text: 'Forbidden'
-#  end
+  def render_403
+    #render status: :forbidden, text: 'Forbidden'
+    render text: '<div class="alert alert-danger">Access denied!</div>'#, status: :forbidden
+  end
 
   rescue_from CanCan::AccessDenied do |exception|
     if request.headers['X-PJAX']
-      render text: 'Access denied!'#, status: :forbidden
+      render_403
     else 
       redirect_to main_app.root_path, flash: { danger: "<strong>Access denied</strong>: #{exception.message}" }
     end
