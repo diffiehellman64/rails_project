@@ -6,6 +6,7 @@
 #= require jquery.validate.min
 #= require bootstrap-sprockets
 #= require jquery.pjax
+#= jquery-sortable
 #= require_tree .
 #= require_tree ./functions
 
@@ -25,6 +26,14 @@ ready = ->
   #  console.log xhr
   #  console.log event
   #))
+
+  $('ol.example').sortable()
+
+  $('.sorted_table').sortable
+    containerSelector: 'table',
+    itemPath: '> tbody',
+    itemSelector: 'tr',
+    placeholder: '<tr class="placeholder"/>'
 
   $('[data-toggle="tooltip"]').tooltip()
 
