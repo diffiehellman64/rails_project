@@ -1,18 +1,14 @@
-%div
-  %table.table.table-bordered.table-hover.sorted_table{ id: 'menu-constructor', 'data-menu-name': params[:menu_name] }
-    %tr
-      %th Title
-      %th Url
-      %th Active
+.dd{id: 'menu-constructor', 'data-menu-name': params[:menu_name] }
+  %ol.dd-list
     - @menu_items.each do |item|
-      %tr{ 'data-item-id': item.id }
-        %td= item.title
-        %td= item.url
-        %td= item.active
+      %li.dd-item{ 'data-item-id': item.id }
+        .dd-handle
+          .item-title= item.title
+          .item-url= item.url
+          - active = item.active
+          - checked = 'no'
+          - if active
+            - checked = 'yes'
+          .item-active= check_box_tag 'is-active', checked, active
 .btn.btn-default{ id: 'action_add_item_menu' } Add menu item
 %a.btn.btn-primary{ id: 'action_apply_menu' } Apply changes
-
-%ol.example
-  %li First
-  %li Second
-  %li Therd

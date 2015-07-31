@@ -2,103 +2,52 @@
 
 jQuery ->
 
-#  c = {}
-
-#  $('#menu-constructor tr').draggable
-#    helper: 'clone',
-#    start: (event, ui) ->
-#      c.tr = this;
-#      c.helper = ui.helper
-
-#  $("#menu-constructor tr").droppable
-#    drop: (event, ui) ->
-#      inventor = ui.draggable.text();
-#      $(this).find("input").val(inventor)
-#      $(c.tr).remove();
-#      $(c.helper).remove();
-
-#  $('#menu-constructor tr').sortable
-#    pullPlaceholder: false
-#    group: '#menu-constructor'
-#    onDrop: ($item, container, _super) ->
-#      $cloneItem = $('<tr/>').css({height: 0})
-#      $item.before($cloneItem)
-#      $cloneItem.animate({ 'height': $item.height() })
-#      $cloneItem.animate($cloneItem.position(), ( ->
-#        $cloneItem.detach()
-#        _super($item, container)
-#      ))
-#     onDragStart: ($item, container, _super) ->
-#       offset = $item.offset()
-#       pointer = container.rootGroup.pointer
-#       adjustment = ->
-#         left: pinter.left - offset.left
-#         top: top.left - top.left
-#     onDrag: ($item, position) ->
-#       $item.css
-#         left: pinter.left - adjustment.left
-#         top: top.left - adjustment.left
+  $('body').on('click', '#action_apply_menu', ( ->
+    menuName = $('#menu-constructor').attr('data-menu-name')
+    list = $($('#menu-constructor')[0]).children('ol')[0]
+    menuArr = []
+    i = 0
+    while $(list).children('li')[i]
+      itemArr = []
+      item = $($(list).children('li')[i]).children('.dd-handle')[0]
+#      console.log item
+      itemArr['title'] = $(item).children('.item-title').html()
+      itemArr['url']   = $(item).children('.item-url').html()
+      itemArr['weight']   = i
+      itemArr['parent_id']  = 0
+      #itemArr['active']  = $(item).children('.dd-active')[0].checked
+      menuArr[i] = itemArr
+      i++
+    console.log menuArr
+   ))
 
   $('body').on('dblclick', '#menu-constructor td', ( ->
     cell = $(this)
+    row = $(cell.parent()[0])
     oldContent = cell.html()
     $(this).html('<input class="edit_item" type="text" value='+oldContent+'>')
     $('.edit_item').focusout ->
       newContent = $(this).val()
       if newContent != oldContent
-        cell.addClass('warning')
-        cell.parent('tr').attr('edited', 'true')
+        row.addClass('warning')
+        row.attr('edited', 'true')
       if !newContent
         cell.addClass('danger')
       cell.html(newContent)
   ))
 
-  $('body').on('click', '#action_apply_menu', ( ->
-    table = $('#menu-constructor').children('tbody')
-    fields = []
-    menuName = $('#menu-constructor').attr('data-menu-name')
-    header = $(table).children('tr')[0]
-    i = 0
-    $('th', header).each ->
-      fields[i] = $(this).html().toLowerCase()
-      i++
-    $('tr', table).each ->
-      cell = $(this).children('td')
-      currentTr = $(this)
-      menuItemId = $(this).attr('data-item-id')
-      edited = $(this).attr('edited')
-      i = 0
-      item = []
-      requestUrl = '/menus'
-      while(cell[i])
-        item[fields[i]] = $(cell[i]).html()
-        i++
-      if item['title'] && item['url']
-        if menuItemId == '0'
-          $.ajax requestUrl,
-            type: 'POST'
-            data: 
-              menu:
-                name: menuName
-                title: item['title']
-                url:   item['url']
-                active: item['active']
-            success: (jqXHR) ->
-              showAppMessage('<strong>Success!</strong> Created!', 'success');
-              currentTr.removeClass().addClass('success')
-        else if edited 
-          $.ajax requestUrl + '/' + menuItemId,
-            type: 'POST'
-            data:
-              _method: 'PATCH'
-              menu:
-                name: menuName
-                title: item['title']
-                url:   item['url']
-                active: item['active']
-            success: (jqXHR) ->
-              showAppMessage('<strong>Success!</strong> Updated!', 'success');
-              currentTr.removeClass().addClass('success')
+  $('body').on('click', '.action_menu_item_del', ( ->
+    row = $($(this).parent()[0]).parent()[0]
+    itemId = $(row).attr('data-item-id')
+    #console.log itemId
+    url = '/menus/' + itemId
+    $.ajax url,
+      type: 'POST'
+      data: 
+        _method: 'DELETE'
+      success: (data) ->
+        showAppMessage('<strong>Success!</strong> Deleted!', 'success');
+        $(row).fadeOut(200)
   ))
 
   $('body').on('click', '#action_add_item_menu', ( ->

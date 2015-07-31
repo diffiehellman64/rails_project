@@ -6,7 +6,7 @@
 #= require jquery.validate.min
 #= require bootstrap-sprockets
 #= require jquery.pjax
-#= jquery-sortable
+#= require jquery.nestable
 #= require_tree .
 #= require_tree ./functions
 
@@ -26,14 +26,32 @@ ready = ->
   #  console.log xhr
   #  console.log event
   #))
+  $('.dd').nestable()
 
-  $('ol.example').sortable()
+#  $('ol.example').sortable()
+#  $('.sorted_table').sortable
+#    containerSelector: 'table',
+#    itemPath: '> tbody',
+#    itemSelector: 'tr',
+#    placeholder: '<tr class="placeholder"/>'
 
-  $('.sorted_table').sortable
-    containerSelector: 'table',
-    itemPath: '> tbody',
-    itemSelector: 'tr',
-    placeholder: '<tr class="placeholder"/>'
+# oldContainer = null
+# $("ol.nested_with_switch").sortable
+#   group: 'nested',
+#   afterMove: (placeholder, container) ->
+#     if oldContainer != container
+#       if oldContainer
+#         oldContainer.el.removeClass("active")
+#       container.el.addClass("active")
+#       oldContainer = container
+#   onDrop: ($item, container, _super) ->
+#     container.el.removeClass("active")
+#     _super($item, container)
+
+#  $(".switch-container").on("click", ".switch", (e) ->
+#    method = $(this).hasClass("active") ? "enable" : "disable"
+#    $(e.delegateTarget).next().sortable(method)
+
 
   $('[data-toggle="tooltip"]').tooltip()
 
