@@ -247,6 +247,7 @@
             li.children(this.options.listNodeName).remove();
         },
 
+
         dragStart: function(e)
         {
             var mouse    = this.mouse,
@@ -283,6 +284,7 @@
                     this.dragDepth = depth;
                 }
             }
+            item = dragItem
         },
 
         dragStop: function(e)
@@ -297,6 +299,7 @@
                 this.dragRootEl.trigger('change');
             }
             this.reset();
+            $(el).addClass('warning');
         },
 
         dragMove: function(e)

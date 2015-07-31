@@ -2,24 +2,34 @@
 
 jQuery ->
 
+  globalMenu = []
+
   $('body').on('click', '#action_apply_menu', ( ->
+    globalMenu = []
     menuName = $('#menu-constructor').attr('data-menu-name')
     list = $($('#menu-constructor')[0]).children('ol')[0]
-    menuArr = []
+    getItemsList(list)
+    console.log globalMenu
+   ))
+
+
+  getItemsList = (list, parent_id = 0) -> # рекуснивно строит массив элементов меню
     i = 0
-    while $(list).children('li')[i]
+    while $(list).children('li')[i] # пока список не иссякнет
       itemArr = []
-      item = $($(list).children('li')[i]).children('.dd-handle')[0]
-#      console.log item
+      itemContainer = $(list).children('li')[i] # блок с элементом списка и возможным еще одним списком
+      item = $(itemContainer).children('.dd-handle')[0] # выбираем элемент списка
+      itemArr['id']  = $(itemContainer).attr('data-item-id')
       itemArr['title'] = $(item).children('.item-title').html()
       itemArr['url']   = $(item).children('.item-url').html()
       itemArr['weight']   = i
-      itemArr['parent_id']  = 0
-      #itemArr['active']  = $(item).children('.dd-active')[0].checked
-      menuArr[i] = itemArr
+      itemArr['parent_id']  = parent_id
+      globalMenu.push(itemArr)
+      subList = $($(itemContainer)[0]).children('ol')[0]
+      if subList
+        getItemsList(subList, itemArr['id'])
       i++
-    console.log menuArr
-   ))
+
 
   $('body').on('dblclick', '#menu-constructor td', ( ->
     cell = $(this)

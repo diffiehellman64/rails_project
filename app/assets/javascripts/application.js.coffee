@@ -2,7 +2,6 @@
 #= require jquery_ujs
 #= require ckeditor/init
 #= require turbolinks
-#= require vendor.jquery-ui.min
 #= require jquery.validate.min
 #= require bootstrap-sprockets
 #= require jquery.pjax
@@ -27,31 +26,6 @@ ready = ->
   #  console.log event
   #))
   $('.dd').nestable()
-
-#  $('ol.example').sortable()
-#  $('.sorted_table').sortable
-#    containerSelector: 'table',
-#    itemPath: '> tbody',
-#    itemSelector: 'tr',
-#    placeholder: '<tr class="placeholder"/>'
-
-# oldContainer = null
-# $("ol.nested_with_switch").sortable
-#   group: 'nested',
-#   afterMove: (placeholder, container) ->
-#     if oldContainer != container
-#       if oldContainer
-#         oldContainer.el.removeClass("active")
-#       container.el.addClass("active")
-#       oldContainer = container
-#   onDrop: ($item, container, _super) ->
-#     container.el.removeClass("active")
-#     _super($item, container)
-
-#  $(".switch-container").on("click", ".switch", (e) ->
-#    method = $(this).hasClass("active") ? "enable" : "disable"
-#    $(e.delegateTarget).next().sortable(method)
-
 
   $('[data-toggle="tooltip"]').tooltip()
 
