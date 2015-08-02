@@ -9,9 +9,29 @@ jQuery ->
     menuName = $('#menu-constructor').attr('data-menu-name')
     list = $($('#menu-constructor')[0]).children('ol')[0]
     getItemsList(list)
-    console.log globalMenu
+    i = 0
+    while globalMenu[i]
+      if globalMenu[i]['id'] > 0
+        updateMenu(globalMenu[i])
+      i++
    ))
 
+  updateMenu = (item) ->
+    $.ajax '/menus/' + item['id'],
+      type: 'post'
+      data:
+        _method: 'patch'
+        menu:
+          id: item['id']
+          title: item['title']
+          url: item['url']
+          weight: item['weight']
+          parent_id: item['parent_id']
+          active: true
+      success: ->
+        showAppMessage('<strong>Success!</strong> Updated!', 'success');
+      error: (jqXHR) ->
+        showAppMessage('<strong>Error:</strong> ' + jqXHR.status + '!', 'danger');
 
   getItemsList = (list, parent_id = 0) -> # рекуснивно строит массив элементов меню
     i = 0

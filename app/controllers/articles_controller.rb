@@ -39,7 +39,9 @@ class ArticlesController < ApplicationController
 
   def destroy
     @article.destroy
-    redirect_to articles_url, flash: { success: 'Article was successfully destroyed!' }
+    render json: { success: true }
+    #ArticlesMailer.article_destroyed(@article).deliver_now
+    #redirect_to articles_url, flash: { success: 'Article was successfully destroyed!' }
   end
 
   private

@@ -42,8 +42,8 @@ ru:
       update_needs_confirmation: "You updated your account successfully, but we need to verify your new email address. Please check your email and follow the confirm link to confirm your new email address."
       updated: "Ваш аккаунт успешно обновлён."
     sessions:
-      signed_in: "Успешная авторизация."
-      signed_out: "До свидания."
+      signed_in: "Успешная авторизация!"
+      signed_out: "До свидания!"
       already_signed_out: "Signed out successfully."
     unlocks:
       send_instructions: "You will receive an email with instructions for how to unlock your account in a few minutes."

@@ -14,7 +14,9 @@ class ApplicationController < ActionController::Base
 
   rescue_from CanCan::AccessDenied do |exception|
     if request.headers['X-PJAX']
-      render_403
+      render text: '<div class="alert alert-danger"><strong>Access denied!</strong> ' + exception.message + '</div>'
+    elsif request.xhr?
+      render status: :forbidden, text: 'Forbidden'
     else 
       redirect_to main_app.root_path, flash: { danger: "<strong>Access denied</strong>: #{exception.message}" }
     end

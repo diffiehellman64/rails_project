@@ -38,10 +38,7 @@ ready = ->
         type: 'POST'
         data: _method: 'DELETE'
         error: (jqXHR) ->
-          if (jqXHR.status == 403)
-            showAppMessage('<strong>Access denied!</strong> You have no permissions for this action!', 'danger');
-          else
-            showAppMessage('Unknow error happened!', 'danger');
+          showAppMessage('<strong>Error:</strong> ' + jqXHR.status, 'danger');
         success: (jqXHR) ->
           $(article_tr).fadeOut(200)
           showAppMessage('<strong>Success!</strong> Article deleted!', 'success');
@@ -59,10 +56,7 @@ ready = ->
         type: 'POST'
         data: _method: 'DELETE'
         error: (jqXHR) ->
-          if (jqXHR.status == 403)
-            showAppMessage('<strong>Access denied!</strong> You have no permissions for this action!', 'danger');
-          else
-            showAppMessage('Unknow error happened!', 'danger');
+          showAppMessage('<strong>Error:</strong> ' + jqXHR.status, 'danger');
         success: (jqXHR) ->
           $(version_tr).fadeOut(200)
           showAppMessage('<strong>Success!</strong> Version deleted!', 'success');
@@ -78,10 +72,7 @@ ready = ->
     $.ajax url,
       type: 'GET'
       error: (jqXHR) ->
-        if (jqXHR.status == 403)
-          showAppMessage('<strong>Access denied!</strong> You have no permissions for this action!', 'danger');
-        else
-          showAppMessage('Unknow error happened!', 'danger');
+        showAppMessage('<strong>Error:</strong> ' + jqXHR.status, 'danger');
       success: (data) ->
         content = $(data).find('#main-data').html()
         showInModal(content)
@@ -101,11 +92,8 @@ ready = ->
         type: 'POST'
         data: _method: 'PATCH'
         error: (jqXHR) ->
-          if (jqXHR.status == 403)
-            showAppMessage('<strong>Access denied!</strong> You have no permissions for this action!', 'danger');
-          else
-            showAppMessage('Unknow error happened!', 'danger');
-        success: (jqXHR) ->
+          showAppMessage('<strong>Error:</strong> ' + jqXHR.status, 'danger');
+        success: ->
           showAppMessage('<strong>Success!</strong> User changed!', 'success');
     )
   ))

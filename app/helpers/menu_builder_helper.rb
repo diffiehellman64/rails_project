@@ -1,7 +1,7 @@
 module MenuBuilderHelper
 
   def build_menu(name)
-    items = Menu.where(name: name)
+    items = Menu.where(name: name).order(:weight)
     menu_html = ''
 #    menu_html = '<nav class="navbar navbar-inverse" role="navigation">'
     menu_html += '<ul class="nav navbar-nav">'

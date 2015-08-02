@@ -8,23 +8,25 @@ class Ability
     user ||= User.new # guest user (not logged in)
     #Admin
     if user.has_role? :admin
-      can :access, :rails_admin   # grant access to rails_admin
-      can :dashboard              # grant access to the dashboard
+#      can :access, :rails_admin   # grant access to rails_admin
+#      can :dashboard              # grant access to the dashboard
       can :modify, Article
+      can :modify, Menu
       can :read, Article
+      can :read, Menu
+#      can :read, :all
     # Editor
-    elsif user.has_role? :editor
+    elsif user.has_role? :manager
       can :read, :all
-      can :manage, :newsroom
-      can :manage, Post
+      can :manage, Article
     #Member
-    elsif user.has_role? :member
-        can :read, :all
-        can :create, Post
-        can :status, Post
-        can :update, Post do |post|
-            post.try(:user) == user
-        end
+#    elsif user.has_role? :member
+#        can :read, :all
+#        can :create, Post
+#        can :status, Post
+#        can :update, Post do |post|
+#            post.try(:user) == user
+#        end
     #Guest
     else
         can :read, Article

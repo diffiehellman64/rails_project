@@ -1,10 +1,12 @@
 class MenusController < ApplicationController
 
+  load_and_authorize_resource
+
   def index
   end
   
   def show
-    @menu_items = Menu.where(name: params[:menu_name])
+    @menu_items = Menu.where(name: params[:menu_name]).order(:weight)
   end
 
   def new
