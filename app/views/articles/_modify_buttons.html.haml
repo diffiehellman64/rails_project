@@ -1,4 +1,9 @@
 - if can? :modify, @article
   .actions
-    = link_to t('views.articles.actions.edit'), edit_article_path(@article), class: 'btn btn-warning btn-xs'
-    = link_to t('views.articles.actions.versions'), versions_item_path('article', @article.id), class: 'btn btn-primary btn-xs'
+    = link_to edit_article_path(@article), class: 'btn btn-warning btn-xs' do
+      %span.glyphicon.glyphicon-edit
+      = t('views.articles.actions.edit')
+    = ' ' 
+    = link_to versions_item_path('article', @article.id), class: 'btn btn-primary btn-xs' do
+      %span.glyphicon.glyphicon-time
+      = t('views.articles.actions.versions')
