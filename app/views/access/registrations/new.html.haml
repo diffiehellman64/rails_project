@@ -10,8 +10,8 @@
       = f.input :username, required: true
       = f.input :password, required: true, input_html: { title: ("#{@minimum_password_length} characters minimum" if @minimum_password_length), 'data-toggle': 'tooltip' }
       = f.input :password_confirmation, required: true
+      = show_simple_captcha(:object=>"user")
       = f.button :submit, 'Sign up'
-      /= show_simple_captcha
     .col-md-2
     
 /= render "devise/shared/links"

@@ -28,7 +28,7 @@ class Access::RegistrationsController < Devise::RegistrationsController
 
   def validate
 
-    user = User.new(params.require(:user).permit(:email, :password, :username, :password_confirmation))
+    user = User.new(params.require(:user).permit(:email, :password, :username, :password_confirmation, :captcha))
     user.valid?
     field = params[:user].first[0]
     @errors = user.errors[field]
@@ -46,11 +46,6 @@ class Access::RegistrationsController < Devise::RegistrationsController
 
   end
   
-  private
-  
-  def check_adm
-    check_admin
-  end
 
   # GET /resource/sign_up
   # def new
@@ -58,8 +53,15 @@ class Access::RegistrationsController < Devise::RegistrationsController
   # end
 
   # POST /resource
-  # def create
-  #   super
+  #def create
+  #  if simple_captcha_valid?
+  #    super                   
+  #  else                         
+  #    build_resource         
+  #    #resource.errors.add(:base, "Please re-enter the captcha code") if resource.valid?
+  #    flash[:danger] =  t('error.captcha.not_valid') #"There was an error with the captcha code below. Please re-enter the code and click submit."
+  #    render :new                                 
+  #  end 
   # end
 
   # GET /resource/edit
@@ -89,9 +91,6 @@ class Access::RegistrationsController < Devise::RegistrationsController
   # protected
 
   # If you have extra params to permit, append them to the sanitizer.
-  def configure_sign_up_params
-    devise_parameter_sanitizer.for(:sign_up) << :attribute
-  end
 
   # If you have extra params to permit, append them to the sanitizer.
   # def configure_account_update_params
@@ -107,4 +106,15 @@ class Access::RegistrationsController < Devise::RegistrationsController
   # def after_inactive_sign_up_path_for(resource)
   #   super(resource)
   # end
+
+  private
+
+  def configure_sign_up_params
+    devise_parameter_sanitizer.for(:sign_up) << :attribute
+  end
+  
+  def check_adm
+    check_admin
+  end
+
 end

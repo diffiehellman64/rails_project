@@ -50,6 +50,12 @@ jQuery ->
             type: 'post'
         'user[password_confirmation]':
           equalTo: '#user_password'
+        'user[captcha]':
+          required: true
+          remote:
+            url: validate_user_url
+            type: 'post'
+          
     )
   ))
 

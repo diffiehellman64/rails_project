@@ -1,5 +1,6 @@
 class User < ActiveRecord::Base
   rolify
+  apply_simple_captcha
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable and :omniauthable
   # devise :database_authenticatable, :registerable,
@@ -19,6 +20,19 @@ class User < ActiveRecord::Base
   
   validates :username, presence: true,
             uniqueness: { case_sensitive: false }
+
+
+  validate :captcha_valid
+
+  def captcha_valid
+#    if !self.valid_with_captcha?
+#    if !valid_with_captcha?
+      errors.add(:captcha, "Captcha not valid!")
+#    end
+  end
+
+  def captcha
+  end
 #            format: { with: VALID_EMAIL_REGEX }
 
   attr_accessor :login

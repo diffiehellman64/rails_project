@@ -21,7 +21,9 @@ gem 'i18n'
 #gem 'simple_form_fancy_uploads'
 gem 'will_paginate'
 gem 'will_paginate-bootstrap'
-#gem 'simple_captcha' 
+#gem "galetahub-simple_captcha", :require => "simple_captcha"
+#gem 'simple_captcha', :git => 'git://github.com/galetahub/simple-captcha.git
+gem 'simple_captcha2'
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'rails', '4.2.3'
