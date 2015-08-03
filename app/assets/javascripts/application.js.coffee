@@ -101,10 +101,10 @@ ready = ->
   # #search_field animation
   $('#search_field').focus ->
     $(this).animate
-      width: '+=300'
+      width: '+=100'
   $('#search_field').focusout ->
     $(this).animate
-      width: '-=300'
+      width: '-=100'
   $('#search_field').keyup ->
     cont = $('#search_field').val()
     if cont

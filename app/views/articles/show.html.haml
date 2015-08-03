@@ -1,8 +1,7 @@
 %h1= @article.title
-- if can? :modify, @article
-  .actions
-    = link_to 'Edit', edit_article_path(@article), class: 'btn btn-default'
-    = link_to 'Versions', "/versions/article/#{@article.id}", class: 'btn btn-default'
-= raw user_profile_link(@article.user_id)
-= @article.created_at.localtime.strftime('%H:%M %d-%m-%Y')
+= render 'modify_buttons'
+%span.create_date= @article.created_at.localtime.strftime('%Y-%m-%d %H:%M')
 = raw @article.text
+%span.item_author
+  = t('views.articles.author') + ': '
+  = raw(user_profile_link(@article.author))

@@ -19,7 +19,9 @@ gem 'rack-pjax'
 gem 'rails_admin'
 gem 'i18n'
 #gem 'simple_form_fancy_uploads'
-
+gem 'will_paginate'
+gem 'will_paginate-bootstrap'
+#gem 'simple_captcha' 
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'rails', '4.2.3'

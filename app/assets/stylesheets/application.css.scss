@@ -16,8 +16,13 @@
 @import "bootstrap-sprockets";
 @import "bootstrap";
 
-#wrapper {
+#wrapper,
+#main_navigation {
   max-width: 1000px;
+  margin: 0 auto;
+}
+
+.paginator {
   margin: 0 auto;
 }
 

@@ -11,7 +11,7 @@ class VersionsController < ApplicationController
   end
 
   def index
-    @items = @model.all
+    @items = @model.all.order(id: :desc)
   end
 
   def show

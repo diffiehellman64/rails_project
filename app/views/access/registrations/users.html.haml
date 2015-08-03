@@ -1,13 +1,14 @@
 %h2 Users roles
 %table.table.table-hover.table-bordered
   %tr
+    %th Username
     %th User
     - @roles.each do |role|
       %th= role.name
   - @users.each do |user|
     %tr
-      %td
-        %span{ type: 'button', 'data-container': 'body' ,'data-toggle': 'popover', title: 'Actions', 'data-content': 'Test' }= raw user_profile_link(user)
+      %td= user.username
+      %td= raw user_profile_link_img(user)
       - @roles.each do |role|
         - bool = user.has_role?(role.name)
         - checked = 'no'

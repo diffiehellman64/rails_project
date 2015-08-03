@@ -1,4 +1,5 @@
 CKEDITOR.editorConfig = function (config) {
+  config.language = 'ru';
 
   config.toolbar_full = [
 	{ name: 'document', items : [ 'Source','-','Save','NewPage','DocProps','Preview','Print','-','Templates' ] },
@@ -19,7 +20,7 @@ CKEDITOR.editorConfig = function (config) {
   ];
 
   config.toolbar_custom = [
-        [ 'Save', '-', 'Maximize', 'ShowBlocks', '-', 'Source'],
+        [ 'Maximize', 'ShowBlocks', '-', 'Source'],
         [ 'PasteText','PasteFromWord','-','Undo','Redo' ],
         [ 'Find','Replace','-', 'SpellChecker', 'Scayt' ],
         '/',
@@ -32,6 +33,11 @@ CKEDITOR.editorConfig = function (config) {
         [ 'Format','Font','FontSize' ],
         [ 'TextColor','BGColor' ]
   ];
+
+  config.toolbar_min = [
+        [ 'Bold','Italic','Underline','Strike','RemoveFormat' ]
+  ];
+
 
   config.toolbar = "custom";
 

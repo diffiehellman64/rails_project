@@ -5,7 +5,13 @@ class ArticlesController < ApplicationController
   before_action :set_article, only: [:show, :edit, :update, :destroy]
 
   def index
-    @articles = Article.all
+    if params[:page]
+      t = params[:page]
+    else
+      t = 1
+    end
+    @articles = Article.all.paginate(page: t, per_page: 10 ).order(created_at: :desc)
+    #@articles = Article.all.order(created_at: :desc)
   end
 
   def show
@@ -31,7 +37,7 @@ class ArticlesController < ApplicationController
   def update
     @article.user_id = current_user.id
     if @article.update(article_params)
-      redirect_to @article, flash: { success: 'Article was successfully updated!' }
+      redirect_to @article, flash: { success: t('Article was successfully updated!') }
     else
       render :edit
     end
@@ -51,6 +57,6 @@ class ArticlesController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def article_params
-      params.require(:article).permit(:title, :text)
+      params.require(:article).permit(:title, :text, :anons)
     end
 end

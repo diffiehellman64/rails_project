@@ -7,6 +7,8 @@ class User < ActiveRecord::Base
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :trackable, 
          :validatable, :authentication_keys => [:login]
+  
+  # apply_simple_captcha
 
   before_save { self.email = email.downcase }
 

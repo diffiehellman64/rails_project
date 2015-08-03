@@ -24,8 +24,28 @@ ru:
               too_short: 'слишком короткий.'
             password_confirmation:
               confirmation: 'не совпадает с паролем'
-  menus:
-    index:
-      title: 'Список созданных меню'
-    new:
-      title: 'Создать новое меню'
+  views:
+    menus:
+      items:
+        home: 'Главная'
+        articles: 'Статьи'
+        signed_as: 'Авторизованы как'
+        log_out: 'Выйти'
+        your_profile: 'Ваш профиль'
+        edit_profile: 'Редактировать профиль'
+      index:
+        title: 'Список созданных меню'
+      new:
+        title: 'Создать новое меню'
+    articles:
+      author: 'автор'
+      create_date: 'дата создания'
+      index:
+        title: 'Список статей'
+      actions:
+        destroy: 'Удалить'
+        edit: 'Редактировать'
+        versions: 'Версии'
+  will_paginate:
+    next_label: 'вперед'
+    previous_label: 'назад'

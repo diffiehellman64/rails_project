@@ -6,7 +6,7 @@ class Access::RegistrationsController < Devise::RegistrationsController
 
   before_action :check_adm, only: [:users, :roles_update]
 #  before_action :set_article, only: [:show, :edit, :update, :destroy]
-  
+
   def profile
     @user = User.find(params[:id])
   end

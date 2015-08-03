@@ -1,0 +1,4 @@
+- if can? :modify, @article
+  .actions
+    = link_to t('views.articles.actions.edit'), edit_article_path(@article), class: 'btn btn-warning btn-xs'
+    = link_to t('views.articles.actions.versions'), versions_item_path('article', @article.id), class: 'btn btn-primary btn-xs'

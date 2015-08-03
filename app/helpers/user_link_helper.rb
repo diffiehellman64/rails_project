@@ -1,6 +1,6 @@
 module UserLinkHelper
 
-  def user_profile_link(id)
+  def user_profile_link_img(id)
     user = User.find(id)
     name = user_name(id)
     if name != 'Udentified'
@@ -16,6 +16,21 @@ module UserLinkHelper
       return 'Udentified'
     end
   end
+
+  def user_profile_link(id)
+    user = User.find(id)
+    name = user_name(id)
+    if name != 'Udentified'
+      link = link_to(name, profile_path(id))
+      result = content_tag(:span, title: 'Go to user profile') do
+        link
+      end
+      return result
+    else
+      return 'Udentified'
+    end
+  end
+
   
   def user_name(id)
     user = User.find(id)

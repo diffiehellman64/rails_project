@@ -1,0 +1,12 @@
+.row
+  %nav{ class: 'navbar navbar-default', role: 'navigation' }
+    %div{id: 'main_navigation'}
+      .col-md-12
+        = render_navigation(context: :main, expand_all: true, renderer: :bootstrap)
+        %form.navbar-form.navbar-left{ role: 'search' }
+          .form-group
+            %input.form-control{ id: 'search_field', type: 'text', placeholder: 'Search' }
+        - if !user_signed_in?
+          = render 'layouts/sign_form'
+        - else
+          = render 'layouts/user_menu'

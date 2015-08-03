@@ -12,7 +12,7 @@
       %td= ver_next.id
       %td= link_to(article.title, "/versions/article/#{article.id}/#{ver_next.id}")
       %td= version.created_at.localtime.strftime('%H:%M %d-%m-%Y') 
-      %td= user_profile_link(version.whodunnit)
+      %td= user_profile_link_img(version.whodunnit)
       %td
         %button.btn.btn-default.btn-xs.action_version_preview Show
       %td= link_to('Rollback', "/versions/article/#{article.id}/#{ver_next.id}", class: 'btn btn-warning btn-xs', method: :patch)
@@ -22,7 +22,7 @@
   %td
   %td= link_to(@item.title, article_path(@item))
   %td= @item.updated_at.localtime.strftime('%H:%M %d-%m-%Y')
-  %td= user_profile_link(@item.user_id)
+  %td= user_profile_link_img(@item.user_id)
   %td
   %td
   %td
