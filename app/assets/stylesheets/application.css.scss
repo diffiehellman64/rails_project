@@ -62,10 +62,15 @@ a.dropdown-toggle:hover {
   display: inline-block;
 }
 
-.img-avatar img{
+.img-avatar img {
   border-radius: 3px;
 }
 
-.item img{
+.item img {
   margin: 0 auto;
+}
+
+abbr[title] {
+  border-bottom: none;
+  color: #c9302c;
 }
