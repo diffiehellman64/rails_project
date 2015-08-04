@@ -22,17 +22,17 @@ class User < ActiveRecord::Base
             uniqueness: { case_sensitive: false }
 
 
-  validate :captcha_valid
+#  validate :captcha_valid
 
-  def captcha_valid
+#  def captcha_valid
 #    if !self.valid_with_captcha?
 #    if !valid_with_captcha?
-      errors.add(:captcha, "Captcha not valid!")
+#      errors.add(:captcha, "Captcha not valid!")
 #    end
-  end
+#  end
 
-  def captcha
-  end
+#  def captcha
+#  end
 #            format: { with: VALID_EMAIL_REGEX }
 
   attr_accessor :login

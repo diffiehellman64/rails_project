@@ -1,7 +1,4 @@
 ru:
-  'Sign Up': 'Регистрация'
-  'Log In': 'Вход'
-  hello: 'Привет'
   activerecord:
     attributes:
       user:
@@ -38,6 +35,8 @@ ru:
       new:
         title: 'Создать новое меню'
     articles:
+      new:
+        title: 'Написать статью'
       author: 'автор'
       create_date: 'дата создания'
       index:
@@ -49,3 +48,7 @@ ru:
   will_paginate:
     next_label: 'вперед'
     previous_label: 'назад'
+  simple_captcha:
+    not_valid: 'Неверные символы с картинки'
+    label: 'Вы точно не робот?'
+    placeholder: 'captcha'

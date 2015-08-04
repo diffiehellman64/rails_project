@@ -53,16 +53,15 @@ class Access::RegistrationsController < Devise::RegistrationsController
   # end
 
   # POST /resource
-  #def create
-  #  if simple_captcha_valid?
-  #    super                   
-  #  else                         
-  #    build_resource         
-  #    #resource.errors.add(:base, "Please re-enter the captcha code") if resource.valid?
-  #    flash[:danger] =  t('error.captcha.not_valid') #"There was an error with the captcha code below. Please re-enter the code and click submit."
-  #    render :new                                 
-  #  end 
-  # end
+  def create
+    if simple_captcha_valid?
+      super                   
+    else                         
+      build_resource         
+      flash[:danger] =  t('simple_captcha.not_valid')
+      render :new                                 
+    end 
+   end
 
   # GET /resource/edit
   # def edit

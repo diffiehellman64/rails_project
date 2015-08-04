@@ -52,9 +52,9 @@ jQuery ->
           equalTo: '#user_password'
         'user[captcha]':
           required: true
-          remote:
-            url: validate_user_url
-            type: 'post'
+          #remote:
+           # url: validate_user_url
+            #type: 'post'
           
     )
   ))

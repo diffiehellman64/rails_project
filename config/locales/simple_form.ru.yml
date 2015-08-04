@@ -3,29 +3,51 @@ ru:
     "yes": 'Да'
     "no": 'Нет'
     required:
-      text: 'required'
+      text: 'Обязательно для заполенения'
       mark: '*'
       # You can uncomment the line below if you need to overwrite the whole required html.
       # When using html, text and mark won't be used.
       # html: '<abbr title="required">*</abbr>'
     error_notification:
       default_message: "Please review the problems below:"
-    # Examples
     labels:
+      article:
+        new:
+          title: 'Название статьи'
+          anons: 'Анонс'
+          text: 'Содержимое'
       defaults:
         password: 'Пароль'
-    #   user:
-    #     new:
-    #       email: 'E-mail to sign in.'
-    #     edit:
-    #       email: 'E-mail.'
-    # hints:
-    #   defaults:
-    #     username: 'User name to sign in.'
-    #     password: 'No special characters, please.'
-    # include_blanks:
-    #   defaults:
-    #     age: 'Rather not say'
-    # prompts:
-    #   defaults:
-    #     age: 'Select your age'
+        current_password: 'Текущий пароль'
+        avatar: 'Фотография пользователя'
+      user:
+        new:
+          email: 'E-mail'
+        edit:
+          email: 'E-mail'
+    placeholders:
+      default:
+        password: '******'
+      user:
+        new:
+          email: 'E-mail для входа в систему'
+          username: 'Имя пользователя для входа в систему'
+          password: '********'
+          password_confirmation: '********'
+        edit:
+          email: 'E-mail для входа в систему'
+          avatar: 'Имя файла'
+          username: 'Имя пользователя для входа в систему'
+          first_name: 'Имя'
+          last_name: 'Фамилия'
+          password: 'оставьте пустым, если не хотите менять свой пароль'
+          current_password: 'подтвердите Ваши дейстаия паролем'
+          #current_password: '********'        
+      article:
+        new:
+          title: 'Название статьи'
+          anons: 'Кратокое содержание статьи'
+    helpers:
+      submit:
+        article:
+          create: 'Создать статью'
