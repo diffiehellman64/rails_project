@@ -24,6 +24,7 @@ gem 'will_paginate-bootstrap'
 #gem "galetahub-simple_captcha", :require => "simple_captcha"
 #gem 'simple_captcha', :git => 'git://github.com/galetahub/simple-captcha.git
 gem 'simple_captcha2'
+gem 'rails-gallery'
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'rails', '4.2.3'

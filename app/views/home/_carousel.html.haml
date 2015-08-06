@@ -1,9 +1,9 @@
 %div.carousel.slide{ id: 'carousel-example-generic', 'data-ride': 'carousel' }
   <!-- Indicators -->
   %ol.carousel-indicators
-    %li{ 'data-target': '#carousel-example-generic', 'data-slide-to': '0' }
+    %li.active{ 'data-target': '#carousel-example-generic', 'data-slide-to': '0' }
     %li{ 'data-target': '#carousel-example-generic', 'data-slide-to': '1' }
-    %li.active{ 'data-target': '#carousel-example-generic', 'data-slide-to': '2' }
+    %li{ 'data-target': '#carousel-example-generic', 'data-slide-to': '2' }
     %li{ 'data-target': '#carousel-example-generic', 'data-slide-to': '3' }
     %li{ 'data-target': '#carousel-example-generic', 'data-slide-to': '4' }
   <!-- Wrapper for slides -->
@@ -11,7 +11,6 @@
     .item.active
       = image_tag('/carousel/1.jpg')
       .carousel-caption
-        Черника
     .item
       = image_tag('/carousel/2.jpg')
       .carousel-caption
@@ -24,6 +23,7 @@
     .item
       = image_tag('/carousel/5.jpg')
       .carousel-caption
+        Gordon Freeman
   <!-- Controls -->
   %a.left.carousel-control{ href: '#carousel-example-generic', role: 'button', 'data-slide': 'prev' }
     %span.glyphicon.glyphicon-chevron-left{ 'aria-hidden': 'true' }
