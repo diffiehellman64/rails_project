@@ -1,5 +1,6 @@
 Rails.application.routes.draw do
 
+  mount Ckeditor::Engine => '/ckeditor'
   mount RailsAdmin::Engine => '/admin', as: 'rails_admin'
   resources :menus, only: [:index, :new, :create, :update, :destroy]
   get  'menus/:menu_name' => 'menus#show', as: 'menu_show'
