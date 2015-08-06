@@ -7,17 +7,14 @@ class ApplicationController < ActionController::Base
 
   include SimpleCaptcha::ControllerHelpers
 
-# layout :determine_layout
-
   def render_403
-    #render status: :forbidden, text: 'Forbidden'
-    render text: '<div class="alert alert-danger">Access denied!</div>'#, status: :forbidden
+    render text: '<div class="alert alert-danger">Access denied!</div>'
   end
 
   rescue_from CanCan::AccessDenied do |exception|
-    if request.headers['X-PJAX']
-      render text: '<div class="alert alert-danger"><strong>Access denied!</strong> ' + exception.message + '</div>'
-    elsif request.xhr?
+    if request.headers['X-PJAX'] # pjax
+      render text: '<div class="alert alert-danger"><strong>Access denied!</strong> ' + exception.message + '</div>' 
+    elsif request.xhr? # ajax
       render status: :forbidden, text: 'Forbidden'
     else 
       redirect_to main_app.root_path, flash: { danger: "<strong>Access denied</strong>: #{exception.message}" }
@@ -35,34 +32,16 @@ class ApplicationController < ActionController::Base
   protected
 
   def configure_permitted_parameters
-    devise_parameter_sanitizer.for(:sign_up) { |u| u.permit(:last_name, 
-                                                            :first_name, 
-                                                            :email, 
-                                                            :password, 
-                                                            :password_confirmation, 
-                                                            :remember_me, 
-                                                            :avatar,
-                                                            :username) }
-    devise_parameter_sanitizer.for(:sign_in) { |u| u.permit(:email, 
-                                                            :username, 
-                                                            :password, 
-                                                            :remember_me) }
-    devise_parameter_sanitizer.for(:account_update) { |u| u.permit(:last_name, 
-                                                                   :first_name, 
-                                                                   :avatar, 
-                                                                   :email, 
-                                                                   :username, 
-                                                                   :password, 
-                                                                   :password_confirmation, 
-                                                                   :current_password, 
-                                                                   :avatar) }
+    devise_parameter_sanitizer.for(:sign_up) { |u| u.permit(:last_name, :first_name, :email, 
+                                                            :password, :password_confirmation, 
+                                                            :remember_me, :avatar, :username) }
+    devise_parameter_sanitizer.for(:sign_in) { |u| u.permit(:login, :email, :username, :password, :remember_me) }
+    devise_parameter_sanitizer.for(:account_update) { |u| u.permit(:last_name, :first_name, :avatar, :email, 
+                                                                   :username, :password, :password_confirmation, 
+                                                                   :current_password, :avatar) }
   end
 
 
   private
-
-# def determine_layout
-#   request.headers['X-PJAX'] ? false : :application
-# end
 
 end

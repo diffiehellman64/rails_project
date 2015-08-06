@@ -67,13 +67,6 @@ class User < ActiveRecord::Base
     end
   end
 
-
-#  validates :username,
-#            :presence => true,
-#            :uniqueness => {
-#              :case_sensitive => false
-#            }
-
   has_attached_file :avatar, 
                     styles: { large:  '400x400>',
                               medium: '200x200>', 
