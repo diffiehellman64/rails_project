@@ -1,12 +1,15 @@
 %h2 Users roles
 %table.table.table-hover.table-bordered
   %tr
+    %th Id
     %th Username
     %th User
     - @roles.each do |role|
       %th= role.name
+    %th Actions
   - @users.each do |user|
-    %tr
+    %tr{ 'data-user-id': user.id }
+      %td= user.id
       %td= user.username
       %td= raw user_profile_link_img(user)
       - @roles.each do |role|
@@ -16,4 +19,6 @@
           - checked = 'yes'
         %td
           = check_box_tag "user[role_#{role.name}_#{user.id}]", checked, bool, class: 'action_role_manage', 'data-role': role.name, 'data-user': user.id
+      %td
+        .btn.btn-warning.btn-xs.action_change_password change password
 

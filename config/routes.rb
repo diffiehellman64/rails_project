@@ -13,6 +13,7 @@ Rails.application.routes.draw do
                                      sessions: 'access/sessions' }
   devise_scope :user do
     get    'profile/:id' => 'access/registrations#profile', as: 'profile'
+    patch  'users/:id/update' => 'access/registrations#user_update', as: 'user_update'
     get    'users/all' => 'access/registrations#users'
     post   'users/validate' => 'access/registrations#validate', as: :users_validation
     patch  'users/:id/:act/:role' => 'access/registrations#roles_update', as: 'update_user_role'

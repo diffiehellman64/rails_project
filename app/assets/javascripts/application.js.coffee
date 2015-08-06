@@ -98,6 +98,22 @@ ready = ->
     )
   ))
 
+  # ajax change user password
+  $('body').on('click', '.action_change_password', ( ->
+    userId = $($(this).parents('tr')[0]).attr('data-user-id')
+    url = '/users/' + userId + '/update'
+    $.ajax url,
+      type: 'POST'
+      data: 
+        _method: 'PATCH'
+        user:
+          password: '321'
+      error: (jqXHR) ->
+        showAppMessage('<strong>Error:</strong> ' + jqXHR.status, 'danger');
+      success: ->
+        showAppMessage('<strong>Success!</strong> Password updated!', 'success');
+  ))
+
   # #search_field animation
   $('#search_field').focus ->
     $(this).animate
