@@ -98,20 +98,30 @@ ready = ->
     )
   ))
 
-  # ajax change user password
-  $('body').on('click', '.action_change_password', ( ->
+  # ajax change password
+  $('.action_change_password').popover(
+    placement: 'left'
+    title: 'Change password'
+    html: true
+    content: '<input class="form-control new_password_field" placeholder="********" type="text">' + 
+             '<div class="btn btn-primary do_action_change_password">Change password</div>'
+  )
+  $('body').on('click', '.do_action_change_password', ( ->
     userId = $($(this).parents('tr')[0]).attr('data-user-id')
     url = '/users/' + userId + '/update'
+    popoverContainer = $(this).parents('.popover-content')[0]
+    pass = $($(popoverContainer).children('.new_password_field')[0]).val()
     $.ajax url,
       type: 'POST'
-      data: 
+      data:
         _method: 'PATCH'
         user:
-          password: '321'
+          password: pass
       error: (jqXHR) ->
         showAppMessage('<strong>Error:</strong> ' + jqXHR.status, 'danger');
       success: ->
         showAppMessage('<strong>Success!</strong> Password updated!', 'success');
+    $('.action_change_password').popover('hide')
   ))
 
   # #search_field animation
