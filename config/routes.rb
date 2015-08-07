@@ -3,6 +3,10 @@ Rails.application.routes.draw do
   mount Ckeditor::Engine => '/ckeditor'
   mount RailsAdmin::Engine => '/admin', as: 'rails_admin'
   resources :menus, only: [:index, :new, :create, :update, :destroy]
+  resources :galleries
+  post '/gallery/add_image' => 'galleries#add_image', as: 'images'
+
+
   get  'menus/:menu_name' => 'menus#show', as: 'menu_show'
 #  post 'menus/:menu_name' => 'menus#create'
 

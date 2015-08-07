@@ -44,6 +44,7 @@ ru:
       actions:
         destroy: 'Удалить'
         edit: 'Редактировать'
+        update_success: 'Успешное обновление статьи'
         versions: 'Версии'
   will_paginate:
     next_label: 'вперед'

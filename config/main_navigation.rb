@@ -13,7 +13,12 @@ SimpleNavigation::Configuration.run do |navigation|
       sub_nav.item :articles_new, 'New article', new_article_path
       sub_nav.item :articles_versions, 'Versions', versions_path('article')
     end
-
+  
+    primary.item :gallery, t('views.menus.items.gallery'), '#' do |sub_nav|
+      sub_nav.item :gallery_index, 'Gallery list', galleries_path
+      sub_nav.item :gallery_new, 'New gallery', new_gallery_path
+    end
+  
    # primary.item :admin, 'Admin', '#',  if: Proc.new { current_user and current_user.has_role?(:admin) } do |sub_nav|
     primary.item :access, 'Access', '#' do |sub_nav|
       sub_nav.item :access_users, 'Users', users_all_path, class: 'pjax_action'

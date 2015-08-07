@@ -6,6 +6,7 @@
 #= require bootstrap-sprockets
 #= require jquery.pjax
 #= require jquery.nestable
+#= require jquery.remotipart
 #= require_tree .
 #= require_tree ./functions
 
@@ -15,6 +16,11 @@ ready = ->
 #  $('a').pjax('[pjax-container]')
 
 #  $(document).pjax('#action_apply_menu', '#nav_menu')
+
+
+  # Initialize the gallery
+  # $('#thumbs a').touchTouch()
+
 
   $.pjax.defaults.timeout = 4000
   #$(document).on('pjax:error', ((data, status, xhr) ->

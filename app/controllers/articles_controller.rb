@@ -37,7 +37,7 @@ class ArticlesController < ApplicationController
   def update
     @article.user_id = current_user.id
     if @article.update(article_params)
-      redirect_to @article, flash: { success: t('Article was successfully updated!') }
+      redirect_to @article, flash: { success: t('views.articles.actions.update_success') }
     else
       render :edit
     end
