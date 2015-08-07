@@ -12,7 +12,8 @@
 
 ready = ->
 
-  $(document).pjax('a', '[pjax-container]')
+  $(document).pjax('a:not(.thumbnail)', '[pjax-container]')
+ #$(document).pjax('a:not([data-remote]):not([data-behavior]):not([data-skip-pjax])', '[data-pjax-container]')
 #  $('a').pjax('[pjax-container]')
 
 #  $(document).pjax('#action_apply_menu', '#nav_menu')
