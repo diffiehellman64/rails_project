@@ -7,6 +7,7 @@
 #= require jquery.pjax
 #= require jquery.nestable
 #= require jquery.remotipart
+#= require hermitage
 #= require_tree .
 #= require_tree ./functions
 
