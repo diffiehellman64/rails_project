@@ -14,6 +14,10 @@ class Ability
       can :modify, Menu
       can :read, Article
       can :read, Menu
+      can :read, Gallery
+      can :modify, Gallery
+      can :add_image, Gallery
+      can :del_image, Gallery
 #      can :read, :all
     # Editor
     elsif user.has_role? :manager

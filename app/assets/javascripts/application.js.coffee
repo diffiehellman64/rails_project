@@ -7,35 +7,23 @@
 #= require jquery.pjax
 #= require jquery.nestable
 #= require jquery.remotipart
-#= require hermitage
 #= require_tree .
 #= require_tree ./functions
+#= require hermitage
 
 ready = ->
 
+
   $(document).pjax('a:not(.thumbnail)', '[pjax-container]')
- #$(document).pjax('a:not([data-remote]):not([data-behavior]):not([data-skip-pjax])', '[data-pjax-container]')
-#  $('a').pjax('[pjax-container]')
-
-#  $(document).pjax('#action_apply_menu', '#nav_menu')
-
-
-  # Initialize the gallery
-  # $('#thumbs a').touchTouch()
-
 
   $.pjax.defaults.timeout = 4000
-  #$(document).on('pjax:error', ((data, status, xhr) ->
-  #  showAppMessage('<strong>Access denied!</strong> You have no permissions for this action!', 'danger');
-  #  console.log 'pjax!'
-  #  console.log status
-  #  console.log data
-  #  console.log xhr
-  #  console.log event
-  #))
   $('.dd').nestable()
 
   $('[data-toggle="tooltip"]').tooltip()
+
+  setTimeout( ->
+    $('.message-item').fadeOut('fast')
+  , 5000)
 
   # ajax to action_article_destroy
   $('body').on('click', '.action_article_destroy', ( -> 

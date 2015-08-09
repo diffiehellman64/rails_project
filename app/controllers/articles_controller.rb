@@ -2,6 +2,8 @@ class ArticlesController < ApplicationController
   
   load_and_authorize_resource
 
+  respond_to :html
+
   before_action :set_article, only: [:show, :edit, :update, :destroy]
 
   def index
@@ -28,7 +30,8 @@ class ArticlesController < ApplicationController
     @article = Article.new(article_params)
     @article.user_id = current_user.id
     if @article.save
-      redirect_to @article, flash: { success: 'Article was successfully created!' }
+      #redirect_to @article, flash: { success: 'Article was successfully created!' }
+      respond_with(@article, location: @article)
     else
       render :new
     end

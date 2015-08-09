@@ -1,8 +1,12 @@
 // Place all the styles related to the galleries controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
-li.span4 {
-//  float: left;
+#photo_list{
+  padding: 0;
+}
+
+li.photo {
+  float: left;
   list-style: none;
   margin-right: 10px;
 }

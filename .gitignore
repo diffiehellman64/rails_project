@@ -11,7 +11,11 @@
 
 # Users avatars
 public/system/users/avatars/*
+
 public/ckeditor_assets/*
+
+# Photo gallery
+public/gallery/*
 
 # Ignore the default SQLite database.
 /db/*.sqlite3

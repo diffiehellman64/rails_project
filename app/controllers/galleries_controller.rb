@@ -1,9 +1,11 @@
 class GalleriesController < ApplicationController
 
-  respond_to :html, :xml, :json, :only => [:add_image]
+  load_and_authorize_resource
+
+  respond_to :html, :xml, :json, :only => [:update, :del_image]
 
   def index
-    @galleries = Gallery.all
+    @galleries = Gallery.all.order(:id)
   end
 
   def new
@@ -14,30 +16,39 @@ class GalleriesController < ApplicationController
     @gallery = Gallery.new(gallery_params)
     @gallery.user_id = current_user.id
     if @gallery.save
-      redirect_to @gallery, flash: { success: 'Gallery was successfully created!' }
+      redirect_to edit_gallery_path(@gallery), flash: { success: 'Gallery was successfully created!' }
     else
       render :new
     end
   end
 
-  def add_image
-    @image = Image.new(image_params)
-    @image.gallery_id = params[:id]
-    @image.save
-    respond_with do |format|
+  def update
+    @gallery = Gallery.find(params[:id])
+    @gallery.update(gallery_params)
+    params[:images].each do |image|
+      @gallery.image.create(file: image)
+    end
+    respond_with(@gallery) do |format|
       format.js
+    end
+  end
+
+  def del_image
+    @image = Image.find(params[:image_id])
+    @image.destroy
+    respond_with(@image) do |format|
+      format.js { render "del_image" }
     end
   end
 
   def show
     @gallery = Gallery.find(params[:id])
-    @images = @gallery.image.all
+    @images = @gallery.image.all.order(:id)
   end
 
   def edit
     @gallery = Gallery.find(params[:id])
-    @image = Image.new
-    @images = @gallery.image.all
+    @images = @gallery.image.all.order(:id)
   end
 
   private

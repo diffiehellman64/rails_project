@@ -1,5 +1,10 @@
 %h1= t('views.gallery.new.title')
-= simple_form_for(@gallery) do |f|
+= simple_form_for @gallery, :html => { :multipart => true, id: 'edit-gallery-form' }, :remote => true  do |f|
   = f.input :name
-  = f.button :submit
-= render 'add_del_photo'
+  %ul{ id: 'photo_list' }
+    - @images.each do |img|
+      %li.thumbnail.photo{ 'data-photo-id': img.id }
+        = image_tag img.file.url(:thumbnail)
+        .caption
+          = link_to "delete", del_image_path(img), method: :delete, remote: true, class: 'btn btn-danger btn-xs'
+    %li= file_field_tag 'images[]', type: :file, multiple: true, id: 'upload-photo'

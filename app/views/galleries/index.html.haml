@@ -1,3 +1,4 @@
-%h3 Gallery list
+%h1 Gallery list
 - @galleries.each do |g|
-  =  link_to g.name, gallery_path(g.id)
+  %div
+    = link_to g.name, gallery_path(g)
