@@ -1,0 +1,19 @@
+var content = '';
+
+<% @gallery.image.order(:id).each do |image| %>
+  var img_url = '<%= image.file.url(:thumbnail) %>'
+  var img_id = '<%= image.id %>'
+
+  content += '<li class="thumbnail photo" data-photo-id="' + img_id + '">';
+  content += '<img src="' + img_url + '" alt="Ok">';
+  content += '<div class="caption">'
+  content += '<a class="btn btn-danger btn-xs" data-remote="true" rel="nofollow" data-method="delete" href="/gallery/del_image/' + img_id + '">delete</a>';
+  content += '</div>'
+  content += '</li>';
+
+<% end %>
+
+content += '<li><input type="file" name="images[]" id="upload-photo" multiple="multiple"></li>';
+
+showAppMessage('<strong>Success!</strong> Images added!', 'success');
+$('#photo_list').html(content);

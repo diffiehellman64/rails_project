@@ -1,0 +1,5 @@
+- if can? :modify, @gallery
+  .actions
+    = link_to edit_gallery_path(@gallery), class: 'btn btn-warning btn-xs' do
+      %span.glyphicon.glyphicon-edit
+      = t('views.articles.actions.edit')
