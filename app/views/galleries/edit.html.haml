@@ -1,6 +1,7 @@
 %h1= t('views.gallery.new.title')
 = simple_form_for @gallery, :html => { :multipart => true, id: 'edit-gallery-form' }, :remote => true  do |f|
   = f.input :name
+  = f.input :description
   %ul{ id: 'photo_list' }
     - @images.each do |img|
       %li.thumbnail.photo{ 'data-photo-id': img.id }

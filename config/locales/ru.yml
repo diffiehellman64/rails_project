@@ -22,14 +22,29 @@ ru:
             password_confirmation:
               confirmation: 'не совпадает с паролем'
   views:
+    actions:
+      show: 'Просмотр'
+      edit: 'Редактировать'
+      destroy: 'Удалить'
+    galleries:
+      index:
+        title: 'Список галерей'
+      new_gallery: 'Создать галерею'
+      gallery_list_is_empty: 'Галереи не созданы пока ...'
     menus:
       items:
         home: 'Главная'
         articles: 'Статьи'
+        articles_new: 'Написать статью'
+        articles_list: 'Список статей'
+        articles_versions: 'Версии статей'
         signed_as: 'Авторизованы как'
         log_out: 'Выйти'
         your_profile: 'Ваш профиль'
         edit_profile: 'Редактировать профиль'
+        galleries: 'Фото галереи'
+        galleries_list: 'Список галерей'
+        galleries_new: 'Создать галерею'
       index:
         title: 'Список созданных меню'
       new:

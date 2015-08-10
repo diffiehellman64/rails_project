@@ -9,7 +9,7 @@ Hermitage.configure :default do
 #   title nil
 #   list_tag :ul
 #   item_tag :li
-  list_class nil
+  list_class 'photo-list'
   item_class 'photo'
   link_class 'thumbnail'
 #   image_class nil

@@ -24,10 +24,17 @@
 @import "bootstrap-sprockets";
 @import "bootstrap";
 
+//#wrapper,
+//#main_navigation {
 #wrapper,
-#main_navigation {
+#menu_wrapper {
   max-width: 1000px;
   margin: 0 auto;
+}
+
+#top_menu {
+  margin: 0 auto;
+  width: 97%;
 }
 
 #footer {

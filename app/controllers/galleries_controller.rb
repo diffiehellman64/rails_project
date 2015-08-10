@@ -2,14 +2,24 @@ class GalleriesController < ApplicationController
 
   load_and_authorize_resource
 
-  respond_to :html, :xml, :json, :only => [:update, :del_image]
+  respond_to :html, :xml, :json, :only => [:update, :del_image, :destroy]
 
   def index
     @galleries = Gallery.all.order(:id)
   end
 
+  def show
+    @gallery = Gallery.find(params[:id])
+    @images = @gallery.image.all.order(:id)
+  end
+
   def new
     @gallery = Gallery.new
+  end
+
+  def edit
+    @gallery = Gallery.find(params[:id])
+    @images = @gallery.image.all.order(:id)
   end
 
   def create
@@ -41,21 +51,19 @@ class GalleriesController < ApplicationController
     end
   end
 
-  def show
+  def destroy
     @gallery = Gallery.find(params[:id])
-    @images = @gallery.image.all.order(:id)
-  end
-
-  def edit
-    @gallery = Gallery.find(params[:id])
-    @images = @gallery.image.all.order(:id)
+    @gallery.destroy
+    respond_with(@gallery) do |format|
+      format.js   { render 'destroy' }
+      format.html { redirect_to galleries_path, flash: { success: 'Gallery was successfully deleted!' } }
+    end
   end
 
   private
 
-    # Never trust parameters from the scary internet, only allow the white list through.
     def gallery_params
-      params.require(:gallery).permit(:name)
+      params.require(:gallery).permit(:name, :description)
     end
 
     def image_params

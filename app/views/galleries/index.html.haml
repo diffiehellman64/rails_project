@@ -1,4 +1,16 @@
-%h1 Gallery list
-- @galleries.each do |g|
-  %div
-    = link_to g.name, gallery_path(g)
+%h1= t('views.galleries.index.title')
+- if @galleries.count > 0
+  - @galleries.each do |g|
+    %div{ id: "data-gallery-id-#{g.id}" }
+      %h3
+        =link_to g.name, gallery_path(g)
+        %small= g.description
+      %div
+        - g.image.first(9).each do |img|
+          = image_tag img.file.url(:thumbnail), class: 'photo'
+      %p.actions
+        = link_to t('views.actions.show'), gallery_path(g), class: 'btn btn-primary btn-sm'
+        = link_to t('views.actions.edit'), edit_gallery_path(g), class: 'btn btn-warning btn-sm'
+        = link_to t('views.actions.destroy'), gallery_path(g), class: 'btn btn-danger btn-sm', method: :delete, remote: true
+- else
+  %p= t('views.galleries.gallery_list_is_empty')

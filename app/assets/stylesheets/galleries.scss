@@ -5,8 +5,17 @@
   padding: 0;
 }
 
-li.photo {
+ul.photo-list {
+  padding: 0;
+}
+
+li.photo,
+.photo-album {
   float: left;
   list-style: none;
   margin-right: 10px;
+}
+
+.photo {
+  margin: 0;
 }
