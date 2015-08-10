@@ -1,7 +1,4 @@
-(function() {
-  jQuery(function() {
-    showAppMessage('<strong>Success!</strong> Gallery deleted!', 'success');
-    var galleryId =  '<%= @gallery.id %>';
-    $('#data-gallery-id-' + galleryId + ').fadeOut(200)
-  });
-}).call(this);
+var galleryId =  '<%= @gallery.id %>';
+var galleryName =  '<%= @gallery.name %>';
+showAppMessage('<strong>Success!</strong> Gallery <strong>' + galleryName + '</strong> was successfully deleted!', 'success');
+$('#data-gallery-id-' + galleryId).fadeOut(200)

@@ -34,6 +34,7 @@ class Ability
     #Guest
     else
         can :read, Article
+        can :read, Gallery
     end    
   end
 end

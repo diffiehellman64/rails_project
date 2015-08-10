@@ -2,7 +2,7 @@ class GalleriesController < ApplicationController
 
   load_and_authorize_resource
 
-  respond_to :html, :xml, :json, :only => [:update, :del_image, :destroy]
+  respond_to :html, :js, :only => [:update, :del_image, :destroy]
 
   def index
     @galleries = Gallery.all.order(:id)
@@ -36,7 +36,7 @@ class GalleriesController < ApplicationController
     @gallery = Gallery.find(params[:id])
     @gallery.update(gallery_params)
     params[:images].each do |image|
-      @gallery.image.create(file: image)
+      @gallery.image.create(file: image, user_id: current_user.id)
     end
     respond_with(@gallery) do |format|
       format.js
@@ -47,16 +47,19 @@ class GalleriesController < ApplicationController
     @image = Image.find(params[:image_id])
     @image.destroy
     respond_with(@image) do |format|
-      format.js { render "del_image" }
+      format.js { render 'del_image' }
     end
   end
 
   def destroy
-    @gallery = Gallery.find(params[:id])
-    @gallery.destroy
     respond_with(@gallery) do |format|
-      format.js   { render 'destroy' }
-      format.html { redirect_to galleries_path, flash: { success: 'Gallery was successfully deleted!' } }
+      @gallery = Gallery.find(params[:id])
+      if @gallery.destroy
+        format.js
+        format.html { redirect_to galleries_path, flash: { success: t('Gallery was successfully deleted!') } }
+      else
+        format.js {render js: 'alert("AAA!")' }
+      end
     end
   end
 

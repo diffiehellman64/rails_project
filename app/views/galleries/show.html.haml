@@ -1,4 +1,6 @@
-%h3= @gallery.name
+%h1
+  = @gallery.name
+  %small= @gallery.description
 = render 'modify_buttons'
 = render_gallery_for @images
 /= render_gallery_for @images, original: 'image_full', thumbnail: 'image_thumb'
