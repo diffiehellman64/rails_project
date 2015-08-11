@@ -1,9 +1,6 @@
 # Hot validations for forms
-
 jQuery ->
-
 #  exec = ''
-  
   $('body').on('click', '#new_user', ( ->
 #  $('body').click ->
 
@@ -58,4 +55,3 @@ jQuery ->
           
     )
   ))
-

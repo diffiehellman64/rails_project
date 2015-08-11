@@ -1,4 +1,4 @@
-%h1= t('views.gallery.new.title')
+%h1= t('views.galleries.edit_gallery')
 = simple_form_for @gallery, :html => { :multipart => true, id: 'edit-gallery-form' }, :remote => true  do |f|
   = f.input :name
   = f.input :description

@@ -7,10 +7,10 @@
   %body
     = render 'layouts/navigation_main'
     /= render 'layouts/navigation_builder'
-    = render 'layouts/messager'
     %div{ id: 'wrapper' }
       .row
         .col-md-12{ id: 'main-data', 'pjax-container': 'true' }
+          = render 'layouts/messager'
           = yield
-    /= render 'layouts/footer'
+          = render 'layouts/footer'
     = javascript_include_tag 'application', 'data-turbolinks-track': true

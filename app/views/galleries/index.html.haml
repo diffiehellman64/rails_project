@@ -9,8 +9,17 @@
         - g.image.first(9).each do |img|
           = image_tag img.file.url(:thumbnail), class: 'photo'
       %p.actions
-        = link_to t('views.actions.show'), gallery_path(g), class: 'btn btn-primary btn-sm'
-        = link_to t('views.actions.edit'), edit_gallery_path(g), class: 'btn btn-warning btn-sm'
-        = link_to t('views.actions.destroy'), gallery_path(g), class: 'btn btn-danger btn-sm', method: :delete, remote: true
+        = link_to gallery_path(g), class: 'btn btn-primary btn-sm' do
+          %span.glyphicon.glyphicon-eye-open
+          = t('views.actions.show')
+        = ' '
+        - if can? :modify, g
+          = link_to edit_gallery_path(g), class: 'btn btn-warning btn-sm' do
+            %span.glyphicon.glyphicon-edit
+            = t('views.actions.edit')
+          = ' '
+          = link_to gallery_path(g), class: 'btn btn-danger btn-sm', method: :delete, remote: true do
+            %span.glyphicon.glyphicon-remove
+            = t('views.actions.destroy')
 - else
   %p= t('views.galleries.gallery_list_is_empty')

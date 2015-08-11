@@ -16,6 +16,13 @@ ru:
           title: 'Название статьи'
           anons: 'Анонс'
           text: 'Содержимое'
+      gallery:
+        new:
+          name: 'Название'
+          description: 'Описание'
+        edit:
+          name: 'Название'
+          description: 'Описание'
       defaults:
         password: 'Пароль'
         current_password: 'Текущий пароль'
@@ -28,6 +35,10 @@ ru:
     placeholders:
       default:
         password: '******'
+      gallery:  
+        new:
+          name: 'Название галереи'
+          description: 'Введите описание галереи'
       user:
         new:
           email: 'E-mail для входа в систему'
@@ -51,3 +62,5 @@ ru:
       submit:
         article:
           create: 'Создать статью'
+        gallery:
+          create: 'Создать галерею'

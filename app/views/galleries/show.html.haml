@@ -1,6 +1,6 @@
-%h1
-  = @gallery.name
-  %small= @gallery.description
-= render 'modify_buttons'
-= render_gallery_for @images
-/= render_gallery_for @images, original: 'image_full', thumbnail: 'image_thumb'
+%div{ id: 'page-content' }
+  %h1
+    = @gallery.name
+    %small= @gallery.description
+  = render 'modify_buttons'
+  = render_gallery_for @images

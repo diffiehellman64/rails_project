@@ -33,12 +33,12 @@ class GalleriesController < ApplicationController
   end
 
   def update
-    @gallery = Gallery.find(params[:id])
-    @gallery.update(gallery_params)
-    params[:images].each do |image|
-      @gallery.image.create(file: image, user_id: current_user.id)
-    end
     respond_with(@gallery) do |format|
+      @gallery = Gallery.find(params[:id])
+      @gallery.update(gallery_params)
+      params[:images].each do |image|
+        @gallery.image.create(file: image, user_id: current_user.id)
+      end
       format.js
     end
   end
@@ -54,12 +54,9 @@ class GalleriesController < ApplicationController
   def destroy
     respond_with(@gallery) do |format|
       @gallery = Gallery.find(params[:id])
-      if @gallery.destroy
-        format.js
-        format.html { redirect_to galleries_path, flash: { success: t('Gallery was successfully deleted!') } }
-      else
-        format.js {render js: 'alert("AAA!")' }
-      end
+      @gallery.destroy
+      format.js
+      format.html { redirect_to galleries_path, flash: { success: t('Gallery was successfully deleted!') } }
     end
   end
 

@@ -31,6 +31,7 @@ ru:
         title: 'Список галерей'
       new_gallery: 'Создать галерею'
       gallery_list_is_empty: 'Галереи не созданы пока ...'
+      edit_gallery: 'Редиктирование галереи'
     menus:
       items:
         home: 'Главная'
