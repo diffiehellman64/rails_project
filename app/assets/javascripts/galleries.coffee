@@ -2,6 +2,11 @@
 # All this logic will automatically be available in application.js.
 # You can use CoffeeScript in this file: http://coffeescript.org/
 jQuery ->
+  
+  # Протез для того, чтобы галерея работала при загрузке страницы через ajax
+  # Инициализируем скрипт галереи
+  $(document).on('pjax:complete', hermitage.init)
+
   $('body').on('change', '#upload-photo', ( ->
     $(this).hide()
     $('#edit-gallery-form').submit()

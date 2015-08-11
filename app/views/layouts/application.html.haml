@@ -9,8 +9,9 @@
     /= render 'layouts/navigation_builder'
     %div{ id: 'wrapper' }
       .row
-        .col-md-12{ id: 'main-data', 'pjax-container': 'true' }
+        .col-md-12{ id: 'main-data' }
           = render 'layouts/messager'
-          = yield
+          %div{ 'pjax-container': 'true' }
+            = yield
           = render 'layouts/footer'
     = javascript_include_tag 'application', 'data-turbolinks-track': true

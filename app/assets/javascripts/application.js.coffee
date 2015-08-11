@@ -12,18 +12,17 @@
 #= require hermitage
 
 ready = ->
-
-
+  
   $(document).pjax('a:not(.thumbnail)', '[pjax-container]')
-
   $.pjax.defaults.timeout = 4000
+
   $('.dd').nestable()
 
   $('[data-toggle="tooltip"]').tooltip()
 
-  setTimeout( ->
-    $('.message-item').fadeOut('fast')
-  , 5000)
+#  setTimeout( ->
+#    $('.message-item').fadeOut('fast')
+#  , 5000)
 
   # ajax to action_article_destroy
   $('body').on('click', '.action_article_destroy', ( -> 
@@ -134,6 +133,5 @@ ready = ->
 #    if cont == 'test'
 #      cont = $('#search_field').val('123')
 
-# enable ready code on all pages of application
-$(document).ready(ready)
 $(document).on('page:load', ready)
+$(document).ready(ready)
