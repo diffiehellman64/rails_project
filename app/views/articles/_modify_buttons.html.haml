@@ -7,3 +7,7 @@
     = link_to versions_item_path('article', @article.id), class: 'btn btn-primary btn-xs' do
       %span.glyphicon.glyphicon-time
       = t('views.articles.actions.versions')
+    = ' ' 
+    = link_to article_path( @article, format: :pdf), class: 'pdf-link btn btn-success btn-xs' do
+      %span.glyphicon.glyphicon-file
+      = t('views.actions.show_pdf')

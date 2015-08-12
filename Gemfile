@@ -31,6 +31,8 @@ gem 'remotipart'
 #gem 'wkhtmltopdf'
 gem 'prawn'
 gem 'prawnto'
+gem 'prawn-table'
+#gem 'acts_as_flying_saucer'
 
 
 group :assets do

@@ -1,7 +1,7 @@
 class ArticlesController < ApplicationController
   
   load_and_authorize_resource
-
+ 
   respond_to :html, :pdf
 
   before_action :set_article, only: [:show, :edit, :update, :destroy]
@@ -13,12 +13,21 @@ class ArticlesController < ApplicationController
       t = 1
     end
     @articles = Article.all.paginate(page: t, per_page: 10 ).order(created_at: :desc)
-    respond_with do |format|
-      format.html
-    end
   end
 
   def show
+    prawnto prawn: { margin: [20, 20, 20, 20], page_size: "A4"}
+    #prawnto prawn: { margin: [20, 20, 20, 20], page_size: "A4", page_layout: :landscape }
+    #respond_with(@doc) do |format|
+      #format.html
+      #format.pdf do
+        #@doc.text 'Просто текст'
+        #filename = File.join(Rails.root, "public/pdf", "file.pdf")
+        #doc.render_file filename
+        #send_file filename, :filename => "file.pdf", :type => "application/pdf"
+       # render 'show'
+      #end #{ render 'show' }
+    #end
   end
 
   def new
