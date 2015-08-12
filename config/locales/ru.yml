@@ -1,4 +1,7 @@
 ru:
+  errors:
+    not_admin: 'Доступ разрешен только для администратора.'
+    forbidden: 'Нет доступа'
   activerecord:
     attributes:
       user:
@@ -46,6 +49,8 @@ ru:
         galleries: 'Фото галереи'
         galleries_list: 'Список галерей'
         galleries_new: 'Создать галерею'
+        access: 'Управление доступом'
+        users_manage: 'Пользователи'
       index:
         title: 'Список созданных меню'
       new:

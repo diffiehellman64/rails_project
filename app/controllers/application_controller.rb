@@ -13,17 +13,17 @@ class ApplicationController < ActionController::Base
 
   rescue_from CanCan::AccessDenied do |exception|
     if request.headers['X-PJAX'] # pjax
-      render text: '<div class="alert alert-danger"><strong>Access denied!</strong> ' + exception.message + '</div>' 
+      render text: "<div class='alert alert-danger'><strong>#{t('errors.forbidden')}:</strong> #{exception.message}</div>"
     elsif request.xhr? # ajax
       render status: :forbidden, text: 'Forbidden'
     else 
-      redirect_to main_app.root_path, flash: { danger: "<strong>Access denied</strong>: #{exception.message}" }
+      redirect_to main_app.root_path, flash: { danger: "<strong>#{t('errors.forbidden')}:</strong> #{exception.message}" }
     end
   end
 
   def check_admin
     if !current_user or !current_user.has_role?(:admin)
-      raise CanCan::AccessDenied.new("Sorry... But you are not admin!")
+      raise CanCan::AccessDenied.new(t('errors.not_admin'))
     else
       true
     end

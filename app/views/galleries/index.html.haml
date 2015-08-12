@@ -13,11 +13,12 @@
           %span.glyphicon.glyphicon-eye-open
           = t('views.actions.show')
         = ' '
-        - if can? :modify, g
+        - if can? :edit, g
           = link_to edit_gallery_path(g), class: 'btn btn-warning btn-sm' do
             %span.glyphicon.glyphicon-edit
             = t('views.actions.edit')
           = ' '
+        - if can? :destroy, g
           = link_to gallery_path(g), class: 'btn btn-danger btn-sm', method: :delete, remote: true do
             %span.glyphicon.glyphicon-remove
             = t('views.actions.destroy')

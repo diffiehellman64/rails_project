@@ -20,8 +20,8 @@ SimpleNavigation::Configuration.run do |navigation|
     end
   
    # primary.item :admin, 'Admin', '#',  if: Proc.new { current_user and current_user.has_role?(:admin) } do |sub_nav|
-    primary.item :access, 'Access', '#' do |sub_nav|
-      sub_nav.item :access_users, 'Users', users_all_path, class: 'pjax_action'
+    primary.item :access, t('views.menus.items.access'), '#' do |sub_nav|
+      sub_nav.item :access_users, t('views.menus.items.users_manage'), users_all_path
     end
 
   end

@@ -2,7 +2,7 @@ class ArticlesController < ApplicationController
   
   load_and_authorize_resource
 
-  respond_to :html
+  respond_to :html, :pdf
 
   before_action :set_article, only: [:show, :edit, :update, :destroy]
 
@@ -13,7 +13,9 @@ class ArticlesController < ApplicationController
       t = 1
     end
     @articles = Article.all.paginate(page: t, per_page: 10 ).order(created_at: :desc)
-    #@articles = Article.all.order(created_at: :desc)
+    respond_with do |format|
+      format.html
+    end
   end
 
   def show
