@@ -13,7 +13,7 @@
 
 ready = ->
   
-  $(document).pjax('a:not(.thumbnail)', '[pjax-container]')
+  $(document).pjax('a:not(.thumbnail):not(.pdf-link)', '[pjax-container]')
   $.pjax.defaults.timeout = 4000
 
   $('.dd').nestable()

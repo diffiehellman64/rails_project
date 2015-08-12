@@ -4,12 +4,13 @@ Rails.application.routes.draw do
   mount RailsAdmin::Engine => '/admin', as: 'rails_admin'
   resources :menus, only: [:index, :new, :create, :update, :destroy]
   resources :galleries
-  post   '/gallery/add_image'     => 'galleries#add_image', as: 'images'
+  # post   '/gallery/add_image'     => 'galleries#add_image', as: 'images'
   delete '/gallery/del_image/:image_id' => 'galleries#del_image', as: 'del_image'
+  resources :letters
 
 
   get  'menus/:menu_name' => 'menus#show', as: 'menu_show'
-#  post 'menus/:menu_name' => 'menus#create'
+  # post 'menus/:menu_name' => 'menus#create'
 
   resources :articles
   root 'home#index'
