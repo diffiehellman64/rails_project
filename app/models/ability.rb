@@ -19,8 +19,8 @@ class Ability
       can :read, Gallery
       can :modify, Gallery
       can :del_image, Gallery
-#      can :read, Letter
-#      can :modify, Letter
+      can :read, Letter
+      can :modify, Letter
       # can :read, :all
 
     # Editor

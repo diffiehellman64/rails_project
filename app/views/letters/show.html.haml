@@ -1,0 +1,2 @@
+%p= @letter.text
+= link_to t('views.letters.show_pdf'), letter_path(@letter, format: :pdf), class: 'pdf-link'

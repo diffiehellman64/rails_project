@@ -1,0 +1,8 @@
+= simple_form_for @letter do |f|
+  /= f.input :date_incomming, as: :date, label: 'incom'
+  = f.input :number_incomming
+  /= f.input :date_outgoing_out
+  = f.input :number_outgoing_out
+  = f.input :incomming_letter, as: :file
+  = f.input :text, height: 500
+  = f.button :submit

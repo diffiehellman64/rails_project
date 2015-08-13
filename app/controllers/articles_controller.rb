@@ -2,7 +2,8 @@ class ArticlesController < ApplicationController
   
   load_and_authorize_resource
  
-  respond_to :html, :pdf
+  # respond_to :html, :pdf
+  # respond_to :html
 
   before_action :set_article, only: [:show, :edit, :update, :destroy]
 
@@ -16,7 +17,7 @@ class ArticlesController < ApplicationController
   end
 
   def show
-    prawnto prawn: { margin: [20, 20, 20, 20], page_size: "A4"}
+    #prawnto prawn: { margin: [20, 20, 20, 20], page_size: "A4"}
     #prawnto prawn: { margin: [20, 20, 20, 20], page_size: "A4", page_layout: :landscape }
     #respond_with(@doc) do |format|
       #format.html
