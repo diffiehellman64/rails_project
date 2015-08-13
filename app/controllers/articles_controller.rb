@@ -2,7 +2,7 @@ class ArticlesController < ApplicationController
   
   load_and_authorize_resource
  
-  # respond_to :html, :pdf
+  respond_to :html, :pdf, :js
   # respond_to :html
 
   before_action :set_article, only: [:show, :edit, :update, :destroy]
@@ -17,6 +17,10 @@ class ArticlesController < ApplicationController
   end
 
   def show
+    #if request.url # Check if we are redirected
+    #  response.headers['X-PJAX-URL'] = request.url
+    #end
+    #render :layout => false
     #prawnto prawn: { margin: [20, 20, 20, 20], page_size: "A4"}
     #prawnto prawn: { margin: [20, 20, 20, 20], page_size: "A4", page_layout: :landscape }
     #respond_with(@doc) do |format|
@@ -39,14 +43,19 @@ class ArticlesController < ApplicationController
   end
 
   def create
-    @article = Article.new(article_params)
-    @article.user_id = current_user.id
-    if @article.save
+   # respond_with do |format|
+      @article = Article.new(article_params)
+      @article.user_id = current_user.id
+      if @article.save
       #redirect_to @article, flash: { success: 'Article was successfully created!' }
-      respond_with(@article, location: @article)
-    else
-      render :new
-    end
+      #respond_with(@article, location: @article)
+      #render js: "alert('Hello Rails');"
+      #render js: "$.pjax.reload('#pjax-container');"
+      #  redirect_to @article
+      else
+        render :new
+      end
+    #end
   end
 
   def update

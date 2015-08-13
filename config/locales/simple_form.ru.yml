@@ -16,6 +16,18 @@ ru:
           title: 'Название статьи'
           anons: 'Анонс'
           text: 'Содержимое'
+      letter:
+        edit:
+          date_incomming: 'Дата поступления'
+          date_outgoing_out: 'Дата отправления'
+          number_incomming: 'Входящий номер'
+          number_outgoing_out: 'Исходящий номер'
+          incomming_letter: 'Копия входящего письма (pdf)'
+          number_incomming_out: 'Водящий номер'
+          number_outgoing: 'Исходящий номер'
+          date_incomming_out: 'Дата поступления'
+          date_outgoing: 'Дата отправления'
+          text: 'Текст ответа'
       gallery:
         new:
           name: 'Название'

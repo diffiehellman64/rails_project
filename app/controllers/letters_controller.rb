@@ -5,7 +5,8 @@ class LettersController < ApplicationController
   respond_to :html, :pdf
 
   def index
-    render text: 'index'
+    @letters = Letter.all.order(:id)
+    #render text: 'index'
   end
 
   def show
@@ -37,6 +38,14 @@ class LettersController < ApplicationController
   end
 
   def destroy
+  end
+
+  def add_director
+    @director = Director.new
+    respond_with(@director) do |format|
+      format.html
+      format.js
+    end
   end
 
   private

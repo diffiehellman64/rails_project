@@ -18,6 +18,8 @@ ready = ->
 
   $('.dd').nestable()
 
+  #$("#letter_date_incomming").datepicker();
+
   $('[data-toggle="tooltip"]').tooltip()
 
 #  setTimeout( ->

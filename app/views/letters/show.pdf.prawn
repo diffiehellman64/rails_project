@@ -18,8 +18,8 @@ mvd = pdf.make_cell(content: "<b>МВД по Республике Коми\n\nУ
 
 date_cell = pdf.make_cell(content: "        ", borders: [:bottom])
 
-outgoing_data = pdf.make_cell(content: "«____» августа 2015 г. №13/9")
-incomming_data = pdf.make_cell(content: "на № _______ от ___________")
+outgoing_data = pdf.make_cell(content: "«____» #{Time.now.localtime.strftime("%B")} 2015 г. №13/9")
+incomming_data = pdf.make_cell(content: "на № #{@letter.number_outgoing_out} от #{@letter.date_outgoing_out.strftime('%d.%m.%Y')}")
 #outgoing_data = pdf.make_table([["«", date_cell, "»", " августа 2015 г. №13/9"]], cell_style: { padding: [0, 0, 0, 0], borders: [] })
 theme = pdf.make_cell("┌ ┐")
 

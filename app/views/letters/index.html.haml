@@ -1,0 +1,9 @@
+%h1= t('views.letters.lettrs_list')
+%table.table
+  %tr
+    %th Id
+    %th In number
+  - @letters.each do |letter|
+    %tr
+      %td= letter.id
+      %td= link_to letter.number_incomming, letter_path(letter)

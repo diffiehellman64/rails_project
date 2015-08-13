@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150810112857) do
+ActiveRecord::Schema.define(version: 20150812134959) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -23,6 +23,16 @@ ActiveRecord::Schema.define(version: 20150810112857) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.text     "anons"
+  end
+
+  create_table "chiefs", force: :cascade do |t|
+    t.string   "lats_name"
+    t.string   "first_name"
+    t.string   "middle_name"
+    t.string   "rank"
+    t.string   "position"
+    t.datetime "created_at",  null: false
+    t.datetime "updated_at",  null: false
   end
 
   create_table "ckeditor_assets", force: :cascade do |t|
@@ -41,6 +51,23 @@ ActiveRecord::Schema.define(version: 20150810112857) do
   add_index "ckeditor_assets", ["assetable_type", "assetable_id"], name: "idx_ckeditor_assetable", using: :btree
   add_index "ckeditor_assets", ["assetable_type", "type", "assetable_id"], name: "idx_ckeditor_assetable_type", using: :btree
 
+  create_table "directors", force: :cascade do |t|
+    t.string   "lats_name"
+    t.string   "lats_name_case"
+    t.string   "first_name"
+    t.string   "middle_name"
+    t.string   "address_street"
+    t.string   "address_house"
+    t.string   "address_town"
+    t.string   "address_index"
+    t.string   "rank"
+    t.string   "rank_case"
+    t.string   "position"
+    t.string   "position_case"
+    t.datetime "created_at",     null: false
+    t.datetime "updated_at",     null: false
+  end
+
   create_table "galleries", force: :cascade do |t|
     t.string   "name"
     t.integer  "user_id"
@@ -58,6 +85,25 @@ ActiveRecord::Schema.define(version: 20150810112857) do
     t.string   "file_content_type"
     t.integer  "file_file_size"
     t.datetime "file_updated_at"
+  end
+
+  create_table "letters", force: :cascade do |t|
+    t.text     "text"
+    t.string   "incomming_letter_file_name"
+    t.string   "incomming_letter_content_type"
+    t.integer  "incomming_letter_file_size"
+    t.datetime "incomming_letter_updated_at"
+    t.string   "number_outgoing_out"
+    t.string   "number_incomming_out"
+    t.string   "number_outgoing"
+    t.string   "number_incomming"
+    t.date     "date_incomming_out"
+    t.date     "date_outgoing_out"
+    t.date     "date_incomming"
+    t.date     "date_outgoing"
+    t.integer  "deirector_id"
+    t.datetime "created_at",                    null: false
+    t.datetime "updated_at",                    null: false
   end
 
   create_table "menus", force: :cascade do |t|

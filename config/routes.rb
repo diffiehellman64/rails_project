@@ -7,7 +7,7 @@ Rails.application.routes.draw do
   # post   '/gallery/add_image'     => 'galleries#add_image', as: 'images'
   delete '/gallery/del_image/:image_id' => 'galleries#del_image', as: 'del_image'
   resources :letters
-
+  post 'directors/new' => 'letters#add_director', as: 'director_new'
 
   get  'menus/:menu_name' => 'menus#show', as: 'menu_show'
   # post 'menus/:menu_name' => 'menus#create'

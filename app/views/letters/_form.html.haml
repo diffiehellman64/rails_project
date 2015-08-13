@@ -1,8 +1,46 @@
 = simple_form_for @letter do |f|
-  /= f.input :date_incomming, as: :date, label: 'incom'
-  = f.input :number_incomming
-  /= f.input :date_outgoing_out
-  = f.input :number_outgoing_out
+  .row
+    .col-md-1
+    .col-md-2
+      %strong Организация
+    .col-md-1
+    .col-md-2
+      %strong УГИБДД 
+  %br
+  .row
+    .col-md-1
+    .col-md-2
+      = f.input :date_outgoing_out, as: :string
+    .col-md-1
+    .col-md-2
+      = f.input :date_incomming, as: :string 
+  .row
+    .col-md-1
+    .col-md-2
+      = f.input :number_outgoing_out
+    .col-md-1
+    .col-md-2
+      = f.input :number_incomming
+    -#.row
+    -#.col-md-1
+    -#.col-md-2
+    -#= f.input :date_incomming_out, as: :string
+    /.col-md-1
+    /.col-md-2
+    /= f.input :date_outgoing, as: :string
+    /.row
+    /.col-md-1
+    /.col-md-2
+    /= f.input :number_incomming_out
+    /.col-md-1
+    /.col-md-2
+    /= f.input :number_outgoing
+    /= simple_form_for @director do |d|
+    /= d.input :last_name
+    /= d.input :first_name
+    /= d.input :middle_name
+    /= d.input :rank
+  = link_to t('views.letters.add_director'), '/directors/new', remote: true, method: :post
   = f.input :incomming_letter, as: :file
   = f.input :text, height: 500
   = f.button :submit

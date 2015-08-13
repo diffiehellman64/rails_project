@@ -21,6 +21,7 @@ class Ability
       can :del_image, Gallery
       can :read, Letter
       can :modify, Letter
+      can :add_director, Letter
       # can :read, :all
 
     # Editor

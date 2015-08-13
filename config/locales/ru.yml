@@ -74,3 +74,5 @@ ru:
     not_valid: 'Неверные символы с картинки'
     label: 'Вы точно не робот?'
     placeholder: 'captcha'
+  date:
+    order: 'order'

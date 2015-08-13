@@ -1,2 +1,4 @@
-%p= @letter.text
-= link_to t('views.letters.show_pdf'), letter_path(@letter, format: :pdf), class: 'pdf-link'
+%p= @letter.text.sub("\n\r", '<br>')
+%p= link_to t('views.letters.incomming_letter_link'), @letter.incomming_letter.url, target:'"_blank', class: 'pdf-link'
+%p= link_to t('views.letters.show_outgoing_letter'), letter_path(@letter, format: :pdf), target:'"_blank', class: 'pdf-link'
+%p= link_to t('views.letters.edit_letter'), edit_letter_path(@letter)
