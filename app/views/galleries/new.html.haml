@@ -1,5 +1,5 @@
 %h1= t('views.galleries.new_gallery')
-= simple_form_for(@gallery) do |f|
+= simple_form_for(@gallery, remote: true) do |f|
   = f.input :name
   = f.input :description
   = f.button :submit

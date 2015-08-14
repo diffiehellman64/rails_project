@@ -6,6 +6,9 @@ class Article < ActiveRecord::Base
     self.versions.destroy_all
   end
 
+  validates :title, presence: true,
+                    uniqueness: { case_sensitive: false }
+
   def prew
     if self.anons and self.anons != ''
       return self.anons

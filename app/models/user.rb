@@ -74,7 +74,7 @@ class User < ActiveRecord::Base
                               thumb:  '16x16>' },
                     url:    '/avatars/:style/avatar_:id',
                     path:   ':rails_root/public:url',
-                    default_url: 'public/avatars/default/:style/default.png'
+                    default_url: '/avatars/default/:style/default.png'
   validates_attachment_content_type :avatar, content_type: /\Aimage\/.*\Z/
 
 end

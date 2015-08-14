@@ -123,10 +123,10 @@ ready = ->
   # #search_field animation
   $('#search_field').focus ->
     $(this).animate
-      width: '+=100'
+      width: '+=50'
   $('#search_field').focusout ->
     $(this).animate
-      width: '-=100'
+      width: '-=50'
   $('#search_field').keyup ->
     cont = $('#search_field').val()
     if cont
@@ -134,5 +134,5 @@ ready = ->
 #    if cont == 'test'
 #      cont = $('#search_field').val('123')
 
-$(document).on('page:load', ready)
+$(document).on('pjax:complete', ready)
 $(document).ready(ready)

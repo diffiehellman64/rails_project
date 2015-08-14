@@ -4,8 +4,12 @@
   - @galleries.each do |g|
     %div{ id: "data-gallery-id-#{g.id}" }
       %h3
-        =link_to g.name, gallery_path(g)
-        %small= g.description
+        = link_to g.name, gallery_path(g)
+        %small
+          = g.description
+      %p
+        = t('galleries.photo_count')
+        %strong= g.image.count
       %div
         - g.image.first(9).each do |img|
           = image_tag img.file.url(:thumbnail), class: 'photo'

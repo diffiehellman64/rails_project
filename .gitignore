@@ -9,8 +9,14 @@
 /.*.swp
 *.swp
 
-# Users avatars
-public/system/users/avatars/*
+public/system/images/*
+public/system/letters/*
+
+public/avatars/large/*
+public/avatars/medium/*
+public/avatars/original/*
+public/avatars/thumb/*
+
 
 public/ckeditor_assets/*
 

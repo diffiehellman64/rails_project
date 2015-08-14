@@ -4,14 +4,13 @@
     %title= yield(:title)
     = stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track': true
     = csrf_meta_tags
-  %body
-    = render 'layouts/navigation_main'
+  %body{ id: 'body' }
+    = render 'layouts/navigation'
     /= render 'layouts/navigation_builder'
     %div{ id: 'wrapper' }
       .row
         .col-md-12
           = render 'layouts/messager'
-          %div{ id: 'main-data', 'pjax-container': 'true' }
-            = yield
+          = render 'layouts/page_body'
           = render 'layouts/footer'
-    = javascript_include_tag 'application', 'data-turbolinks-track': true
+    = javascript_include_tag 'application'

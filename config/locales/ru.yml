@@ -24,6 +24,8 @@ ru:
               too_short: 'слишком короткий.'
             password_confirmation:
               confirmation: 'не совпадает с паролем'
+  galleries:
+    photo_count: 'Количество фотографий:'
   views:
     actions:
       show: 'Просмотр'

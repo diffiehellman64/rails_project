@@ -26,7 +26,8 @@ class GalleriesController < ApplicationController
     @gallery = Gallery.new(gallery_params)
     @gallery.user_id = current_user.id
     if @gallery.save
-      redirect_to edit_gallery_path(@gallery), flash: { success: 'Gallery was successfully created!' }
+     # redirect_to edit_gallery_path(@gallery), flash: { success: 'Gallery was successfully created!' }
+      pjax_redirect_to edit_gallery_path(@gallery)
     else
       render :new
     end
