@@ -31,6 +31,10 @@ class ApplicationController < ActionController::Base
 
   protected
 
+  def pjax_redirect_to(url, container = '[pjax-container]')
+    render js: "$.pjax({url: '#{url}', container: '#{container}'});"
+  end
+
   def configure_permitted_parameters
     devise_parameter_sanitizer.for(:sign_up) { |u| u.permit(:last_name, :first_name, :email, 
                                                             :password, :password_confirmation, 

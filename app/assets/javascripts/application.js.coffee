@@ -1,7 +1,6 @@
 #= require jquery
 #= require jquery_ujs
 #= require ckeditor/init
-#= require turbolinks
 #= require jquery.validate.min
 #= require bootstrap-sprockets
 #= require jquery.pjax
