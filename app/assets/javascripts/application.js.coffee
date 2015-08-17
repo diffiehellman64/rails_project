@@ -113,5 +113,5 @@ ready = ->
 #    if cont == 'test'
 #      cont = $('#search_field').val('123')
 
-$(document).on('pjax:complete', ready)
+#$(document).on('pjax:complete', ready)
 $(document).ready(ready)
