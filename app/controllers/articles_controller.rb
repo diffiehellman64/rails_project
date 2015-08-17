@@ -65,8 +65,8 @@ class ArticlesController < ApplicationController
       params.require(:article).permit(:title, :text, :anons)
     end
 
-    def pjax_redirect_to(url, container = '[pjax-container]')
-      render js: "$.pjax({url: '#{url}', container: '#{container}'});"
-    end
+#    def pjax_redirect_to(url, container = '[pjax-container]')
+#      render js: "$.pjax({url: '#{url}', container: '#{container}'});"
+#    end
 
 end
