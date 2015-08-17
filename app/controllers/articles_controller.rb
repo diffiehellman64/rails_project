@@ -4,7 +4,7 @@ class ArticlesController < ApplicationController
  
   respond_to :html, :pdf, :js
 
-  before_action :set_article, only: [:show, :edit, :update, :destroy]
+  before_action :set_article, only: [ :show, :edit, :update, :destroy ]
 
   def index
     if params[:page]
@@ -47,10 +47,12 @@ class ArticlesController < ApplicationController
   end
 
   def destroy
-    @article.destroy
-    render json: { success: true }
-    #ArticlesMailer.article_destroyed(@article).deliver_now
-    #redirect_to articles_url, flash: { success: 'Article was successfully destroyed!' }
+    respond_with do |format|
+      if @article.destroy
+        format.js
+        #ArticlesMailer.article_destroyed(@article).deliver_now
+      end
+    end
   end
 
   private

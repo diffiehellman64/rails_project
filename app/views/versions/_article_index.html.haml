@@ -5,13 +5,14 @@
   %th Created
   %th{ colspan: '2' } Actions
 - @items.each do |article|
-  %tr{ 'data-article-id': article.id }
+  %tr{ id: "data-article-#{article.id}" }
     %td= article.id
     %td= link_to article.title, article
     %td= user_profile_link_img(article.user_id)
     %td= article.created_at.localtime.strftime('%H:%M %d-%m-%Y')
     %td
-      %a.btn.btn-default.btn-danger.btn-xs.action_article_destroy.ajax_action{ href: '#', 'data-skip-pjax': 'true' } Destroy
+      /%a.btn.btn-default.btn-danger.btn-xs.action_article_destroy.ajax_action{ href: '#', 'data-skip-pjax': 'true' } Destroy
+      = link_to t('actions.destroy'), article_path(article),  remote: true, method: :delete, class: 'btn btn-danger btn-xs'
     %td
       - if article.versions.length > 1
         %a.btn.btn-primary.btn-xs{ href: "/versions/article/#{article.id}" }

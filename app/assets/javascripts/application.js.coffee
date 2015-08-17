@@ -26,19 +26,19 @@ ready = ->
 #  , 5000)
 
   # ajax to action_article_destroy
-  $('body').on('click', '.action_article_destroy', ( -> 
-    article_tr = $(this).parents('tr')[0]
-    url = '/articles/' + $(article_tr).attr('data-article-id')
-    confirmModal('Do you really want destroy this article?', ->
-      $.ajax url,
-        type: 'POST'
-        data: _method: 'DELETE'
-        error: (jqXHR) ->
-          showAppMessage('<strong>Error:</strong> ' + jqXHR.status, 'danger');
-        success: (jqXHR) ->
-          $(article_tr).fadeOut(200)
-          showAppMessage('<strong>Success!</strong> Article deleted!', 'success');
-  )))
+#  $('body').on('click', '.action_article_destroy', ( -> 
+#    article_tr = $(this).parents('tr')[0]
+#    url = '/articles/' + $(article_tr).attr('data-article-id')
+#    confirmModal('Do you really want destroy this article?', ->
+#      $.ajax url,
+#        type: 'POST'
+#        data: _method: 'DELETE'
+#        error: (jqXHR) ->
+#          showAppMessage('<strong>Error:</strong> ' + jqXHR.status, 'danger');
+#        success: (jqXHR) ->
+#          $(article_tr).fadeOut(200)
+#          showAppMessage('<strong>Success!</strong> Article deleted!', 'success');
+#  )))
 
   # ajax to action_version_destroy
   $('body').on('click', '.action_version_destroy', ( -> 
@@ -121,12 +121,12 @@ ready = ->
   ))
 
   # #search_field animation
-  $('#search_field').focus ->
-    $(this).animate
-      width: '+=50'
-  $('#search_field').focusout ->
-    $(this).animate
-      width: '-=50'
+  # $('#search_field').focus ->
+  #  $(this).animate
+  #    width: '+=50'
+  # $('#search_field').focusout ->
+  #  $(this).animate
+  #    width: '-=50'
   $('#search_field').keyup ->
     cont = $('#search_field').val()
     if cont
