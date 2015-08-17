@@ -14,6 +14,7 @@ class Ability
       # can :dashboard              # grant access to the dashboard
       can :modify, Article
       can :read, Article
+      can :validate, Article
       can :read, Menu
       can :modify, Menu
       can :read, Gallery

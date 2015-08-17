@@ -13,6 +13,7 @@ Rails.application.routes.draw do
   # post 'menus/:menu_name' => 'menus#create'
 
   resources :articles
+  post 'articles/validate' => 'articles#validate'
   root 'home#index'
 
   devise_for :users , controllers: { registrations: 'access/registrations',

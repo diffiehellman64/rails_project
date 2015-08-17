@@ -55,6 +55,26 @@ class ArticlesController < ApplicationController
     end
   end
 
+  def validate
+
+    article = Article.new(article_params)
+    article.valid?
+    field = params[:article].first[0]
+    @errors = article.errors[field]
+
+    if @errors.empty?
+      @errors = true
+    else
+      name = t("activerecord.attributes.article.#{field}")
+      @errors.map! { |e| "#{name} #{e}<br/>" }
+    end
+
+    respond_to do |format|
+      format.json { render json: @errors }
+    end
+
+  end
+
   private
 
     def set_article

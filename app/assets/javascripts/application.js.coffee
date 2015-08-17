@@ -7,7 +7,6 @@
 #= require jquery.nestable
 #= require jquery.remotipart
 #= require_tree .
-#= require_tree ./functions
 #= require hermitage
 
 ready = ->
