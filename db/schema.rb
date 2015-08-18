@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150812134959) do
+ActiveRecord::Schema.define(version: 20150818192347) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -24,6 +24,18 @@ ActiveRecord::Schema.define(version: 20150812134959) do
     t.datetime "updated_at", null: false
     t.text     "anons"
   end
+
+  create_table "carousel_items", force: :cascade do |t|
+    t.integer  "carouselable_id"
+    t.string   "carouselable_type"
+    t.integer  "user_id"
+    t.text     "description"
+    t.boolean  "active"
+    t.datetime "created_at",        null: false
+    t.datetime "updated_at",        null: false
+  end
+
+  add_index "carousel_items", ["carouselable_type", "carouselable_id"], name: "index_carousel_items_on_carouselable_type_and_carouselable_id", using: :btree
 
   create_table "chiefs", force: :cascade do |t|
     t.string   "lats_name"
