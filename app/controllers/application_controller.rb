@@ -7,13 +7,9 @@ class ApplicationController < ActionController::Base
 
   include SimpleCaptcha::ControllerHelpers
 
-  def render_403
-    render text: '<div class="alert alert-danger">Access denied!</div>'
-  end
-
   rescue_from CanCan::AccessDenied do |exception|
     if request.headers['X-PJAX'] # pjax
-      render text: "<div class='alert alert-danger'><strong>#{t('errors.forbidden')}:</strong> #{exception.message}</div>"
+      render_403 exception.message
     elsif request.xhr? # ajax
       render status: :forbidden, text: 'Forbidden'
     else 
@@ -45,7 +41,11 @@ class ApplicationController < ActionController::Base
                                                                    :current_password, :avatar) }
   end
 
-
   private
+
+  def render_403(message)
+    #render text: '<div class="alert alert-danger">Access denied!</div>'
+    render text: "<div id='forbidden-div' class='alert alert-danger'><strong>#{t('errors.forbidden')}:</strong> #{message}</div>"
+  end
 
 end

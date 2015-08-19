@@ -6,7 +6,7 @@ class VersionsController < ApplicationController
     if can? :modify, @model
       true
     else
-      raise CanCan::AccessDenied.new("Version controll for this model not allowed!")
+      raise CanCan::AccessDenied.new(t('unauthorized.version_controll_not_allowed'))
     end
   end
 

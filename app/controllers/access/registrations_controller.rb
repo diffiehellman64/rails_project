@@ -1,11 +1,10 @@
 class Access::RegistrationsController < Devise::RegistrationsController
 
   before_filter :configure_sign_up_params, only: [:create, :validate]
-
 # before_filter :configure_account_update_params, only: [:update]
 
   before_action :check_adm, only: [:users, :roles_update, :user_update]
-#  before_action :set_article, only: [:show, :edit, :update, :destroy]
+# before_action :set_article, only: [:show, :edit, :update, :destroy]
 
   def profile
     @user = User.find(params[:id])
@@ -33,7 +32,6 @@ class Access::RegistrationsController < Devise::RegistrationsController
   end
 
   def validate
-
     user = User.new(params.require(:user).permit(:email, :password, :username, :password_confirmation, :captcha))
     user.valid?
     field = params[:user].first[0]
@@ -49,7 +47,6 @@ class Access::RegistrationsController < Devise::RegistrationsController
     respond_to do |format|
       format.json { render json: @errors }
     end
-
   end
   
 

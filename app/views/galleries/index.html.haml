@@ -24,7 +24,7 @@
             = t('views.actions.edit')
           = ' '
         - if can? :destroy, g
-          = link_to gallery_path(g), class: 'btn btn-danger btn-sm', method: :delete, remote: true do
+          = link_to gallery_path(g), class: 'btn btn-danger btn-sm', method: :delete, remote: true, data: { confirm: 'Вы уверены, что хотите удалить галерею и все фотографии из нее?' } do
             %span.glyphicon.glyphicon-remove
             = t('views.actions.destroy')
 - else

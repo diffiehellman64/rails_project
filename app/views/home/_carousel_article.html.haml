@@ -1,0 +1,35 @@
+.carousel.slide{ id: 'carousel-article', 'data-ride': 'carousel' }
+  <!-- Indicators -->
+  %ol.carousel-indicators
+    - @articles = Article.all.order(:id)
+    - i = 0
+    - @articles.each do |a|
+      - if i == 0 
+        %li.active{ 'data-target': '#carousel-article', 'data-slide-to': '0' }
+      - else
+        %li{ 'data-target': '#carousel-article', 'data-slide-to': "#{i}" }
+      - i = i + 1
+  <!-- Wrapper for slides -->
+  %div.carousel-inner{ 'role': 'listbox' }
+    - i = 0
+    - @articles.each do |a|
+      - if i == 0 
+        .item.active
+          = image_tag("/carousel/#{5 % (i + 1) + 1}.jpg")
+          .carousel-caption
+            = link_to a.title, a
+            = raw a.prew
+      - else
+        .item
+          = image_tag("/carousel/#{5 % (i + 1) + 1}.jpg")
+          .carousel-caption
+            = link_to a.title, a
+            = raw a.prew
+      - i = i + 1
+  <!-- Controls -->
+  %a.left.carousel-control{ href: '#carousel-article', role: 'button', 'data-slide': 'prev' }
+    %span.glyphicon.glyphicon-chevron-left{ 'aria-hidden': 'true' }
+    %span.sr-only Previous
+  %a.right.carousel-control{ href: '#carousel-article', role: 'button', 'data-slide': 'next' }
+    %span.glyphicon.glyphicon-chevron-right{ 'aria-hidden': 'true' }
+    %span.sr-only Next
